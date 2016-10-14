@@ -256,9 +256,39 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'F4f1pYNzwgdGLGx7j86y','2.0.0');
+</script>
+
+
+
+    </div>
   
 </nav>
 
@@ -284,7 +314,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
 </blockquote>
 <hr>
 <p>###2. 连接到服务器</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 <span class="tag">&lt; <span class="attr">----</span> &gt;</span> 中间层 <span class="tag">&lt; <span class="attr">----</span> &gt;</span> 服务器</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 &lt; ---- &gt; 中间层 &lt; ---- &gt; 服务器</div></pre></td></tr></table></figure>
 <blockquote>
 <p>数据库用户连接到Oracle服务器</p>
 <ul>
@@ -307,7 +337,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
 </blockquote>
 <hr>
 <p>###4. 连接到数据库</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">用户</span> &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">SQL</span>&gt; <span class="comment">select</span> &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">用户进程</span>  &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">服务进程</span>  &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">数据库</span></div><div class="line">                                <span class="comment">|</span>&lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">连接</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">|</span></div><div class="line">  <span class="comment">|</span>&lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">会话</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">|</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">用户 &lt;---&gt; SQL&gt; select &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 数据库</div><div class="line">                                |&lt;----连接------&gt;|</div><div class="line">  |&lt;-------------------------会话----------------------------&gt;|</div></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>连接：用户进程和实例之间的通信</li>
@@ -316,7 +346,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
 </blockquote>
 <hr>
 <p>###5. 与Oracle DB交互</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">用户（SQL&gt; select） <span class="tag">&lt;<span class="name">---</span>&gt;</span> 用户进程  <span class="tag">&lt;<span class="name">---</span>&gt;</span> 服务进程  <span class="tag">&lt;<span class="name">---</span>&gt;</span> 实例<span class="tag">&lt;<span class="name">---</span>&gt;</span> 数据库</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">用户（SQL&gt; select） &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 实例&lt;---&gt; 数据库</div></pre></td></tr></table></figure>
 <blockquote>
 <ol>
 <li><p>在安装了Oracle DB的节点（通常称为“主机”或“数据库服务器”）上启动了一个实例。</p>
