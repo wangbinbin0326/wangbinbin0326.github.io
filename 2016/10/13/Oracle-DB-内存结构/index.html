@@ -104,7 +104,7 @@
 程序全局区（PGA）:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif">
 <meta property="og:image" content="http://images.51cto.com/files/uploadimg/20120511/090649172.jpg">
-<meta property="og:updated_time" content="2016-10-14T06:04:36.358Z">
+<meta property="og:updated_time" content="2016-10-14T09:30:47.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle-DB-内存结构">
 <meta name="twitter:description" content="第二. Oracle DB 内存结构
@@ -380,6 +380,7 @@
 </li>
 </ul>
 </blockquote>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">SQL&gt; show parameter sga;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">lock_sga                             boolean     FALSE</div><div class="line">pre_page_sga                         boolean     FALSE</div><div class="line">sga_max_size                         big integer 6432M</div><div class="line">sga_target                           big integer 0</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; show parameter pga;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">pga_aggregate_target                 big integer 0</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>

@@ -349,16 +349,16 @@
 
       
         
-          
-          第二. Oracle DB 内存结构
-
-一个实例有两个关联的基本内存结构：
-
-系统全局区（SGA）: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。
-
-程序全局区（
-          ...
-
+          <h2 id="第二-Oracle-DB-内存结构"><a href="#第二-Oracle-DB-内存结构" class="headerlink" title="第二. Oracle DB 内存结构"></a>第二. Oracle DB 内存结构</h2><p><img src="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>一个实例有两个关联的基本内存结构：</p>
+<ul>
+<li><p><strong>系统全局区（SGA）</strong>: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。</p>
+</li>
+<li><p><strong>程序全局区（PGA）</strong>:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服务器进程或后台进程启动时创建的非共享内存。服务器进程对<br>PGA 的访问是互斥的。每个服务器进程和后台进程都具有自己的PGA。</p>
+</li>
+</ul>
+</blockquote>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/13/Oracle-DB-内存结构/#more" rel="contents">
               阅读全文 &raquo;
