@@ -1558,7 +1558,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffcdff;
+  background: #ffffa2;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2150,7 +2150,7 @@ a.search-result {
   overflow: hidden;
 }
 body {
-  background: #f5f7f9;
+  background: url("/images/backgroud.jpg");
 }
 @media (min-width: 992px) {
   .full-image.full-image.full-image {
@@ -2535,13 +2535,4 @@ body {
   .post-body {
     text-align: justify;
   }
-}
-body {
-  background-image: url("/images/backgroud.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-}
-footer {
-  color: #eee;
 }
