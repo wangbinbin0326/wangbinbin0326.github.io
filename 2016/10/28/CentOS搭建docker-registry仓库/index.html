@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -84,36 +84,55 @@
 
 
 
-<meta name="description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
+<meta name="description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
 
 
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
+
+
+
+Step">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle-DB-概述">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/index.html">
+<meta property="og:title" content="CentOS搭建docker-registry仓库">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
+<meta property="og:description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
 
 
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
-<meta property="og:image" content="http://www.rjkfw.com/upload/1387509627.png">
-<meta property="og:updated_time" content="2016-10-20T05:03:34.998Z">
+
+
+
+Step">
+<meta property="og:updated_time" content="2016-10-28T06:32:01.923Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle-DB-概述">
-<meta name="twitter:description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
+<meta name="twitter:title" content="CentOS搭建docker-registry仓库">
+<meta name="twitter:description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
 
 
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
-<meta name="twitter:image" content="http://www.rjkfw.com/upload/1387509627.png">
+
+
+
+Step">
 
 
 
@@ -134,10 +153,10 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/"/>
 
 
-  <title> Oracle-DB-概述 | Tony Blog </title>
+  <title> CentOS搭建docker-registry仓库 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -317,7 +336,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
             
             
               
-                Oracle-DB-概述
+                CentOS搭建docker-registry仓库
               
             
           </h1>
@@ -329,38 +348,19 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T17:12:40+08:00" content="2016-10-12">
-              2016-10-12
+            <time itemprop="dateCreated" datetime="2016-10-28T14:03:20+08:00" content="2016-10-28">
+              2016-10-28
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/Oracle-DB-概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/Oracle-DB-概述/" itemprop="commentsCount"></span>
+                <a href="/2016/10/28/CentOS搭建docker-registry仓库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/CentOS搭建docker-registry仓库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -388,74 +388,52 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
       
 
       
-        <hr>
-<h2 id="第一-Oracle-DB-概述"><a href="#第一-Oracle-DB-概述" class="headerlink" title="第一. Oracle DB 概述"></a>第一. Oracle DB 概述</h2><hr>
-<h3 id="1-Oracle-DB"><a href="#1-Oracle-DB" class="headerlink" title="1. Oracle DB"></a>1. Oracle DB</h3><blockquote>
-<p>Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。</p>
-<p>Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。</p>
-</blockquote>
-<hr>
-<h3 id="2-连接到服务器"><a href="#2-连接到服务器" class="headerlink" title="2. 连接到服务器"></a>2. 连接到服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 &lt; ---- &gt; 中间层 &lt; ---- &gt; 服务器</div></pre></td></tr></table></figure>
-<blockquote>
-<p>数据库用户连接到Oracle服务器</p>
+        <h2 id="在CentOS上搭建docker私服"><a href="#在CentOS上搭建docker私服" class="headerlink" title="在CentOS上搭建docker私服"></a>在CentOS上搭建docker私服</h2><blockquote>
+<p>环境：</p>
 <ul>
-<li>用户登录到运行Oracle实例的操作系统，如sqlplus 工具。</li>
-<li>用户可以启动本地计算机上的应用程序或工具(客户端/服务器)，如toad, plsql</li>
-<li>用户通过本地计算机上的工具（web/服务器），如web浏览器</li>
+<li><p>IP:<br>10.224.188.50(Docker Registry Server)<br>10.224.188.59(Docker client )</p>
+</li>
+<li><p>OS: CentOS Linux release 7.2.1511 (Core)</p>
+</li>
+<li><p>Docker Version: Docker version 1.12.0, build 8eab29e</p>
+</li>
 </ul>
 </blockquote>
 <hr>
-<h3 id="3-体系结构概述"><a href="#3-体系结构概述" class="headerlink" title="3. 体系结构概述"></a>3. 体系结构概述</h3><p><img src="http://www.rjkfw.com/upload/1387509627.png" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Step 1: 以下操作运行在10.224.188.50(Docker Registry Server)上</p>
+<p>安装docker-registry, 运行以下命令<br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://10.224.188.50:5000/v1/_ping
+404 page not found</code></p>
+<p>如果有如下返回值则代表成功，无返回则说明进程没有启动，把所有的container都删除然后在重新启动<br><code>docker rm $(docker ps -a -q)</code><br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+</blockquote>
 <a id="more"></a>
-<blockquote>
-<p>Oracle DB 服务器由（一个Oracle DB）和（一个或多个数据库实例）组成。</p>
-<ul>
-<li><p>实例由（内存结构）和（后台进程）构成。每当启动一个实例时，都会分配一个称为系统全局区（SGA）的共享内存区，并启动后台进程。</p>
-</li>
-<li><p>数据库包括（物理结构）和（逻辑结构）。由于物理结构和逻辑结构是分开的，因此管理数据的物理存储时不会影响对逻辑存储结构的访问。</p>
-</li>
-</ul>
-</blockquote>
 <hr>
-<h3 id="4-连接到数据库"><a href="#4-连接到数据库" class="headerlink" title="4. 连接到数据库"></a>4. 连接到数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">用户 &lt;---&gt; SQL&gt; select &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 数据库</div><div class="line">                                |&lt;----连接------&gt;|</div><div class="line">  |&lt;-------------------------会话----------------------------&gt;|</div></pre></td></tr></table></figure>
 <blockquote>
-<ul>
-<li>连接：用户进程和实例之间的通信</li>
-<li>会话：用户通过用户进程与实例建立的特定连接</li>
-</ul>
+<p>Step 2: 以下操作运行在10.224.188.59(Docker client)上</p>
+<p>1.查看当前的images</p>
 </blockquote>
-<hr>
-<h3 id="5-与Oracle-DB交互"><a href="#5-与Oracle-DB交互" class="headerlink" title="5. 与Oracle DB交互"></a>5. 与Oracle DB交互</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">用户（SQL&gt; select） &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 实例&lt;---&gt; 数据库</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">gethue/hue                          latest              f7f2abf45534        4 months ago        2.284 GB</div></pre></td></tr></table></figure>
 <blockquote>
-<ol>
-<li><p>在安装了Oracle DB的节点（通常称为“主机”或“数据库服务器”）上启动了一个实例。</p>
-</li>
-<li><p>用户启动一个应用程序，该应用程序衍生了一个用户进程。该应用程序尝试建立一个与服务器的连接（此连接可能是本地连接、客户机/服务器连接或者来自中间层的三层连接）。</p>
-</li>
-<li><p>服务器运行具有相应Oracle Net Services处理程序的监听程序。监听程序检查到应用程序发出的连接请求，并创建一个代表用户进程的专用服务器进程。</p>
-</li>
-<li><p>用户运行一条DML类型的SQL语句并提交事务处理。</p>
-</li>
-<li><p>服务器进程接受该语句，并检查共享池（一个SGA组件）中是否有包含相同SQL语句的共享SQL区域。如果找到共享SQL区域，服务器进程将检查用户对于所请求数据的访问权限，并且使用现有的共享SQL区域处理该语句。如果未找到共享SQL区域，则为该语句分配一个新的共享SQL区域，以便对该语句进行语法分析和处理。</p>
-</li>
-<li><p>服务器进程从实际数据文件（表）或数据库缓冲区高速缓存中存储的值中检索任何必需的数据值。</p>
-</li>
-<li><p>服务器进程修改SGA中的数据。因为提交了事务处理，所以日志写进程（LGWR）会立即将该事务处理记录到重做日志文件中。数据库写进程（DBWn）会待执行效率高时将修改后的块永久写入磁盘。</p>
-</li>
-<li><p>如果事务处理成功，服务器进程将通过网络向应用程序发送一条消息。如果事务处理不成功，则传送一条错误消息。</p>
-</li>
-<li><p>在整个过程中，其它后台进程同时在运行，用于监视是否有需要干预的情况。此外，数据库服务器管理其他用户的事务处理，并防止在请求相同数据的事务处理之间发生争用。</p>
-</li>
-</ol>
+<p>2.查看当前所有的container</p>
 </blockquote>
-<hr>
-<h3 id="6-Oracle-DB服务器结构"><a href="#6-Oracle-DB服务器结构" class="headerlink" title="6. Oracle DB服务器结构"></a>6. Oracle DB服务器结构</h3><blockquote>
-<ul>
-<li>内存结构</li>
-<li>进程</li>
-<li>存储结构</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker ps -a</div><div class="line">CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS                      PORTS                    NAMES</div><div class="line">5b45fcfb4c4c        gethue/hue:latest                   &quot;bash&quot;              2 weeks ago         Up 31 minutes               0.0.0.0:8888-&gt;8888/tcp   high_lovelace</div><div class="line">--container没有起来，运行如下命令：</div><div class="line">[root@ct7 system]# docker start 5b45fcfb4c4c</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.查看当前运行的container</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES</div><div class="line">5b45fcfb4c4c        gethue/hue:latest   &quot;bash&quot;              2 weeks ago         Up 34 minutes       0.0.0.0:8888-&gt;8888/tcp   high_lovelace</div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.Create a new image from a container’s changes</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker commit 5b45fcfb4c4c 10.224.188.50:5000/hue-v1</div><div class="line">sha256:8f41bc37f2b4164c79a9924ca9b6f38581a7ca8f50e60d2ac49818a765c35f09</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        15 seconds ago      2.57 GB</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.push new image into docker private registry</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker push 10.224.188.50:5000/hue-v1</div><div class="line">The push refers to a repository [10.224.188.50:5000/hue-v1]</div><div class="line">eb8378240c72: Pushed</div><div class="line">1e71236cfd2b: Pushed</div><div class="line">fccab3c2b82b: Pushed</div><div class="line">30c28efdecff: Pushed</div><div class="line">634827038ea7: Pushed</div><div class="line">8f22c1173848: Pushed</div><div class="line">8191da9e7f9a: Pushed</div><div class="line">173f1156fe76: Pushed</div><div class="line">5b771cc18969: Pushed</div><div class="line">ae16cd6221a3: Pushed</div><div class="line">7dce18002c8d: Pushed</div><div class="line">5f70bf18a086: Pushed</div><div class="line">6f8be37bd578: Pushed</div><div class="line">9f7ab087e6e6: Pushed</div><div class="line">dc109d4b4ccf: Pushed</div><div class="line">a7e1c363defb: Pushed</div><div class="line">latest: digest: sha256:b9ee12c606e3da3554b3f5df9f88364eb8986b1f6fe1ae625542c8e3343e1627 size: 3691</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">如果push的时候报以下错误时：&quot;server gave HTTP response to HTTPS client&quot;</div><div class="line">创建/etc/docker/daemon.json文件，并写入</div><div class="line">[root@ct7 system]# more /etc/docker/daemon.json</div><div class="line">&#123; &quot;insecure-registries&quot;:[&quot;10.224.188.50:5000&quot;] &#125;</div><div class="line">然后重启docker：</div><div class="line">[root@ct7 system]# service docker restart</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.verify the new image from docker private registry</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">--删除old image</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              9095f95a6f9f        18 hours ago        2.57 GB</div><div class="line">[root@ct7 system]# docker rmi 10.224.188.50:5000/hue-v1</div><div class="line">Untagged: 10.224.188.50:5000/hue-v1:latest</div><div class="line">Deleted: sha256:9095f95a6f9fb97de276752db6a5dd44bf279b58cfdf4c723c48090b6ef3a5f5</div><div class="line">Deleted: sha256:8a560d1d95af6e2436ba2ff73125b383bef343e6e6d4ff45c3dc61352342c7c8</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">--查看docker registry images</div><div class="line">[root@ct7 system]# curl http://10.224.188.50:5000/v1/search</div><div class="line">404 page not found</div><div class="line">网上都用这个curl http://10.224.188.50:5000/v1/search,但是报404 page not found，后查证是v1版本的api查看方式，我们现在的版本是v2，所以用如下方法查看：</div><div class="line">curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">[root@ct7 system]# curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">&#123;&quot;repositories&quot;:[&quot;centos7-python&quot;,&quot;hue-v1&quot;]&#125;</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">-- pull new images</div><div class="line">[root@ct7 system]# docker pull 10.224.188.50:5000/hue-v1</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v2           latest              1905f45f6154        15 hours ago        2.486 GB</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        20 hours ago        2.57 GB</div><div class="line">由于commit方式不会保存mount的数据，所以需要对应用做如下操作</div><div class="line">The commit operation will not include any data contained in volumes mounted inside the container.</div><div class="line">root@3201bbe4b443:/home/tony/hue# scp 10.224.188.58:/storage/software/hue/pseudo-distributed.ini /hue/desktop/conf/pseudo-distributed.ini</div><div class="line">source /etc/profile</div><div class="line">root@3201bbe4b443:/home/tony/hue# /home/tony/hue/start_hue.sh</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -478,7 +456,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle/" rel="tag">#Oracle</a>
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
           
         </div>
       
@@ -487,17 +465,13 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/11/DBA职责/" rel="next" title="DBA职责">
-                <i class="fa fa-chevron-left"></i> DBA职责
+              <a href="/2016/10/25/python实现递归的汉诺塔/" rel="next" title="python实现递归的汉诺塔">
+                <i class="fa fa-chevron-left"></i> python实现递归的汉诺塔
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/13/Oracle-DB-内存结构/" rel="prev" title="Oracle-DB-内存结构">
-                Oracle-DB-内存结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -529,8 +503,8 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/12/Oracle-DB-概述/"
-           data-title="Oracle-DB-概述" data-url="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/">
+      <div class="ds-thread" data-thread-key="2016/10/28/CentOS搭建docker-registry仓库/"
+           data-title="CentOS搭建docker-registry仓库" data-url="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/">
       </div>
     
   </div>
@@ -632,7 +606,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一-Oracle-DB-概述"><span class="nav-number">1.</span> <span class="nav-text">第一. Oracle DB 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Oracle-DB"><span class="nav-number">1.1.</span> <span class="nav-text">1. Oracle DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-连接到服务器"><span class="nav-number">1.2.</span> <span class="nav-text">2. 连接到服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-体系结构概述"><span class="nav-number">1.3.</span> <span class="nav-text">3. 体系结构概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-连接到数据库"><span class="nav-number">1.4.</span> <span class="nav-text">4. 连接到数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-与Oracle-DB交互"><span class="nav-number">1.5.</span> <span class="nav-text">5. 与Oracle DB交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Oracle-DB服务器结构"><span class="nav-number">1.6.</span> <span class="nav-text">6. Oracle DB服务器结构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在CentOS上搭建docker私服"><span class="nav-number">1.</span> <span class="nav-text">在CentOS上搭建docker私服</span></a></li></ol></div>
             
           </div>
         </section>
