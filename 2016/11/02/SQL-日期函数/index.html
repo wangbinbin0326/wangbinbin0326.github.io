@@ -1,0 +1,823 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="日期函数
+处理日期
+
+Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。
+默认的日期显示格式为DD-MON-RR。
+
+问题：为什么不使用”日期+数字”，而是用add_months答：需要考虑闰年的问题
+
+
+
+
+函数
+结果
+说明
+
+
+
+
+months_between(‘2016-10-1’,’2016-1-1’)
+9
+两个日期之间的月数
+
+
+add_months(sysd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL-日期函数">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/02/SQL-日期函数/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="日期函数
+处理日期
+
+Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。
+默认的日期显示格式为DD-MON-RR。
+
+问题：为什么不使用”日期+数字”，而是用add_months答：需要考虑闰年的问题
+
+
+
+
+函数
+结果
+说明
+
+
+
+
+months_between(‘2016-10-1’,’2016-1-1’)
+9
+两个日期之间的月数
+
+
+add_months(sysd">
+<meta property="og:updated_time" content="2016-11-02T06:12:57.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL-日期函数">
+<meta name="twitter:description" content="日期函数
+处理日期
+
+Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。
+默认的日期显示格式为DD-MON-RR。
+
+问题：为什么不使用”日期+数字”，而是用add_months答：需要考虑闰年的问题
+
+
+
+
+函数
+结果
+说明
+
+
+
+
+months_between(‘2016-10-1’,’2016-1-1’)
+9
+两个日期之间的月数
+
+
+add_months(sysd">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/02/SQL-日期函数/"/>
+
+
+  <title> SQL-日期函数 | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3855b850d8647c4946169eaa4c43202b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'F4f1pYNzwgdGLGx7j86y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQL-日期函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T13:12:11+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/02/SQL-日期函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/SQL-日期函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><blockquote>
+<p>处理日期</p>
+<ul>
+<li>Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。</li>
+<li>默认的日期显示格式为DD-MON-RR。</li>
+</ul>
+<p>问题：为什么不使用”日期+数字”，而是用add_months<br>答：需要考虑闰年的问题</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>months_between(‘2016-10-1’,’2016-1-1’)</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">两个日期之间的月数</td>
+</tr>
+<tr>
+<td>add_months(sysdate, 24)</td>
+<td style="text-align:left">2018-11-01 08:30:01</td>
+<td style="text-align:left">将日历月添加到日期</td>
+</tr>
+<tr>
+<td>NEXT_DAY(sysdate,’monday’)</td>
+<td style="text-align:left">2016-11-07 08:46:24</td>
+<td style="text-align:left">指定日期之后的下一个日期</td>
+</tr>
+<tr>
+<td>LAST_DAY(sysdate)</td>
+<td style="text-align:left">2016-11-30 08:47:41</td>
+<td style="text-align:left">当月最后一天</td>
+</tr>
+<tr>
+<td>extract(year from date ‘2016-11-1’)</td>
+<td style="text-align:left">2016</td>
+<td style="text-align:left">或者时间间隔（INTERVAL）中截取出特定的部分</td>
+</tr>
+<tr>
+<td>ROUND(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2017-01-01</td>
+<td style="text-align:left">舍入日期</td>
+</tr>
+<tr>
+<td>TRUNC(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2016-01-01</td>
+<td style="text-align:left">截断日期</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> last_name, <span class="keyword">round</span>((<span class="keyword">SYSDATE</span>-hire_date)/<span class="number">7</span>) <span class="keyword">AS</span> WEEKS</div><div class="line"><span class="keyword">FROM</span> employees</div><div class="line"><span class="keyword">WHERE</span> department_id = <span class="number">90</span>;</div><div class="line"></div><div class="line">LAST_NAME                      WEEKS</div><div class="line"><span class="comment">------------------------- ----------</span></div><div class="line">King                             562</div><div class="line">Kochhar                          444</div><div class="line">De Haan                          689</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> months_between(<span class="string">'2016-10-1'</span>,<span class="string">'2016-1-1'</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">MONTHS_BETWEEN('2016-10-1','2016-1-1')</div><div class="line"><span class="comment">--------------------------------------</span></div><div class="line">                                     9</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>, add_months(<span class="keyword">sysdate</span>, <span class="number">24</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE             ADD_MONTHS(SYSDATE,</div><div class="line"><span class="comment">------------------- -------------------</span></div><div class="line">2016-11-01 08:30:01 2018-11-01 08:30:01</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>, next_day(<span class="keyword">sysdate</span>,<span class="string">'monday'</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE             NEXT_DAY(SYSDATE</div><div class="line"><span class="comment">------------------- -------------------</span></div><div class="line">2016-11-01 08:46:24 2016-11-07 08:46:24</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>, <span class="keyword">last_day</span>(<span class="keyword">sysdate</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE             LAST_DAY(SYSDATE)</div><div class="line"><span class="comment">------------------- -------------------</span></div><div class="line">2016-11-01 08:47:41 2016-11-30 08:47:41</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">extract</span>(<span class="keyword">year</span> <span class="keyword">from</span> <span class="built_in">date</span> <span class="string">'2016-11-1'</span>) <span class="keyword">year</span>,</div><div class="line">       <span class="keyword">extract</span>(<span class="keyword">month</span> <span class="keyword">from</span> <span class="built_in">date</span> <span class="string">'2016-11-1'</span>) <span class="keyword">month</span>,</div><div class="line">       <span class="keyword">extract</span>(<span class="keyword">day</span> <span class="keyword">from</span> <span class="built_in">date</span> <span class="string">'2016-11-1'</span>) <span class="keyword">day</span></div><div class="line"><span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">      YEAR      MONTH        DAY</div><div class="line"><span class="comment">---------- ---------- ----------</span></div><div class="line">      2016         11          1</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">extract</span>(<span class="keyword">day</span> <span class="keyword">from</span> datatime_one - datatime_two) <span class="keyword">days</span>,</div><div class="line">       <span class="keyword">extract</span>(<span class="keyword">hour</span> <span class="keyword">from</span> datatime_one - datatime_two) hours, </div><div class="line">       <span class="keyword">extract</span>(<span class="keyword">minute</span> <span class="keyword">from</span> datatime_one - datatime_two) minutes,</div><div class="line">       <span class="keyword">extract</span>(<span class="keyword">second</span> <span class="keyword">from</span> datatime_one - datatime_two) seconds</div><div class="line"> <span class="keyword">from</span></div><div class="line">( </div><div class="line">  <span class="keyword">select</span> to_timestamp(<span class="string">'1982-08-13 12:17:57'</span>, <span class="string">'yyyy-mm-dd hh24:mi:ss'</span>) datatime_one,</div><div class="line">         to_timestamp(<span class="string">'1981-09-27 09:08:33'</span>, <span class="string">'yyyy-mm-dd hh24:mi:ss'</span>) datatime_two</div><div class="line"><span class="keyword">from</span> dual);</div><div class="line"></div><div class="line">      DAYS      HOURS    MINUTES    SECONDS</div><div class="line"><span class="comment">---------- ---------- ---------- ----------</span></div><div class="line">       320          3          9         24</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>, <span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span> ,<span class="string">'YEAR'</span>) <span class="keyword">year</span>, <span class="keyword">round</span>(<span class="keyword">sysdate</span>,<span class="string">'MONTH'</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE             YEAR                ROUND(SYSDATE,'MONT</div><div class="line"><span class="comment">------------------- ------------------- -------------------</span></div><div class="line">2016-11-02 06:04:48 2017-01-01 00:00:00 2016-11-01 00:00:00</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>, TRUNC(<span class="keyword">SYSDATE</span> ,<span class="string">'YEAR'</span>) <span class="keyword">year</span>, TRUNC(<span class="keyword">sysdate</span>,<span class="string">'MONTH'</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE             YEAR                TRUNC(SYSDATE,'MONT</div><div class="line"><span class="comment">------------------- ------------------- -------------------</span></div><div class="line">2016-11-02 06:05:19 2016-01-01 00:00:00 2016-11-01 00:00:00</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">--日期格式显示：</span></div><div class="line"><span class="keyword">SELECT</span> *</div><div class="line">    <span class="keyword">FROM</span> wbxemailtask</div><div class="line">   <span class="keyword">WHERE</span> createtime &lt; <span class="keyword">TO_DATE</span> (<span class="string">'2012-1-01 00:00:00'</span>, <span class="string">'YYYY-MM-DD HH24:MI:SS'</span>)</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> createtime <span class="keyword">DESC</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> to_char( <span class="keyword">sysdate</span>,<span class="string">'YYYY-MM-DD HH24:MI:SS'</span>) <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE</div><div class="line"><span class="comment">---------</span></div><div class="line">01-NOV-16</div><div class="line"></div><div class="line"><span class="keyword">alter</span> <span class="keyword">session</span> <span class="keyword">set</span> nls_date_format=<span class="string">'yyyy-mm-dd hh24:mi:ss'</span>;</div><div class="line"></div><div class="line">Session altered.</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE</div><div class="line"><span class="comment">-------------------</span></div><div class="line">2016-11-01 08:11:54</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">日期运算：</div><div class="line">日期 - 数字 = 日期</div><div class="line">日期 + 数字 = 日期</div><div class="line">日期 - 日期 = 数字</div><div class="line">日期 + 日期 = 不允许，会报错</div><div class="line">**/</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>+<span class="number">3</span> <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE+3</div><div class="line"><span class="comment">-------------------</span></div><div class="line">2016-11-04 08:16:41</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span><span class="number">-3</span> <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">SYSDATE-3</div><div class="line"><span class="comment">-------------------</span></div><div class="line">2016-10-29 08:16:46</div><div class="line"></div><div class="line"><span class="keyword">select</span> employee_id, <span class="keyword">sysdate</span> - hire_date <span class="keyword">from</span> employees;</div><div class="line"></div><div class="line">EMPLOYEE_ID SYSDATE-HIRE_DATE</div><div class="line"><span class="comment">----------- -----------------</span></div><div class="line">        199        3215.34737</div><div class="line">        200        4794.34737</div><div class="line">        201        4641.34737</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>+<span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</div><div class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>+<span class="keyword">sysdate</span> <span class="keyword">from</span> dual</div><div class="line">              *</div><div class="line"><span class="keyword">ERROR</span> <span class="keyword">at</span> line <span class="number">1</span>:</div><div class="line">ORA<span class="number">-00975</span>: <span class="built_in">date</span> + <span class="built_in">date</span> <span class="keyword">not</span> allowed</div><div class="line"></div><div class="line"><span class="comment">--查询出每个雇员的ID，name, 雇佣日期，已雇佣的年数，月数，天数</span></div><div class="line"><span class="keyword">select</span> employee_id, first_name, hire_date, </div><div class="line">    trunc(months_between(<span class="keyword">sysdate</span>,hire_date)/<span class="number">12</span>) <span class="keyword">year</span> ,    </div><div class="line">    trunc(<span class="keyword">mod</span>(months_between(<span class="keyword">sysdate</span>,hire_date),<span class="number">12</span>)) <span class="keyword">month</span>, </div><div class="line">    trunc(<span class="keyword">sysdate</span>-add_months(hire_date, months_between(<span class="keyword">sysdate</span>,hire_date))) <span class="keyword">day</span> </div><div class="line">    <span class="keyword">from</span> employees <span class="keyword">where</span> <span class="keyword">rownum</span> &lt; <span class="number">10</span>;</div><div class="line"></div><div class="line">EMPLOYEE_ID FIRST_NAME                HIRE_DATE                 YEAR      MONTH        DAY</div><div class="line"><span class="comment">----------- ------------------------- ------------------- ---------- ---------- ----------</span></div><div class="line">        199 Douglas                   2008-01-13 00:00:00          8          9         19</div><div class="line">        200 Jennifer                  2003-09-17 00:00:00         13          1         15</div><div class="line">        201 Michael                   2004-02-17 00:00:00         12          8         15</div><div class="line">        202 Pat                       2005-08-17 00:00:00         11          2         15</div><div class="line">        203 Susan                     2002-06-07 00:00:00         14          4         25</div><div class="line">        204 Hermann                   2002-06-07 00:00:00         14          4         25</div><div class="line">        205 Shelley                   2002-06-07 00:00:00         14          4         25</div><div class="line">        206 William                   2002-06-07 00:00:00         14          4         25</div><div class="line">        182 Martha                    2007-06-21 00:00:00          9          4         11</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/SQL-数字函数/" rel="next" title="SQL-数字函数">
+                <i class="fa fa-chevron-left"></i> SQL-数字函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/02/SQL-日期函数/"
+           data-title="SQL-日期函数" data-url="http://wangbinbin0326.github.io/2016/11/02/SQL-日期函数/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangbinbin0326" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#日期函数"><span class="nav-number">1.</span> <span class="nav-text">日期函数</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangbinbin0326"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

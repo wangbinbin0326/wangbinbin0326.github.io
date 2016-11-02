@@ -86,13 +86,12 @@
 
 <meta name="description" content="终会有属于自己的一片天空！">
 <meta property="og:type" content="website">
-<meta property="og:title" content="All tags">
-<meta property="og:url" content="http://wangbinbin0326.github.io/tags/index.html">
+<meta property="og:title" content="Tony Blog">
+<meta property="og:url" content="http://wangbinbin0326.github.io/page/2/index.html">
 <meta property="og:site_name" content="Tony Blog">
 <meta property="og:description" content="终会有属于自己的一片天空！">
-<meta property="og:updated_time" content="2016-10-14T09:03:00.194Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All tags">
+<meta name="twitter:title" content="Tony Blog">
 <meta name="twitter:description" content="终会有属于自己的一片天空！">
 
 
@@ -114,16 +113,10 @@
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/tags/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/page/2/"/>
 
 
-  <title>
-  
-
-  
-    标签 | Tony Blog
-  
-</title>
+  <title> Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -154,7 +147,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -281,20 +276,269 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <div id="posts" class="posts-expand">
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 6 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/Oracle-DB-概述/" itemprop="url">
+                  Oracle-DB-概述
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T17:12:40+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/Oracle-DB-概述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/Oracle-DB-概述/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/DBA/" style="font-size: 21px; color: #6f6f6f">DBA</a> <a href="/tags/Docker/" style="font-size: 21px; color: #6f6f6f">Docker</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Oracle/" style="font-size: 30px; color: #111">Oracle</a> <a href="/tags/Python/" style="font-size: 12px; color: #ccc">Python</a> <a href="/tags/SQL/" style="font-size: 30px; color: #111">SQL</a>
-        </div>
-      </div>
+      </header>
     
-  </div>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h2 id="第一-Oracle-DB-概述"><a href="#第一-Oracle-DB-概述" class="headerlink" title="第一. Oracle DB 概述"></a>第一. Oracle DB 概述</h2><hr>
+<h3 id="1-Oracle-DB"><a href="#1-Oracle-DB" class="headerlink" title="1. Oracle DB"></a>1. Oracle DB</h3><blockquote>
+<p>Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。</p>
+<p>Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。</p>
+</blockquote>
+<hr>
+<h3 id="2-连接到服务器"><a href="#2-连接到服务器" class="headerlink" title="2. 连接到服务器"></a>2. 连接到服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 &lt; ---- &gt; 中间层 &lt; ---- &gt; 服务器</div></pre></td></tr></table></figure>
+<blockquote>
+<p>数据库用户连接到Oracle服务器</p>
+<ul>
+<li>用户登录到运行Oracle实例的操作系统，如sqlplus 工具。</li>
+<li>用户可以启动本地计算机上的应用程序或工具(客户端/服务器)，如toad, plsql</li>
+<li>用户通过本地计算机上的工具（web/服务器），如web浏览器</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="3-体系结构概述"><a href="#3-体系结构概述" class="headerlink" title="3. 体系结构概述"></a>3. 体系结构概述</h3><p><img src="http://www.rjkfw.com/upload/1387509627.png" alt="此处输入图片的描述"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/Oracle-DB-概述/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/11/DBA职责/" itemprop="url">
+                  DBA职责
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T11:04:22+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/11/DBA职责/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/DBA职责/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="题目2-DBA-职责及日常工作职责"><a href="#题目2-DBA-职责及日常工作职责" class="headerlink" title="题目2, DBA 职责及日常工作职责"></a>题目2, DBA 职责及日常工作职责</h2><h3 id="2-1-工作职责"><a href="#2-1-工作职责" class="headerlink" title="2.1 工作职责"></a>2.1 工作职责</h3><p>1.安装和升级数据库服务器,以及应用程序工具构建和配置网络环境.</p>
+<p>2.熟悉数据库系统的存储结构预测未来的存储需求,制订数据库的存储方案.</p>
+<p>3.根据开发人员设计的应用系统需求创建数据库存储结构.</p>
+<p>4.根据开发人员设计的应用系统需求创建数据库对象</p>
+<p>5.根据开发人员的反馈信息,在必要的时候修改数据库的结构</p>
+<p>6.管理数据库的用户维护数据库的安全性</p>
+<p>7.控制和监控用户对数据库的存取访问</p>
+<p>8.监控和优化数据库的性能</p>
+<p>9.制定数据库备份计划,灾难出现时对数据库信息进行恢复</p>
+<p>10.备份和恢复数据库</p>
+<p>11.联系数据库系统生产厂商,跟踪技术信息</p>
+<p>12.解决客户端中间层和服务器的链接问题</p>
+<p>13.保证安全连接</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/11/DBA职责/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
