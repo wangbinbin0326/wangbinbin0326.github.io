@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,7 +63,7 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
@@ -99,7 +99,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -124,16 +124,6 @@
   
 
 
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?3855b850d8647c4946169eaa4c43202b";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -184,37 +174,13 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -224,47 +190,23 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
             标签
           </a>
         </li>
       
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="st-search-show-outputs">
-          
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
+            日程
           </a>
         </li>
+      
+
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'F4f1pYNzwgdGLGx7j86y','2.0.0');
-</script>
-
-
-
-    </div>
   
 </nav>
 
@@ -322,13 +264,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/04/Helloworld/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/Helloworld/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -378,9 +313,1077 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/03/ORACLE简单易懂之分区表和索引/" itemprop="url">
+                  ORACLE简单易懂之分区表和索引
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T17:01:47+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h2 id="分区表，分区索引"><a href="#分区表，分区索引" class="headerlink" title="分区表，分区索引"></a>分区表，分区索引</h2><blockquote>
+<p>Oracle对于分区表方式其实就是将表分段存储，<strong>一般普通表格是一个段存储，而分区表会分成多个段</strong>，所以查找数据过程都是先定位根据查询条件定位分区范围，即数据在那个分区或那几个内部，然后在分区内部去查找数据，一个分区一般保证四十多万条数据就比较正常了，但是分区表并非乱建立，而其维护性也相对较为复杂一点，而索引的创建也是有点讲究的。</p>
+<p>创建时机:</p>
+<ul>
+<li>2G以上的表，ORACLE推荐创建分区。</li>
+<li>分区的字段一定要是经常用以提取数据的字段，否则会在提取过程中导致遍历多个分区，这样比没有分区还要慢。</li>
+<li>分区字段要选择合适，数据较为均匀分布到各个分区，不要太多也不要太少，而且根据分区字段可以很快定位到分区范围。</li>
+<li>一般情况下，尽量然业务操作在同一个分区内部完成。</li>
+</ul>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/03/ORACLE简单易懂之分区表和索引/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/02/SQL-日期函数/" itemprop="url">
+                  SQL-日期函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T13:12:11+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><blockquote>
+<p>处理日期</p>
+<ul>
+<li>Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。</li>
+<li>默认的日期显示格式为DD-MON-RR。</li>
+</ul>
+<p>问题：为什么不使用”日期+数字”，而是用add_months<br>答：需要考虑闰年的问题</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>months_between(‘2016-10-1’,’2016-1-1’)</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">两个日期之间的月数</td>
+</tr>
+<tr>
+<td>add_months(sysdate, 24)</td>
+<td style="text-align:left">2018-11-01 08:30:01</td>
+<td style="text-align:left">将日历月添加到日期</td>
+</tr>
+<tr>
+<td>NEXT_DAY(sysdate,’monday’)</td>
+<td style="text-align:left">2016-11-07 08:46:24</td>
+<td style="text-align:left">指定日期之后的下一个日期</td>
+</tr>
+<tr>
+<td>LAST_DAY(sysdate)</td>
+<td style="text-align:left">2016-11-30 08:47:41</td>
+<td style="text-align:left">当月最后一天</td>
+</tr>
+<tr>
+<td>extract(year from date ‘2016-11-1’)</td>
+<td style="text-align:left">2016</td>
+<td style="text-align:left">或者时间间隔（INTERVAL）中截取出特定的部分</td>
+</tr>
+<tr>
+<td>ROUND(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2017-01-01</td>
+<td style="text-align:left">舍入日期</td>
+</tr>
+<tr>
+<td>TRUNC(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2016-01-01</td>
+<td style="text-align:left">截断日期</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/02/SQL-日期函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/02/SQL-数字函数/" itemprop="url">
+                  SQL-数字函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T13:11:54+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROUND(45.926, 2)</td>
+<td style="text-align:left">45.93</td>
+<td style="text-align:left">将值舍入到指定的小数位</td>
+</tr>
+<tr>
+<td>TRUNC(45.926, 2)</td>
+<td style="text-align:left">45.92</td>
+<td style="text-align:left">将值截断到指定的小数位</td>
+</tr>
+<tr>
+<td>MOD(1600, 300)</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">返回除法运算的余数</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/02/SQL-数字函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/02/SQL-字符函数/" itemprop="url">
+                  SQL-字符函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T13:11:25+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h2><h3 id="大小写转换函数"><a href="#大小写转换函数" class="headerlink" title="大小写转换函数"></a>大小写转换函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOWER(‘SQL Course’)</td>
+<td style="text-align:left">sql course</td>
+<td style="text-align:left">字符串转换为小写</td>
+</tr>
+<tr>
+<td>UPPER(‘SQL Course’)</td>
+<td style="text-align:left">SQL COURSE</td>
+<td style="text-align:left">字符串转换为大写</td>
+</tr>
+<tr>
+<td>INITCAP(‘SQL Course’)</td>
+<td style="text-align:left">Sql Course</td>
+<td style="text-align:left">字符串首字母大写，其它小写</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> employee_id, last_name, department_id</div><div class="line"><span class="keyword">FROM</span> employees</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">LOWER</span>(last_name) = <span class="string">'higgins'</span>;</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/02/SQL-字符函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/01/Portus管理Docker的Registry仓库/" itemprop="url">
+                  Portus管理Docker的Registry仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T15:24:14+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>系统版本： CentOS Linux release 7.2.1511 (Core)</p>
+</blockquote>
+<h2 id="step-1-更新系统"><a href="#step-1-更新系统" class="headerlink" title="step 1: 更新系统"></a>step 1: 更新系统</h2><p><code>yum update -y</code></p>
+<h2 id="step-2-安装docker-compose"><a href="#step-2-安装docker-compose" class="headerlink" title="step 2: 安装docker-compose"></a>step 2: 安装docker-compose</h2><p><code>yum -y install epel-release    #pip安装包在epel源中</code><br><code>yum -y install python-pip</code><br><code>pip install -U docker-compose</code></p>
+<h2 id="step-3-安装git客户端"><a href="#step-3-安装git客户端" class="headerlink" title="step 3: 安装git客户端"></a>step 3: 安装git客户端</h2><p><code>yum install -y git</code></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/01/Portus管理Docker的Registry仓库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/28/CentOS搭建docker-registry仓库/" itemprop="url">
+                  CentOS搭建docker-registry仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T14:03:20+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="在CentOS上搭建docker私服"><a href="#在CentOS上搭建docker私服" class="headerlink" title="在CentOS上搭建docker私服"></a>在CentOS上搭建docker私服</h2><blockquote>
+<p>环境：</p>
+<ul>
+<li><p>IP:<br>10.224.188.50(Docker Registry Server)<br>10.224.188.59(Docker client )</p>
+</li>
+<li><p>OS: CentOS Linux release 7.2.1511 (Core)</p>
+</li>
+<li><p>Docker Version: Docker version 1.12.0, build 8eab29e</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Step 1: 以下操作运行在10.224.188.50(Docker Registry Server)上</p>
+<p>安装docker-registry, 运行以下命令<br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://10.224.188.50:5000/v1/_ping
+404 page not found</code></p>
+<p>如果有如下返回值则代表成功，无返回则说明进程没有启动，把所有的container都删除然后在重新启动<br><code>docker rm $(docker ps -a -q)</code><br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/28/CentOS搭建docker-registry仓库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/25/python实现递归的汉诺塔/" itemprop="url">
+                  python实现递归的汉诺塔
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T17:24:02+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="python实现递归的汉诺塔"><a href="#python实现递归的汉诺塔" class="headerlink" title="python实现递归的汉诺塔"></a>python实现递归的汉诺塔</h2><blockquote>
+<p>汉诺塔问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。</p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/python/hanoi.jpg" alt="此处输入图片的描述"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/25/python实现递归的汉诺塔/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/25/成就DBA职业生涯/" itemprop="url">
+                  成就DBA职业生涯
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T10:25:34+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
+<p>许多年来，我在不同的新闻组上花费了很多时间与那些想知道如何得到数据库管理员（DBA）的工作或者如何成长为一名DBA的IT人进行交谈，现在他们有了工作。这些年来许多人针对如何达到这个目标提出了不同意见。本文即是那些意见的综合并且能够在如何才能出色的完成DBA的工作方面给出好的建议。这篇文章同样对于如何让一名DBA变得对老板更有价值。假如你已经是一名DBA，那么也许你会希望跳过文章的前几段。</p>
+</blockquote>
+<h2 id="我应该成为一名DBA么？"><a href="#我应该成为一名DBA么？" class="headerlink" title="我应该成为一名DBA么？"></a>我应该成为一名DBA么？</h2><blockquote>
+<p>我曾问过的一个问题是一个人应该从事DBA这样的职业么。这个问题并不容易回答，因为它因人而异。有的人有成为一名好DBA所需要的天赋。而其他人并不认为能够很容易掌握成为DBA的秘诀。DBA职业需要掌握一定的技能。而且还需要其他IT职业所不必需的要求。因此，为了回答这个问题，我通常给将要成为DBA的人描述DBA职业所必需的要求。下面的段落中，我都将以问题结尾。在继续下一段以前请花一些时间考虑并且回答这些问题。</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/25/成就DBA职业生涯/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/21/Oracle简单易懂之SCN/" itemprop="url">
+                  Oracle简单易懂之SCN
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-21T16:55:30+08:00" content="2016-10-21">
+              2016-10-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>#第三章 SCN(system change numbe)</p>
+<h2 id="3-1-Oracle-SCN-概念"><a href="#3-1-Oracle-SCN-概念" class="headerlink" title="3.1 Oracle SCN 概念"></a>3.1 Oracle SCN 概念</h2><blockquote>
+<p>SCN（system change number）： 系统改变号，用以标识数据库在某个确切的时刻提交的版本。</p>
+<ul>
+<li>在事务提交时，它被赋予一个唯一的标示事务的SCN。</li>
+<li>是Oracle内部的时钟机制；</li>
+<li>通过SCN来维护数据库的一致性；</li>
+<li>通过SCN来实施恢复机制；</li>
+<li>SCN在数据库中是唯一的，并随时间而增加，但是可能并不连贯。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<ol>
+<li><strong>系统检查点SCN: 查询目前系统最新的SCN（redo log SCN）</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">col GET_SYSTEM_CHANGE_NUMBER for 99999999999999;</div><div class="line"><span class="keyword">select</span> dbms_flashback.get_system_change_number <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">GET_SYSTEM_CHANGE_NUMBER</div><div class="line"><span class="comment">------------------------</span></div><div class="line">          11795798036771</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/21/Oracle简单易懂之SCN/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -411,7 +1414,7 @@
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
+               src="/images/avatar.gif"
                alt="Tony Wang" />
           <p class="site-author-name" itemprop="name">Tony Wang</p>
           <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
@@ -419,13 +1422,27 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -433,17 +1450,6 @@
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/wangbinbin0326" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
           
         </div>
 
@@ -484,27 +1490,11 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
         
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
-  
-
-  
-    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
-  
-  
-</div>
-
-
 
         
       </div>
@@ -536,22 +1526,22 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
@@ -566,13 +1556,6 @@
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
-
   
 
   
@@ -584,30 +1567,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wangbinbin0326"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 
@@ -620,6 +1582,9 @@
   
 
   
+
+  
+
 
 </body>
 </html>

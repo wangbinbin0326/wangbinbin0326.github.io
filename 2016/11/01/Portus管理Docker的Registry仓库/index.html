@@ -1,0 +1,614 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="系统版本： CentOS Linux release 7.2.1511 (Core)
+
+step 1: 更新系统yum update -y
+step 2: 安装docker-composeyum -y install epel-release    #pip安装包在epel源中yum -y install python-pippip install -U docker-compose
+step">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Portus管理Docker的Registry仓库">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/01/Portus管理Docker的Registry仓库/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="系统版本： CentOS Linux release 7.2.1511 (Core)
+
+step 1: 更新系统yum update -y
+step 2: 安装docker-composeyum -y install epel-release    #pip安装包在epel源中yum -y install python-pippip install -U docker-compose
+step">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/docker-portus1.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/docker-portus2.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/docker-portus3.JPG">
+<meta property="og:updated_time" content="2016-11-03T01:12:27.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Portus管理Docker的Registry仓库">
+<meta name="twitter:description" content="系统版本： CentOS Linux release 7.2.1511 (Core)
+
+step 1: 更新系统yum update -y
+step 2: 安装docker-composeyum -y install epel-release    #pip安装包在epel源中yum -y install python-pippip install -U docker-compose
+step">
+<meta name="twitter:image" content="https://wangbinbin0326.github.io/images/software/docker-portus1.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/01/Portus管理Docker的Registry仓库/"/>
+
+
+  <title> Portus管理Docker的Registry仓库 | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Portus管理Docker的Registry仓库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T15:24:14+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>系统版本： CentOS Linux release 7.2.1511 (Core)</p>
+</blockquote>
+<h2 id="step-1-更新系统"><a href="#step-1-更新系统" class="headerlink" title="step 1: 更新系统"></a>step 1: 更新系统</h2><p><code>yum update -y</code></p>
+<h2 id="step-2-安装docker-compose"><a href="#step-2-安装docker-compose" class="headerlink" title="step 2: 安装docker-compose"></a>step 2: 安装docker-compose</h2><p><code>yum -y install epel-release    #pip安装包在epel源中</code><br><code>yum -y install python-pip</code><br><code>pip install -U docker-compose</code></p>
+<h2 id="step-3-安装git客户端"><a href="#step-3-安装git客户端" class="headerlink" title="step 3: 安装git客户端"></a>step 3: 安装git客户端</h2><p><code>yum install -y git</code></p>
+<a id="more"></a>
+<h2 id="step-4-复制Portus安装程序"><a href="#step-4-复制Portus安装程序" class="headerlink" title="step 4:复制Portus安装程序"></a>step 4:复制Portus安装程序</h2><p><code>git clone https://github.com/SUSE/Portus.git</code></p>
+<h2 id="step-5-配置Docker安装源"><a href="#step-5-配置Docker安装源" class="headerlink" title="step 5:配置Docker安装源"></a>step 5:配置Docker安装源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# more /etc/yum.repos.d/docker.repo</div><div class="line">[dockerrepo]</div><div class="line">name=Docker Repository</div><div class="line">baseurl=https://yum.dockerproject.org/repo/main/centos/7/</div><div class="line">enabled=1</div><div class="line">gpgcheck=1</div><div class="line">gpgkey=https://yum.dockerproject.org/gpg</div></pre></td></tr></table></figure>
+<h2 id="step-6-安装docker引擎并启动"><a href="#step-6-安装docker引擎并启动" class="headerlink" title="step 6:安装docker引擎并启动"></a>step 6:安装docker引擎并启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum cleal all &amp;&amp; yum makecache</div><div class="line">yum install -y docker-engine</div><div class="line">systemctl start docker.service</div><div class="line">systemctl enable docker.service</div></pre></td></tr></table></figure>
+<h2 id="step-7-安装Portus"><a href="#step-7-安装Portus" class="headerlink" title="step 7:安装Portus"></a>step 7:安装Portus</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line">./compose-setup.sh -e 192.168.0.109</div><div class="line">Step 11 : ADD . .</div><div class="line"> ---&gt; 08d874cfd4fa</div><div class="line">Removing intermediate container 0062e29a08fb</div><div class="line">Successfully built 08d874cfd4fa</div><div class="line">WARNING: Image for service web was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.</div><div class="line">Creating portus_db_1</div><div class="line">Creating portus_web_1</div><div class="line">Creating portus_crono_1</div><div class="line">Creating portus_registry_1</div><div class="line">Waiting for mariadb to be ready in 5 seconds</div><div class="line">Portus: configuring database... [SUCCESS]</div><div class="line"></div><div class="line">###################</div><div class="line">#     SUCCESS     #</div><div class="line">###################</div><div class="line"></div><div class="line">Make sure port 3000 and 5000 are open on host 10.224.172.50</div><div class="line"></div><div class="line">Open http://10.224.172.50:3000 with your browser and perform the following steps:</div><div class="line"></div><div class="line">  1. Create an admin account</div><div class="line">  2. You will be redirected to a page where you have to register the registry. In this form:</div><div class="line">    - Choose a custom name for the registry.</div><div class="line">    - Enter 10.224.172.50:5000 as the hostname.</div><div class="line">    - Do *not* check the &quot;Use SSL&quot; checkbox, since this setup is not using SSL.</div><div class="line"></div><div class="line">Perform the following actions on the docker hosts that need to interact with your registry:</div><div class="line"></div><div class="line">  - Ensure the docker daemon is started with the &apos;--insecure-registry 10.224.172.50:5000&apos;</div><div class="line">  - Perform the docker login.</div><div class="line"></div><div class="line">To authenticate against your registry using the docker cli do:</div><div class="line"></div><div class="line">  $ docker login -u &lt;portus username&gt; -p &lt;password&gt; -e &lt;email&gt; 10.224.172.50:5000</div><div class="line"></div><div class="line">To push an image to the private registry:</div><div class="line"></div><div class="line">  $ docker pull busybox</div><div class="line">  $ docker tag busybox 10.224.172.50:5000/&lt;username&gt;/busybox</div><div class="line">  $ docker push 10.224.172.50:5000/&lt;username&gt;/busybox</div><div class="line"></div><div class="line">###################</div><div class="line">#     Issue1      #</div><div class="line">###################</div><div class="line">以上是安装成功的，由于网络的原因，我们在download phantomjs_1.9.0-1_amd64.deb 发生了 timeout, 所以需要手工的下载好了之后在安装，在文件添加如下命令</div><div class="line">cd /var/cache/apt/archives &amp;&amp; \</div><div class="line">wget http://download.opensuse.org/repositories/home:/flavio_castelli:/phantomjs/Debian_8.0/./amd64/phantomjs_1.9.0-1_amd64.deb &amp;&amp; \</div><div class="line">apt-get install -y --no-install-recommends phantomjs nodejs apt-utils &amp;&amp; \</div><div class="line"></div><div class="line">[root@ct7 Portus]# more /home/tony/Portu/Portus/Dockerfile</div><div class="line">FROM library/ruby:2.3.1</div><div class="line">MAINTAINER Flavio Castelli &lt;fcastelli@suse.com&gt;</div><div class="line"></div><div class="line">ENV COMPOSE=1</div><div class="line">EXPOSE 3000</div><div class="line"></div><div class="line">WORKDIR /portus</div><div class="line">COPY Gemfile* ./</div><div class="line">RUN bundle install --retry=3</div><div class="line"></div><div class="line"># Install phantomjs, this is required for testing and development purposes</div><div class="line"># There are no official deb packages for it, hence we built it inside of the</div><div class="line"># open build service.</div><div class="line">RUN echo &quot;deb http://download.opensuse.org/repositories/home:/flavio_castelli:/phantomjs/Debian_8.0/ ./&quot; &gt;&gt; /etc/apt/sources.list</div><div class="line">RUN wget http://download.opensuse.org/repositories/home:/flavio_castelli:/phantomjs/Debian_8.0/Release.key &amp;&amp; \</div><div class="line">  apt-key add Release.key &amp;&amp; \</div><div class="line">  rm Release.key</div><div class="line">RUN apt-get update &amp;&amp; \</div><div class="line">    cd /var/cache/apt/archives &amp;&amp; \</div><div class="line">    wget http://download.opensuse.org/repositories/home:/flavio_castelli:/phantomjs/Debian_8.0/./amd64/phantomjs_1.9.0-1_amd64.deb &amp;&amp; \</div><div class="line">    apt-get install -y --no-install-recommends phantomjs nodejs apt-utils &amp;&amp; \</div><div class="line">    rm -rf /var/lib/apt/lists/*</div><div class="line"></div><div class="line">ADD . .</div><div class="line"></div><div class="line">###################</div><div class="line">#     Issue2      #</div><div class="line">###################</div><div class="line">创建完，并且docker push 到registry上，访问URL：http://10.224.172.50:3000/，发现没有任何的数据，这个因为防火墙的原因，具体操作看下一步</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="step-8-打开防火墙端口"><a href="#step-8-打开防火墙端口" class="headerlink" title="step 8:打开防火墙端口"></a>step 8:打开防火墙端口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=public  --add-port=3000/tcp --permanent</div><div class="line">firewall-cmd --zone=public  --add-port=5000/tcp --permanent</div><div class="line">systemctl restart firewall.service</div></pre></td></tr></table></figure>
+<h2 id="step-9-Portus初始化配置"><a href="#step-9-Portus初始化配置" class="headerlink" title="step 9:Portus初始化配置"></a>step 9:Portus初始化配置</h2><blockquote>
+<p>在浏览器中打开创建默认管理员用户<br><img src="https://wangbinbin0326.github.io/images/software/docker-portus1.JPG" alt="此处输入图片的描述"></p>
+<p>连接到本docker仓库（也可以是其他仓库，必须是registry 2.0以上版本）(不要选择SSL，创建失败会提示 remote check disable 就可以)<br><img src="https://wangbinbin0326.github.io/images/software/docker-portus2.JPG" alt="此处输入图片的描述"></p>
+</blockquote>
+<h2 id="step-10-在docker-client上传镜像到docker-registry"><a href="#step-10-在docker-client上传镜像到docker-registry" class="headerlink" title="step 10:在docker client上传镜像到docker registry"></a>step 10:在docker client上传镜像到docker registry</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">创建/etc/docker/daemon.json文件，并写入</div><div class="line">[root@ct7 system]# more /etc/docker/daemon.json</div><div class="line">&#123; &quot;insecure-registries&quot;:[&quot;10.224.172.50:5000&quot;] &#125;</div><div class="line">然后重启docker：</div><div class="line">[root@ct7 system]# systemctl daemon-reload</div><div class="line">[root@ct7 system]# service docker restart</div><div class="line"></div><div class="line">[root@ct7 system]# docker login -u admin -p P@ss1234 -e admin@hz-zabbix.qa.webex.com 10.224.172.50:5000</div><div class="line">Flag --email has been deprecated, will be removed in 1.13.</div><div class="line">Login Succeeded</div><div class="line"></div><div class="line">[root@ct7 system]# docker pull busybox</div><div class="line">Using default tag: latest</div><div class="line">latest: Pulling from library/busybox</div><div class="line">56bec22e3559: Pull complete</div><div class="line">Digest: sha256:29f5d56d12684887bdfa50dcd29fc31eea4aaf4ad3bec43daf19026a7ce69912</div><div class="line">Status: Downloaded newer image for busybox:latest</div><div class="line"></div><div class="line">[root@ct7 system]# docker tag busybox 10.224.172.50:5000/admin/busybox</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.172.50:5000/admin/busybox    latest              e02e811dd08f        3 weeks ago         1.093 MB</div><div class="line">busybox                             latest              e02e811dd08f        3 weeks ago         1.093 MB</div><div class="line"></div><div class="line">[root@ct7 system]# docker push 10.224.172.50:5000/admin/busybox</div><div class="line">The push refers to a repository [10.224.172.50:5000/admin/busybox]</div><div class="line">e88b3f82283b: Pushed</div><div class="line">latest: digest: sha256:29f5d56d12684887bdfa50dcd29fc31eea4aaf4ad3bec43daf19026a7ce69912 size: 527</div></pre></td></tr></table></figure>
+<h2 id="step-11-检查Portus界面的镜像信息"><a href="#step-11-检查Portus界面的镜像信息" class="headerlink" title="step 11.检查Portus界面的镜像信息"></a>step 11.检查Portus界面的镜像信息</h2><p><img src="https://wangbinbin0326.github.io/images/software/docker-portus3.JPG" alt="此处输入图片的描述"></p>
+<h2 id="step-12-重启Portus应用"><a href="#step-12-重启Portus应用" class="headerlink" title="step 12.重启Portus应用"></a>step 12.重启Portus应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@ct7 Portus]# pwd</div><div class="line">/home/tony/Portu/Portus</div><div class="line"></div><div class="line">[root@ct7 Portus]# docker-compose stop</div><div class="line">Stopping portus_registry_1 ... done</div><div class="line">Stopping portus_web_1 ... done</div><div class="line">Stopping portus_crono_1 ... done</div><div class="line">Stopping portus_db_1 ... done</div><div class="line"></div><div class="line">[root@ct7 Portus]# docker-compose up</div><div class="line">Starting portus_db_1</div><div class="line">Starting portus_web_1</div><div class="line">Starting portus_crono_1</div><div class="line">Starting portus_registry_1</div></pre></td></tr></table></figure>
+<p>select extract(year from date ‘2016-11-1’) year,<br>       extract(month from date ‘2016-11-1’) month,<br>       extract(day from date ‘2016-11-1’) day<br>from dual;</p>
+<p>SYSDATE             DATE1               DATE_YEAR                     DATE_MONTH                   DATE_NUM</p>
+<hr>
+<p>2016-11-02 01:22:24 2016-11-02 01:22:24 twenty sixteen-11-02 01:22:24 16-november -02 01:22:24     16-11-02 WED 01:22:24</p>
+<p>SYSDATE             DATE1               DATE_YEAR                                                 DATE_MONTH                   DATE_NUM                 DATE_FM</p>
+<hr>
+<p>2016-11-02 01:27:05 2016-11-02 01:27:05 twenty sixteen-11-02 01:27:05                             16-november -02 01:27:05     16-11-02 WED 01:27:05    16-11-2 WED 1:27:5</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/28/CentOS搭建docker-registry仓库/" rel="next" title="CentOS搭建docker-registry仓库">
+                <i class="fa fa-chevron-left"></i> CentOS搭建docker-registry仓库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/02/SQL-字符函数/" rel="prev" title="SQL-字符函数">
+                SQL-字符函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-更新系统"><span class="nav-number">1.</span> <span class="nav-text">step 1: 更新系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-安装docker-compose"><span class="nav-number">2.</span> <span class="nav-text">step 2: 安装docker-compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-安装git客户端"><span class="nav-number">3.</span> <span class="nav-text">step 3: 安装git客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4-复制Portus安装程序"><span class="nav-number">4.</span> <span class="nav-text">step 4:复制Portus安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-5-配置Docker安装源"><span class="nav-number">5.</span> <span class="nav-text">step 5:配置Docker安装源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-6-安装docker引擎并启动"><span class="nav-number">6.</span> <span class="nav-text">step 6:安装docker引擎并启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-7-安装Portus"><span class="nav-number">7.</span> <span class="nav-text">step 7:安装Portus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-8-打开防火墙端口"><span class="nav-number">8.</span> <span class="nav-text">step 8:打开防火墙端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-9-Portus初始化配置"><span class="nav-number">9.</span> <span class="nav-text">step 9:Portus初始化配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-10-在docker-client上传镜像到docker-registry"><span class="nav-number">10.</span> <span class="nav-text">step 10:在docker client上传镜像到docker registry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-11-检查Portus界面的镜像信息"><span class="nav-number">11.</span> <span class="nav-text">step 11.检查Portus界面的镜像信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-12-重启Portus应用"><span class="nav-number">12.</span> <span class="nav-text">step 12.重启Portus应用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

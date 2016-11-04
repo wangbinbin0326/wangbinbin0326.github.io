@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
+
+
+
+
+
+Step">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS搭建docker-registry仓库">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
+
+
+
+
+
+Step">
+<meta property="og:updated_time" content="2016-10-28T06:32:01.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS搭建docker-registry仓库">
+<meta name="twitter:description" content="在CentOS上搭建docker私服
+环境：
+
+IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+
+OS: CentOS Linux release 7.2.1511 (Core)
+
+Docker Version: Docker version 1.12.0, build 8eab29e
+
+
+
+
+
+Step">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/"/>
+
+
+  <title> CentOS搭建docker-registry仓库 | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CentOS搭建docker-registry仓库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T14:03:20+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="在CentOS上搭建docker私服"><a href="#在CentOS上搭建docker私服" class="headerlink" title="在CentOS上搭建docker私服"></a>在CentOS上搭建docker私服</h2><blockquote>
+<p>环境：</p>
+<ul>
+<li><p>IP:<br>10.224.188.50(Docker Registry Server)<br>10.224.188.59(Docker client )</p>
+</li>
+<li><p>OS: CentOS Linux release 7.2.1511 (Core)</p>
+</li>
+<li><p>Docker Version: Docker version 1.12.0, build 8eab29e</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Step 1: 以下操作运行在10.224.188.50(Docker Registry Server)上</p>
+<p>安装docker-registry, 运行以下命令<br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://10.224.188.50:5000/v1/_ping
+404 page not found</code></p>
+<p>如果有如下返回值则代表成功，无返回则说明进程没有启动，把所有的container都删除然后在重新启动<br><code>docker rm $(docker ps -a -q)</code><br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<blockquote>
+<p>Step 2: 以下操作运行在10.224.188.59(Docker client)上</p>
+<p>1.查看当前的images</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">gethue/hue                          latest              f7f2abf45534        4 months ago        2.284 GB</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.查看当前所有的container</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker ps -a</div><div class="line">CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS                      PORTS                    NAMES</div><div class="line">5b45fcfb4c4c        gethue/hue:latest                   &quot;bash&quot;              2 weeks ago         Up 31 minutes               0.0.0.0:8888-&gt;8888/tcp   high_lovelace</div><div class="line">--container没有起来，运行如下命令：</div><div class="line">[root@ct7 system]# docker start 5b45fcfb4c4c</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.查看当前运行的container</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES</div><div class="line">5b45fcfb4c4c        gethue/hue:latest   &quot;bash&quot;              2 weeks ago         Up 34 minutes       0.0.0.0:8888-&gt;8888/tcp   high_lovelace</div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.Create a new image from a container’s changes</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker commit 5b45fcfb4c4c 10.224.188.50:5000/hue-v1</div><div class="line">sha256:8f41bc37f2b4164c79a9924ca9b6f38581a7ca8f50e60d2ac49818a765c35f09</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        15 seconds ago      2.57 GB</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.push new image into docker private registry</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker push 10.224.188.50:5000/hue-v1</div><div class="line">The push refers to a repository [10.224.188.50:5000/hue-v1]</div><div class="line">eb8378240c72: Pushed</div><div class="line">1e71236cfd2b: Pushed</div><div class="line">fccab3c2b82b: Pushed</div><div class="line">30c28efdecff: Pushed</div><div class="line">634827038ea7: Pushed</div><div class="line">8f22c1173848: Pushed</div><div class="line">8191da9e7f9a: Pushed</div><div class="line">173f1156fe76: Pushed</div><div class="line">5b771cc18969: Pushed</div><div class="line">ae16cd6221a3: Pushed</div><div class="line">7dce18002c8d: Pushed</div><div class="line">5f70bf18a086: Pushed</div><div class="line">6f8be37bd578: Pushed</div><div class="line">9f7ab087e6e6: Pushed</div><div class="line">dc109d4b4ccf: Pushed</div><div class="line">a7e1c363defb: Pushed</div><div class="line">latest: digest: sha256:b9ee12c606e3da3554b3f5df9f88364eb8986b1f6fe1ae625542c8e3343e1627 size: 3691</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">如果push的时候报以下错误时：&quot;server gave HTTP response to HTTPS client&quot;</div><div class="line">创建/etc/docker/daemon.json文件，并写入</div><div class="line">[root@ct7 system]# more /etc/docker/daemon.json</div><div class="line">&#123; &quot;insecure-registries&quot;:[&quot;10.224.188.50:5000&quot;] &#125;</div><div class="line">然后重启docker：</div><div class="line">[root@ct7 system]# service docker restart</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.verify the new image from docker private registry</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">--删除old image</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              9095f95a6f9f        18 hours ago        2.57 GB</div><div class="line">[root@ct7 system]# docker rmi 10.224.188.50:5000/hue-v1</div><div class="line">Untagged: 10.224.188.50:5000/hue-v1:latest</div><div class="line">Deleted: sha256:9095f95a6f9fb97de276752db6a5dd44bf279b58cfdf4c723c48090b6ef3a5f5</div><div class="line">Deleted: sha256:8a560d1d95af6e2436ba2ff73125b383bef343e6e6d4ff45c3dc61352342c7c8</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">--查看docker registry images</div><div class="line">[root@ct7 system]# curl http://10.224.188.50:5000/v1/search</div><div class="line">404 page not found</div><div class="line">网上都用这个curl http://10.224.188.50:5000/v1/search,但是报404 page not found，后查证是v1版本的api查看方式，我们现在的版本是v2，所以用如下方法查看：</div><div class="line">curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">[root@ct7 system]# curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">&#123;&quot;repositories&quot;:[&quot;centos7-python&quot;,&quot;hue-v1&quot;]&#125;</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">-- pull new images</div><div class="line">[root@ct7 system]# docker pull 10.224.188.50:5000/hue-v1</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v2           latest              1905f45f6154        15 hours ago        2.486 GB</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        20 hours ago        2.57 GB</div><div class="line">由于commit方式不会保存mount的数据，所以需要对应用做如下操作</div><div class="line">The commit operation will not include any data contained in volumes mounted inside the container.</div><div class="line">root@3201bbe4b443:/home/tony/hue# scp 10.224.188.58:/storage/software/hue/pseudo-distributed.ini /hue/desktop/conf/pseudo-distributed.ini</div><div class="line">source /etc/profile</div><div class="line">root@3201bbe4b443:/home/tony/hue# /home/tony/hue/start_hue.sh</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/25/python实现递归的汉诺塔/" rel="next" title="python实现递归的汉诺塔">
+                <i class="fa fa-chevron-left"></i> python实现递归的汉诺塔
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/Portus管理Docker的Registry仓库/" rel="prev" title="Portus管理Docker的Registry仓库">
+                Portus管理Docker的Registry仓库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在CentOS上搭建docker私服"><span class="nav-number">1.</span> <span class="nav-text">在CentOS上搭建docker私服</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

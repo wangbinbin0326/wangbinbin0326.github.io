@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,16 +84,21 @@
 
 
 
-<meta name="description" content="终会有属于自己的一片天空！">
+<meta name="description" content="python实现递归的汉诺塔
+汉诺塔问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Helloworld">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/04/Helloworld/index.html">
+<meta property="og:title" content="python实现递归的汉诺塔">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/25/python实现递归的汉诺塔/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="终会有属于自己的一片天空！">
-<meta property="og:updated_time" content="2016-11-04T01:23:11.210Z">
+<meta property="og:description" content="python实现递归的汉诺塔
+汉诺塔问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/python/hanoi.jpg">
+<meta property="og:updated_time" content="2016-10-25T09:38:48.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Helloworld">
-<meta name="twitter:description" content="终会有属于自己的一片天空！">
+<meta name="twitter:title" content="python实现递归的汉诺塔">
+<meta name="twitter:description" content="python实现递归的汉诺塔
+汉诺塔问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。">
+<meta name="twitter:image" content="https://wangbinbin0326.github.io/images/python/hanoi.jpg">
 
 
 
@@ -114,10 +119,10 @@
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/04/Helloworld/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/25/python实现递归的汉诺塔/"/>
 
 
-  <title> Helloworld | Tony Blog </title>
+  <title> python实现递归的汉诺塔 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +244,7 @@
             
             
               
-                Helloworld
+                python实现递归的汉诺塔
               
             
           </h1>
@@ -251,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T09:23:11+08:00" content="2016-11-04">
-              2016-11-04
+            <time itemprop="dateCreated" datetime="2016-10-25T17:24:02+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -279,7 +284,19 @@
       
 
       
-        
+        <h2 id="python实现递归的汉诺塔"><a href="#python实现递归的汉诺塔" class="headerlink" title="python实现递归的汉诺塔"></a>python实现递归的汉诺塔</h2><blockquote>
+<p>汉诺塔问题是源于印度一个古老传说的益智玩具。大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着64片黄金圆盘。大梵天命令婆罗门把圆盘从下面开始按大小顺序重新摆放在另一根柱子上。并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。</p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/python/hanoi.jpg" alt="此处输入图片的描述"></p>
+<a id="more"></a>
+<blockquote>
+<p>编程思想：</p>
+<p>step 1: 将第一个柱子的第n个盘子上的（n-1）的盘子，通过第三个柱子的迁移存放，放到第二个柱子上。</p>
+<p>step 2: 然后将第二个柱子上的（n-1）的盘子，通过第一个柱子的迁移存放，放入到第三个柱子上。</p>
+<p>step 3: 通过递归的方式一层一层的迁移。 </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding: utf-8</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hanota</span><span class="params">(n, x, y, z)</span>:</span></div><div class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</div><div class="line">                print(x+<span class="string">"----&gt;"</span>+z) <span class="comment">#当 n=1 则直接将盘子从x移到z上</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">                hanota(n<span class="number">-1</span>, x, z, y) <span class="comment"># 当 n!=1 时，需要先将x的第n个盘子上的（n-1）个盘子，从x通过z放到y上</span></div><div class="line">                print(x+<span class="string">"----&gt;"</span>+z)   <span class="comment"># 然后将第n个盘子放入到z上</span></div><div class="line">                hanota(n<span class="number">-1</span>, y, x, z) <span class="comment"># 让后将y上的（n-1）个盘子，通过x放入到z上</span></div><div class="line"></div><div class="line">num = input(<span class="string">"please input the hanota layer number: "</span>)</div><div class="line">n = int(num)</div><div class="line"></div><div class="line">hanota(n, <span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>)</div><div class="line"></div><div class="line"><span class="string">'''</span></div><div class="line">[root@24902b4429c6 lab1]# python hanota.py</div><div class="line">please input the hanota layer number: 3</div><div class="line">x----&gt;z</div><div class="line">x----&gt;y</div><div class="line">z----&gt;y</div><div class="line">x----&gt;z</div><div class="line">y----&gt;x</div><div class="line">y----&gt;z</div><div class="line">x----&gt;z</div><div class="line">'''</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hanota</span><span class="params">(n)</span>:</span></div><div class="line">        step1xtoz = <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</div><div class="line">                <span class="keyword">return</span> step1xtoz</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">                stepcount = hanota(n<span class="number">-1</span>) + hanota(n<span class="number">-1</span>) + step1xtoz</div><div class="line">                <span class="keyword">return</span> stepcount</div><div class="line"></div><div class="line">num = input(<span class="string">"please input the hanota layer number: "</span>)</div><div class="line">n = int(num)</div><div class="line"></div><div class="line">count = hanota(n)</div><div class="line">print(<span class="string">"The step count: "</span>,count)</div><div class="line"></div><div class="line"><span class="string">'''</span></div><div class="line">[root@24902b4429c6 lab1]# python hanota1.py</div><div class="line">please input the hanota layer number: 3</div><div class="line">('The step count: ', 7)</div><div class="line">'''</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -299,18 +316,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/03/ORACLE简单易懂之分区表和索引/" rel="next" title="ORACLE简单易懂之分区表和索引">
-                <i class="fa fa-chevron-left"></i> ORACLE简单易懂之分区表和索引
+              <a href="/2016/10/25/成就DBA职业生涯/" rel="next" title="成就DBA职业生涯">
+                <i class="fa fa-chevron-left"></i> 成就DBA职业生涯
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/28/CentOS搭建docker-registry仓库/" rel="prev" title="CentOS搭建docker-registry仓库">
+                CentOS搭建docker-registry仓库 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -424,7 +451,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python实现递归的汉诺塔"><span class="nav-number">1.</span> <span class="nav-text">python实现递归的汉诺塔</span></a></li></ol></div>
             
           </div>
         </section>

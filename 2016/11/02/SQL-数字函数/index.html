@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -84,16 +84,82 @@
 
 
 
-<meta name="description" content="终会有属于自己的一片天空！">
+<meta name="description" content="数字函数
+
+
+函数
+结果
+说明
+
+
+
+
+ROUND(45.926, 2)
+45.93
+将值舍入到指定的小数位
+
+
+TRUNC(45.926, 2)
+45.92
+将值截断到指定的小数位
+
+
+MOD(1600, 300)
+100
+返回除法运算的余数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Helloworld">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/04/Helloworld/index.html">
+<meta property="og:title" content="SQL-数字函数">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/02/SQL-数字函数/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="终会有属于自己的一片天空！">
-<meta property="og:updated_time" content="2016-11-04T01:23:11.210Z">
+<meta property="og:description" content="数字函数
+
+
+函数
+结果
+说明
+
+
+
+
+ROUND(45.926, 2)
+45.93
+将值舍入到指定的小数位
+
+
+TRUNC(45.926, 2)
+45.92
+将值截断到指定的小数位
+
+
+MOD(1600, 300)
+100
+返回除法运算的余数">
+<meta property="og:updated_time" content="2016-11-02T05:52:27.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Helloworld">
-<meta name="twitter:description" content="终会有属于自己的一片天空！">
+<meta name="twitter:title" content="SQL-数字函数">
+<meta name="twitter:description" content="数字函数
+
+
+函数
+结果
+说明
+
+
+
+
+ROUND(45.926, 2)
+45.93
+将值舍入到指定的小数位
+
+
+TRUNC(45.926, 2)
+45.92
+将值截断到指定的小数位
+
+
+MOD(1600, 300)
+100
+返回除法运算的余数">
 
 
 
@@ -114,10 +180,10 @@
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/04/Helloworld/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/02/SQL-数字函数/"/>
 
 
-  <title> Helloworld | Tony Blog </title>
+  <title> SQL-数字函数 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +305,7 @@
             
             
               
-                Helloworld
+                SQL-数字函数
               
             
           </h1>
@@ -251,8 +317,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T09:23:11+08:00" content="2016-11-04">
-              2016-11-04
+            <time itemprop="dateCreated" datetime="2016-11-02T13:11:54+08:00" content="2016-11-02">
+              2016-11-02
             </time>
           </span>
 
@@ -279,7 +345,35 @@
       
 
       
-        
+        <h2 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROUND(45.926, 2)</td>
+<td style="text-align:left">45.93</td>
+<td style="text-align:left">将值舍入到指定的小数位</td>
+</tr>
+<tr>
+<td>TRUNC(45.926, 2)</td>
+<td style="text-align:left">45.92</td>
+<td style="text-align:left">将值截断到指定的小数位</td>
+</tr>
+<tr>
+<td>MOD(1600, 300)</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">返回除法运算的余数</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">45.923</span>,<span class="number">2</span>), <span class="keyword">ROUND</span>(<span class="number">45.923</span>,<span class="number">0</span>),</div><div class="line"><span class="keyword">ROUND</span>(<span class="number">45.923</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">FROM</span> DUAL; </div><div class="line"></div><div class="line">ROUND(45.923,2) ROUND(45.923,0) ROUND(45.923,-1)</div><div class="line"><span class="comment">--------------- --------------- ----------------</span></div><div class="line">          45.92              46               50</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> TRUNC(<span class="number">45.923</span>,<span class="number">2</span>), TRUNC(<span class="number">45.923</span>),</div><div class="line">TRUNC(<span class="number">45.923</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">FROM</span> DUAL;</div><div class="line"></div><div class="line">TRUNC(45.923,2) TRUNC(45.923) TRUNC(45.923,-1)</div><div class="line"><span class="comment">--------------- ------------- ----------------</span></div><div class="line">          45.92            45               40</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> last_name, salary, <span class="keyword">MOD</span>(salary, <span class="number">5000</span>)</div><div class="line"><span class="keyword">FROM</span> employees</div><div class="line"><span class="keyword">WHERE</span> job_id = <span class="string">'SA_REP'</span>; </div><div class="line"></div><div class="line">LAST_NAME                     SALARY MOD(SALARY,5000)</div><div class="line"><span class="comment">------------------------- ---------- ----------------</span></div><div class="line">Tucker                         10000                0</div><div class="line">Bernstein                       9500             4500</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -299,18 +393,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/03/ORACLE简单易懂之分区表和索引/" rel="next" title="ORACLE简单易懂之分区表和索引">
-                <i class="fa fa-chevron-left"></i> ORACLE简单易懂之分区表和索引
+              <a href="/2016/11/02/SQL-字符函数/" rel="next" title="SQL-字符函数">
+                <i class="fa fa-chevron-left"></i> SQL-字符函数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/02/SQL-日期函数/" rel="prev" title="SQL-日期函数">
+                SQL-日期函数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -424,7 +528,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字函数"><span class="nav-number">1.</span> <span class="nav-text">数字函数</span></a></li></ol></div>
             
           </div>
         </section>

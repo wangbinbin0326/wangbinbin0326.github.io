@@ -1,0 +1,717 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Oracle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="第二. Oracle DB 内存结构
+
+一个实例有两个关联的基本内存结构：
+
+系统全局区（SGA）: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。
+
+程序全局区（PGA）:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle-DB-内存结构">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/13/Oracle-DB-内存结构/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="第二. Oracle DB 内存结构
+
+一个实例有两个关联的基本内存结构：
+
+系统全局区（SGA）: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。
+
+程序全局区（PGA）:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif">
+<meta property="og:image" content="http://images.51cto.com/files/uploadimg/20120511/090649172.jpg">
+<meta property="og:updated_time" content="2016-10-21T09:00:00.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle-DB-内存结构">
+<meta name="twitter:description" content="第二. Oracle DB 内存结构
+
+一个实例有两个关联的基本内存结构：
+
+系统全局区（SGA）: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。
+
+程序全局区（PGA）:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服">
+<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/13/Oracle-DB-内存结构/"/>
+
+
+  <title> Oracle-DB-内存结构 | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Oracle-DB-内存结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T13:39:10+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第二-Oracle-DB-内存结构"><a href="#第二-Oracle-DB-内存结构" class="headerlink" title="第二. Oracle DB 内存结构"></a>第二. Oracle DB 内存结构</h2><p><img src="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>一个实例有两个关联的基本内存结构：</p>
+<ul>
+<li><p><strong>系统全局区（SGA）</strong>: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。</p>
+</li>
+<li><p><strong>程序全局区（PGA）</strong>:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服务器进程或后台进程启动时创建的非共享内存。服务器进程对<br>PGA 的访问是互斥的。每个服务器进程和后台进程都具有自己的PGA。</p>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">SQL&gt; show parameter sga;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">lock_sga                             boolean     FALSE</div><div class="line">pre_page_sga                         boolean     FALSE</div><div class="line">sga_max_size                         big integer 6432M</div><div class="line">sga_target                           big integer 0</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; show parameter pga;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">pga_aggregate_target                 big integer 0</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>SGA包含的数据结构：</p>
+<ul>
+<li><strong>数据库缓冲区高速缓存：</strong>用于缓存从数据库中检索到的数据块</li>
+<li><strong>重做日志缓冲区：</strong>用来缓存用于实例恢复的重做信息，直到可以将其写入磁盘中存储的物理重做日志文件</li>
+<li><strong>共享池：</strong>用于缓存可在用户间共享的各种结构</li>
+<li><strong>大型池：</strong>为某些大型进程（例如Oracle 备份和恢复操作）和I/O 服务器进程提供大型内存分配的可选区域。</li>
+<li><strong>Java 池：</strong>用于Java 虚拟机(JVM) 中特定于会话的所有Java 代码和数据</li>
+<li><strong>流池：</strong> Oracle Streams 使用它来存储捕获和应用操作所需的信息</li>
+</ul>
+<p>程序全局区(PGA)是一个内存区，其中包含每个服务器进程的数据及控制信息。Oracle 服务器进程为客户机请求提供服务。每个服务器进程都有自己专用的PGA，其PGA 在服务器进程启动时创建，对PGA的访问权限仅限于该服务器进程，并且只能由代表该服务器进程的Oracle 代码对PGA 进行读写。</p>
+<p>Oracle DB 使用初始化参数来创建和管理内存结构。管理内存的最简单的方法是允许数据库自动管理和优化内存。要做到这一点（以下操作适用于大多数平台），您只需设置目标内存大小初始化参数(<strong>MEMORY_TARGET</strong>)和最大内存大小初始化参数 (<strong>MEMORY_MAX_TARGET</strong>)。</p>
+</blockquote>
+<hr>
+<h3 id="1-数据库缓冲区高速缓存"><a href="#1-数据库缓冲区高速缓存" class="headerlink" title="1. 数据库缓冲区高速缓存"></a>1. 数据库缓冲区高速缓存</h3><blockquote>
+<ul>
+<li>属于SGA</li>
+<li>存放从数据文件读取的数据块的副本</li>
+<li>由所有并行用户共享</li>
+</ul>
+<p>Oracle DB 用户进程第一次需要特定数据片段时，将在数据库缓冲区高速缓存中搜索数据。如果该进程在高速缓存中找到数据（称为高速缓存命中），则直接从内存中读取数据。如果进程在高速缓存中找不到数据（称为高速缓存未命中），则在访问数据之前，必须将磁盘上的数据文件中的数据块复制到高速缓存中的缓冲区中。高速缓存命中时访问数据要比高速缓存未命中时访问数据快。</p>
+<p>高速缓存中的缓冲区由一个复杂算法管理，该算法组合使用最近最少使用(LRU) 列表和停靠计数机制。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="number">1</span> - (phy.VALUE / (cur.VALUE + con.VALUE)) <span class="string">"CACHE HIT RATIO"</span></div><div class="line">  <span class="keyword">from</span> v$sysstat cur, v$sysstat con, v$sysstat phy</div><div class="line"> <span class="keyword">where</span>     cur.name = <span class="string">'db block gets'</span></div><div class="line">       <span class="keyword">AND</span> con.name = <span class="string">'consistent gets'</span></div><div class="line">       <span class="keyword">AND</span> phy.name = <span class="string">'physical reads'</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 运行结果</span></div><div class="line"><span class="comment">-- 0.993163842486823</span></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-重做日志缓冲区"><a href="#2-重做日志缓冲区" class="headerlink" title="2. 重做日志缓冲区"></a>2. 重做日志缓冲区</h3><blockquote>
+<ul>
+<li>它是SGA中的循环缓冲区</li>
+<li>存放有关对数据库所做更改的信息</li>
+<li>包含重做条目，这些条目包含有DML和DDL等操作进行的重做更改的相关信息</li>
+</ul>
+<p>重做日志缓冲区是SGA 中的循环缓冲区，用于存放有关对数据库所做更改的信息。此信<br>息存储在重做条目中。重做条目包含重建（或重做）由DML、DDL 或内部操作对数据库<br>进行的更改所需的信息。如果需要，将使用重做条目进行数据库恢复。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">#利用下列sql语句在sql语句执行前后取差值即为此session产生的redo</div><div class="line">select name, value</div><div class="line">from v$mystat a, v$statname b</div><div class="line">where a.statistic# = b.statistic#</div><div class="line">  and b.name = 'redo size';</div><div class="line"></div><div class="line">NAME                      VALUE</div><div class="line">-------------------- ----------</div><div class="line">redo size                   764</div><div class="line"></div><div class="line">SQL&gt; insert into emp3 values(5,'n5', 55);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">select name, value</div><div class="line">from v$mystat a, v$statname b</div><div class="line">where a.statistic# = b.statistic#</div><div class="line">  and b.name = 'redo size';</div><div class="line"></div><div class="line">NAME                      VALUE</div><div class="line">-------------------- ----------</div><div class="line">redo size                   764</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">select name, value</div><div class="line">from v$mystat a, v$statname b</div><div class="line">where a.statistic# = b.statistic#</div><div class="line">  and b.name = 'redo size';</div><div class="line"></div><div class="line">NAME                      VALUE</div><div class="line">-------------------- ----------</div><div class="line">redo size                  1764</div><div class="line"></div><div class="line">SQL&gt; delete from emp3 where emp3_id = 5;</div><div class="line"></div><div class="line">1 row deleted.</div><div class="line"></div><div class="line">select name, value</div><div class="line">from v$mystat a, v$statname b</div><div class="line">where a.statistic# = b.statistic#</div><div class="line">  and b.name = 'redo size';</div><div class="line"></div><div class="line">NAME                      VALUE</div><div class="line">-------------------- ----------</div><div class="line">redo size                  1952</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">select name, value</div><div class="line">from v$mystat a, v$statname b</div><div class="line">where a.statistic# = b.statistic#</div><div class="line">  and b.name = 'redo size';</div><div class="line"></div><div class="line">NAME                      VALUE</div><div class="line">-------------------- ----------</div><div class="line">redo size                  2928</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="3-共享池"><a href="#3-共享池" class="headerlink" title="3. 共享池"></a>3. 共享池</h3><blockquote>
+<ul>
+<li>属于SGA</li>
+<li>包含：<br>–库高速缓存<br>—-共享SQL 区域<br>–数据字典高速缓存<br>–控制结构</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>SGA 的共享池部分包含库高速缓存、数据字典高速缓存、SQL查询结果高速缓存、PL/SQL 函数结果高速缓存、并行执行消息的缓冲区以及控制结构。</p>
+<p><strong>“数据字典”</strong>是数据库表和视图（它们包含有关数据库、数据库结构及其用户的参考信息）的集合。在SQL 语句语法分析期间，Oracle DB会频繁访问数据字典。该访问操作对于Oracle DB 的持续操作来说至关重要。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>分配和重用共享池中的内存</p>
+<ul>
+<li>服务器进程检查共享池以查看相同语句是否已存在共享SQL 区域。</li>
+<li>服务器进程分配一个代表会话的专用SQL 区域。</li>
+</ul>
+<p>将SQL 语句提交到Oracle DB以便执行时，将自动执行下列内存分配步骤：</p>
+<ul>
+<li><p>Oracle DB 检查共享池以查看相同语句是否已存在共享SQL 区域。如果存在，则在执行该语句的后续新实例时使用此共享SQL 区域。如果某条语句没有共享SQL 区域，则Oracle DB 会在共享池中分配一个新的共享SQL 区域。在以上任一情况下，用户的专用SQL 区域都与包含该语句的共享SQL 区域关联。</p>
+</li>
+<li><p>Oracle DB 分配一个代表会话的专用SQL 区域。该专用SQL 区域的位置取决于为会话建立的连接的类型。</p>
+</li>
+</ul>
+</blockquote>
+<p>在以下情况下，Oracle DB 也会从共享池中刷新共享SQL 区域：</p>
+<p><img src="http://images.51cto.com/files/uploadimg/20120511/090649172.jpg" alt="此处输入图片的描述"></p>
+<blockquote>
+<p><strong>V\$SQL、V\$SQLTEXT、V\$SQLAREA与V\$SQL_PLAN</strong></p>
+<hr>
+<ul>
+<li><strong>V$SQL</strong>是共享池中已经分析过的SQL，其中列出了所有SQL的相关信息，但不包含GROUP BY语句，每一个SQL语句都是一笔数据，但此记录只保留SQL语句的前1000个字符。</li>
+</ul>
+<ul>
+<li><p><strong>V\$SQLAREA</strong> 中记录了在共享池中分析过的每个SQL语句和准备运行的SQL语句的统计数据，和V$SQL一样只保留SQL的前1000个字符。</p>
+</li>
+<li><p><strong>V\$SQLTEXT</strong> 视图会记录完整的SQL，但会将SQL分成不同笔的数据来存储。</p>
+</li>
+<li><p><strong>V\$SQL_PLAN</strong>视图包含了库缓存中所有游标所产生的执行计划，可结合V$SQLAREA获得库缓存中所有语句的查询计划。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="4-大型池"><a href="#4-大型池" class="headerlink" title="4. 大型池"></a>4. 大型池</h3><blockquote>
+<ul>
+<li>共享服务器的会话内存和Oracle XA接口</li>
+<li>I/O服务器进程</li>
+<li>Oracle DB 备份和还原操作</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="5-Java池和流池"><a href="#5-Java池和流池" class="headerlink" title="5. Java池和流池"></a>5. Java池和流池</h3><blockquote>
+<ul>
+<li>存储JVM 中所有特定于会话的Java 代码和数据的服务<br>器内存使用Java 池内存。</li>
+<li>Oracle Streams 以独占方式使用流池内存来执行以下<br>操作：<br>存储缓冲的队列消息<br>为Oracle Streams 进程提供内存Java</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oracle/" rel="tag">#Oracle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/12/Oracle-DB-概述/" rel="next" title="Oracle-DB-概述">
+                <i class="fa fa-chevron-left"></i> Oracle-DB-概述
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/20/如何用github和hexo搭建自己的Blog/" rel="prev" title="如何用github和hexo搭建自己的Blog">
+                如何用github和hexo搭建自己的Blog <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二-Oracle-DB-内存结构"><span class="nav-number">1.</span> <span class="nav-text">第二. Oracle DB 内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据库缓冲区高速缓存"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据库缓冲区高速缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-重做日志缓冲区"><span class="nav-number">1.2.</span> <span class="nav-text">2. 重做日志缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-共享池"><span class="nav-number">1.3.</span> <span class="nav-text">3. 共享池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-大型池"><span class="nav-number">1.4.</span> <span class="nav-text">4. 大型池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Java池和流池"><span class="nav-number">1.5.</span> <span class="nav-text">5. Java池和流池</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
