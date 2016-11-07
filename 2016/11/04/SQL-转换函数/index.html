@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -84,16 +84,40 @@
 
 
 
-<meta name="description" content="终会有属于自己的一片天空！">
+<meta name="description" content="4. 使用转换函数和条件表达式
+隐式数据类型转换, Oracle Server 可以自动执行以下转换:
+
+VARCHAR2 或CHAR —&amp;gt; NUMBER
+VARCHAR2 或CHAR —&amp;gt; DATE
+NUMBER —&amp;gt; VARCHAR2 或CHAR
+DATE   —&amp;gt; VARCHAR2 或CHAR
+
+注： number 与date 不能隐式转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Helloworld">
+<meta property="og:title" content="SQL-转换函数">
 <meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/04/SQL-转换函数/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="终会有属于自己的一片天空！">
-<meta property="og:updated_time" content="2016-11-04T01:23:11.210Z">
+<meta property="og:description" content="4. 使用转换函数和条件表达式
+隐式数据类型转换, Oracle Server 可以自动执行以下转换:
+
+VARCHAR2 或CHAR —&amp;gt; NUMBER
+VARCHAR2 或CHAR —&amp;gt; DATE
+NUMBER —&amp;gt; VARCHAR2 或CHAR
+DATE   —&amp;gt; VARCHAR2 或CHAR
+
+注： number 与date 不能隐式转换">
+<meta property="og:updated_time" content="2016-11-07T03:10:08.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Helloworld">
-<meta name="twitter:description" content="终会有属于自己的一片天空！">
+<meta name="twitter:title" content="SQL-转换函数">
+<meta name="twitter:description" content="4. 使用转换函数和条件表达式
+隐式数据类型转换, Oracle Server 可以自动执行以下转换:
+
+VARCHAR2 或CHAR —&amp;gt; NUMBER
+VARCHAR2 或CHAR —&amp;gt; DATE
+NUMBER —&amp;gt; VARCHAR2 或CHAR
+DATE   —&amp;gt; VARCHAR2 或CHAR
+
+注： number 与date 不能隐式转换">
 
 
 
@@ -117,7 +141,7 @@
   <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/04/SQL-转换函数/"/>
 
 
-  <title> Helloworld | Tony Blog </title>
+  <title> SQL-转换函数 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +271,7 @@
             
             
               
-                Helloworld
+                SQL-转换函数
               
             
           </h1>
@@ -294,7 +318,18 @@
       
 
       
-        
+        <h2 id="4-使用转换函数和条件表达式"><a href="#4-使用转换函数和条件表达式" class="headerlink" title="4. 使用转换函数和条件表达式"></a>4. 使用转换函数和条件表达式</h2><blockquote>
+<p>隐式数据类型转换, Oracle Server 可以自动执行以下转换:</p>
+<ul>
+<li>VARCHAR2 或CHAR —&gt; NUMBER</li>
+<li>VARCHAR2 或CHAR —&gt; DATE</li>
+<li>NUMBER —&gt; VARCHAR2 或CHAR</li>
+<li>DATE   —&gt; VARCHAR2 或CHAR</li>
+</ul>
+<p>注： number 与date 不能隐式转换</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div></pre></td><td class="code"><pre><div class="line">-- 日期可以和字符串自动转换，但是需要与数据库定义的格式一致</div><div class="line">SQL&gt; show parameter nls</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">nls_date_format                      string      DD-MON-RR</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; select employee_id, first_name, hire_date from employees where hire_date = '30-JAN-04';</div><div class="line"></div><div class="line">EMPLOYEE_ID FIRST_NAME           HIRE_DATE</div><div class="line">----------- -------------------- ---------</div><div class="line">        156 Janette              30-JAN-04</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">-------------------------------------------------------</div><div class="line">TO_CHAR(date, 'format_model'): 将指定的日期按照某种格式转换为字符串</div><div class="line">-- • 必须放在单引号内</div><div class="line">-- • 区分大小写</div><div class="line">-- • 可以包含任何有效的日期格式元素</div><div class="line">-- • 具有一个fm 元素，用于删除填充的空格或隐藏前导零</div><div class="line">-- • 与日期值之间用逗号分隔</div><div class="line">/*</div><div class="line">YYYY 用数字表示的完整年份</div><div class="line">YEAR 拼写出的年份（用英文表示）</div><div class="line">DY 一周中某日的三个字母缩写</div><div class="line">DAY 一周中某日的完整名称</div><div class="line">MM 月份的两位数值</div><div class="line">MONTH 月份的完整名称</div><div class="line">MON 月份的三个字母缩写</div><div class="line">DD 用数字表示的月份中某日</div><div class="line">FM 去掉查询后的前导0</div><div class="line"></div><div class="line">HH24:MI:SS AM 15:45:32 PM</div><div class="line">DD "of" MONTH 12 of OCTOBER</div><div class="line">ddspth fourteenth</div><div class="line">*/</div><div class="line"></div><div class="line">select last_name,</div><div class="line">to_char(hire_date, 'fmDD Month YYYY')</div><div class="line">as HIREDATE</div><div class="line">from employees;</div><div class="line"></div><div class="line">LAST_NAME                 HIREDATE</div><div class="line">------------------------- -----------------</div><div class="line">OConnell                  21 June 2007</div><div class="line">Grant                     13 January 2008</div><div class="line"></div><div class="line">select sysdate, </div><div class="line">       to_char(sysdate,'yyyy-mm-dd HH24:MI:SS') date1,</div><div class="line">       to_char(sysdate,'year-mm-dd HH:MI:SS') date_year,</div><div class="line">       to_char(sysdate,'yy-month-dd HH:MI:SS') date_month,</div><div class="line">       to_char(sysdate,'yy-mm-dd DY HH:MI:SS') date_num</div><div class="line">from dual;</div><div class="line"></div><div class="line">SYSDATE             DATE1               DATE_YEAR                    </div><div class="line">------------------- ------------------- -----------------------------</div><div class="line">2016-11-02 01:27:05 2016-11-02 01:27:05 twenty sixteen-11-02 01:27:05</div><div class="line"></div><div class="line"> DATE_MONTH               DATE_NUM                 DATE_FM</div><div class="line"> ------------------------ ------------------------ ------------------</div><div class="line"> 16-november -02 01:27:05 16-11-02 WED 01:27:05    16-11-2 WED 1:27:5</div><div class="line"> </div><div class="line"> #查询2月份雇员的员工</div><div class="line"> SQL&gt; select employee_id, first_name, hire_date from employees where to_char(hire_date,'MM')=02;</div><div class="line"></div><div class="line">EMPLOYEE_ID FIRST_NAME                HIRE_DATE</div><div class="line">----------- ------------------------- -------------------</div><div class="line">        201 Michael                   2004-02-17 00:00:00</div><div class="line">        183 Girard                    2008-02-03 00:00:00</div><div class="line">        185 Alexis                    2005-02-20 00:00:00</div><div class="line">        301 Den                       1999-02-03 00:00:00</div><div class="line">        302 test1                     2014-02-01 00:00:00</div><div class="line"></div><div class="line"></div><div class="line">/*</div><div class="line">TO_CHAR(number, 'format_model')： 将指定的数字按照某种格式转换为字符串</div><div class="line"></div><div class="line">9 代表一个数字</div><div class="line">0 强制显示零</div><div class="line">$ 放置一个浮动的美元符号</div><div class="line">L 使用浮动的本地货币符号</div><div class="line">. 显示小数点</div><div class="line">, 显示作为千位指示符的逗号</div><div class="line">*/</div><div class="line"></div><div class="line">select TO_CHAR(salary, '$99,999.00') SALARY</div><div class="line">from employees</div><div class="line">where last_name = 'Ernst';</div><div class="line"></div><div class="line">SALARY</div><div class="line">-----------</div><div class="line">  $6,000.00</div><div class="line"></div><div class="line"># 使用TO_NUMBER 函数可将字符串转换为数字格式：  字符串转换数字可以自动转换</div><div class="line">TO_NUMBER(char[, 'format_model'])</div><div class="line"></div><div class="line"># 使用TO_DATE 函数可将字符串转换为日期格式： 在查询的时候使用的不多，主要用在更新数据时</div><div class="line">TO_DATE(char[, 'format_model'])</div><div class="line"></div><div class="line">select last_name, TO_CHAR(hire_date, 'DD-Mon-YYYY')</div><div class="line">from employees</div><div class="line">where hire_date &lt; TO_DATE('01-Jan-90','DD-Mon-RR');</div><div class="line"></div><div class="line">to_char()：可以匹配2008年的所有记录</div><div class="line">SQL&gt; select employee_id, first_name, to_char(hire_date, 'yyyy-mm-dd')  from employees where to_char(hire_date, 'yyyy') = 2008;</div><div class="line"></div><div class="line">EMPLOYEE_ID FIRST_NAME           TO_CHAR(HI</div><div class="line">----------- -------------------- ----------</div><div class="line">        199 Douglas              2008-01-13</div><div class="line">        183 Girard               2008-02-03</div><div class="line">        128 Steven               2008-03-08</div><div class="line">        136 Hazel                2008-02-06</div><div class="line">        149 Eleni                2008-01-29</div><div class="line"></div><div class="line"></div><div class="line">to_date()：只可以匹配确切的日期</div><div class="line">SQL&gt; select employee_id, first_name, to_char(hire_date, 'yyyy-mm-dd')  from employees where hire_date = to_date(2008,'yyyy');</div><div class="line"></div><div class="line">no rows selected</div><div class="line"></div><div class="line">SQL&gt; select employee_id, first_name, to_char(hire_date, 'yyyy-mm-dd')  from employees where hire_date = to_date(20080113,'yyyymmdd');</div><div class="line"></div><div class="line">EMPLOYEE_ID FIRST_NAME           TO_CHAR(HI</div><div class="line">----------- -------------------- ----------</div><div class="line">        199 Douglas              2008-01-13</div><div class="line"></div><div class="line"></div><div class="line">-- 嵌套函数</div><div class="line">/*</div><div class="line">• 单行函数可以嵌套到任意层。</div><div class="line">• 嵌套函数的计算顺序是从最内层到最外层。</div><div class="line">F3(F2(F1(col,arg1),arg2),arg3)</div><div class="line">*/</div><div class="line"></div><div class="line">select last_name,</div><div class="line">upper(CONCAT(SUBSTR (LAST_NAME, 1, 8), '_US'))</div><div class="line">from employees</div><div class="line">where department_id = 60;</div><div class="line"></div><div class="line">LAST_NAME                 UPPER(CONCA</div><div class="line">------------------------- -----------</div><div class="line">Hunold                    HUNOLD_US</div><div class="line">Ernst                     ERNST_US</div><div class="line">Austin                    AUSTIN_US</div><div class="line">Pataballa                 PATABALL_US</div><div class="line">Lorentz                   LORENTZ_US</div><div class="line"></div><div class="line">select TO_CHAR (ROUND ( (salary / 7), 2),</div><div class="line">                '99G999D99',</div><div class="line">                'NLS_NUMERIC_CHARACTERS = '',.'' ')</div><div class="line">          "Formatted Salary"</div><div class="line">  from employees;</div><div class="line"></div><div class="line">Formatted</div><div class="line">----------</div><div class="line">    371,43</div><div class="line">    371,43</div><div class="line">  1.185,71</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -313,6 +348,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
       
 
       
@@ -352,7 +393,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/11/04/SQL-转换函数/"
-           data-title="Helloworld" data-url="http://wangbinbin0326.github.io/2016/11/04/SQL-转换函数/">
+           data-title="SQL-转换函数" data-url="http://wangbinbin0326.github.io/2016/11/04/SQL-转换函数/">
       </div>
     
   </div>
@@ -454,7 +495,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用转换函数和条件表达式"><span class="nav-number">1.</span> <span class="nav-text">4. 使用转换函数和条件表达式</span></a></li></ol></div>
             
           </div>
         </section>
