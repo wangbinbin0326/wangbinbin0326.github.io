@@ -1,0 +1,649 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Oracle Backup and Recovery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）
+热备份是当数据库打开并对用户有效是的OS级的数据备份。热备份只能用于ARCHIVELOG方式的数据库。在数据文件备份之前，对应的表空间必须通过使用ALTER TABLESPACE …… BEGIN BACKUP以备份方式放置。然后组成表空间的数据文件可以使用类似冷备份的操作系统命令进行拷贝。在数据文件用操作系统命令拷贝后，应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle备份恢复案例2-表空间热备恢复">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）
+热备份是当数据库打开并对用户有效是的OS级的数据备份。热备份只能用于ARCHIVELOG方式的数据库。在数据文件备份之前，对应的表空间必须通过使用ALTER TABLESPACE …… BEGIN BACKUP以备份方式放置。然后组成表空间的数据文件可以使用类似冷备份的操作系统命令进行拷贝。在数据文件用操作系统命令拷贝后，应">
+<meta property="og:updated_time" content="2016-11-16T07:04:11.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle备份恢复案例2-表空间热备恢复">
+<meta name="twitter:description" content="7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）
+热备份是当数据库打开并对用户有效是的OS级的数据备份。热备份只能用于ARCHIVELOG方式的数据库。在数据文件备份之前，对应的表空间必须通过使用ALTER TABLESPACE …… BEGIN BACKUP以备份方式放置。然后组成表空间的数据文件可以使用类似冷备份的操作系统命令进行拷贝。在数据文件用操作系统命令拷贝后，应">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/"/>
+
+
+  <title> Oracle备份恢复案例2-表空间热备恢复 | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Oracle备份恢复案例2-表空间热备恢复
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T14:59:28+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Oracle备份恢复案例2-表空间热备恢复/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="7-5-2-案例2-（数据库打开时的恢复以用户数据的表空间为例-热备-）"><a href="#7-5-2-案例2-（数据库打开时的恢复以用户数据的表空间为例-热备-）" class="headerlink" title="7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）"></a>7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(<strong>热备</strong>)）</h4><blockquote>
+<p><strong>热备份</strong>是当数据库打开并对用户有效是的OS级的数据备份。热备份只能用于<code>ARCHIVELOG</code>方式的数据库。在数据文件备份之前，对应的表空间必须通过使用<code>ALTER TABLESPACE …… BEGIN BACKUP</code>以备份方式放置。然后组成表空间的数据文件可以使用类似冷备份的操作系统命令进行拷贝。在数据文件用操作系统命令拷贝后，应使用<code>ALTER TABLESPACE …… END BACKUP</code>命令使表空间脱离热备份方式。<br>热备份没有必要备份联机日志，但必须是归档状态，在实例恢复的时候，可能需要用到归档日志。当前联机日志一定要保护好或是处于镜相状态，当前联机日志的损坏，对于数据库的损坏是巨大的，只能以数据的丢失来进行数据库的恢复工作。 </p>
+<p>对于临时表空间，存放的是临时信息，在热备份是也可以考虑不用备份，如果临时文件发生故障，可以删除该数据文件与表空间，重建一个临时表空间。</p>
+<p>热备份的优点:</p>
+<ul>
+<li>可在表空间或数据文件级备份，备份时间短。  </li>
+<li>备份时数据库仍可使用。  </li>
+<li>可达到秒级恢复（恢复到某一时间点上）。  </li>
+<li>可对几乎所有数据库实体作恢复。  </li>
+<li>恢复是快速的，在大多数情况下在数据库仍工作时恢复。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>场景: 数据库打开时的恢复以用户数据的表空间为例(热备)</p>
+<p>step 1: 创建新的表空间（tab02）<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SQL&gt; create tablespace tab02 datafile '/home/oracle/app/oracle/oradata/mmpdb3/tab02.dbf' size 10M;</div><div class="line"></div><div class="line">Tablespace created.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, TS#, NAME from v$datafile;</div><div class="line"></div><div class="line">     FILE#        TS# NAME</div><div class="line">---------- ---------- ------------------------------------------------------------</div><div class="line">         6          7 /home/oracle/app/oracle/oradata/mmpdb3/tab02.dbf</div></pre></td></tr></table></figure></p>
+<p>step 2: 创建新的表（t02），使用tab02表空间<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">SQL&gt; create table t02(id number(10), name varchar(10)) tablespace tab02;</div><div class="line"></div><div class="line">Table created.</div><div class="line"></div><div class="line">SQL&gt; insert into t02 values(1, 'test01');</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">SQL&gt; select * from t02;</div><div class="line"></div><div class="line">        ID NAME</div><div class="line">---------- ---------------</div><div class="line">         1 test01</div></pre></td></tr></table></figure></p>
+<p>step 3: 热备份表空间（tab02）<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">SQL&gt; alter tablespace tab02 begin backup;</div><div class="line">alter tablespace tab02 begin backup</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01123: cannot start online backup; media recovery not enabled</div><div class="line"></div><div class="line">SQL&gt; archive log list;</div><div class="line">Database log mode              No Archive Mode</div><div class="line">Automatic archival             Disabled</div><div class="line">Archive destination            USE_DB_RECOVERY_FILE_DEST</div><div class="line">Oldest online log sequence     7</div><div class="line">Current log sequence           9</div><div class="line"></div><div class="line">SQL&gt; startup mount;</div><div class="line">SQL&gt; alter database archivelog;</div><div class="line">SQL&gt; alter database open;</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab02 begin backup;</div><div class="line"></div><div class="line">Tablespace altered.</div><div class="line"></div><div class="line">[root@hzvscmdb mmpdb3]# cp -a /home/oracle/app/oracle/oradata/mmpdb3/tab02.dbf /home/oracle/dbbak/hot</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab02 end backup;</div><div class="line"></div><div class="line">Tablespace altered.</div></pre></td></tr></table></figure></p>
+<p>step 4: 向表t02, 插入新的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">SQL&gt; insert into t02 values(2, &apos;test02&apos;);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">SQL&gt; select * from t02;</div><div class="line"></div><div class="line">        ID NAME</div><div class="line">---------- -----------------</div><div class="line">         1 test01</div><div class="line">         2 test02</div></pre></td></tr></table></figure></p>
+<p>step 4: 模拟删除表空间，并进行恢复<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">[root@hzvscmdb mmpdb3]# rm -rf tab02.dbf</div><div class="line"></div><div class="line">SQL&gt; select * from t02;</div><div class="line"></div><div class="line">        ID NAME</div><div class="line">---------- -----------------</div><div class="line">         1 test01</div><div class="line">         2 test02</div><div class="line"></div><div class="line">SQL&gt; alter database datafile 6 offline;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line"></div><div class="line">[root@hzvscmdb mmpdb3]# cp -a /home/oracle/dbbak/hot/tab02.dbf ./</div><div class="line"></div><div class="line">SQL&gt; select * from t02;</div><div class="line">select * from t02</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-00376: file 6 cannot be read at this time</div><div class="line">ORA-01110: data file 6: '/home/oracle/app/oracle/oradata/mmpdb3/tab02.dbf'</div><div class="line"></div><div class="line">SQL&gt; recover datafile 6;</div><div class="line">Media recovery complete.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, TS#, NAME, status  from v$datafile;</div><div class="line"></div><div class="line">     FILE#        TS# NAME                                                         STATUS</div><div class="line">---------- ---------- ------------------------------------------------------------ -------</div><div class="line">         1          0 /home/oracle/app/oracle/oradata/mmpdb3/system01.dbf          SYSTEM</div><div class="line">         2          1 /home/oracle/app/oracle/oradata/mmpdb3/sysaux01.dbf          ONLINE</div><div class="line">         3          2 /home/oracle/app/oracle/oradata/mmpdb3/undotbs01.dbf         ONLINE</div><div class="line">         4          4 /home/oracle/app/oracle/oradata/mmpdb3/users01.dbf           ONLINE</div><div class="line">         5          6 /home/oracle/app/oracle/oradata/mmpdb3/tab01.dbf             ONLINE</div><div class="line">         6          7 /home/oracle/app/oracle/oradata/mmpdb3/tab02.dbf             OFFLINE</div><div class="line"></div><div class="line">SQL&gt; alter database datafile 6 online;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line">SQL&gt; select * from t02;</div><div class="line"></div><div class="line">        ID NAME</div><div class="line">---------- -----------------</div><div class="line">         1 test01</div><div class="line">         2 test02</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oracle-Backup-and-Recovery/" rel="tag">#Oracle Backup and Recovery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/16/Oracle备份恢复案例1-使用冷备份数据文件实现恢复/" rel="next" title="Oracle备份恢复案例1-使用冷备份数据文件实现恢复">
+                <i class="fa fa-chevron-left"></i> Oracle备份恢复案例1-使用冷备份数据文件实现恢复
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/16/Oracle备份恢复案例2-表空间热备恢复/"
+           data-title="Oracle备份恢复案例2-表空间热备恢复" data-url="http://wangbinbin0326.github.io/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangbinbin0326" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-5-2-案例2-（数据库打开时的恢复以用户数据的表空间为例-热备-）"><span class="nav-number">1.</span> <span class="nav-text">7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangbinbin0326"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
