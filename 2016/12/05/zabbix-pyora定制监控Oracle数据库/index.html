@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DBA," />
+  <meta name="keywords" content="zabbix," />
 
 
 
@@ -86,34 +86,25 @@
 
 
 
-<meta name="description" content="题目2, DBA 职责及日常工作职责2.1 工作职责1.安装和升级数据库服务器,以及应用程序工具构建和配置网络环境.
-2.熟悉数据库系统的存储结构预测未来的存储需求,制订数据库的存储方案.
-3.根据开发人员设计的应用系统需求创建数据库存储结构.
-4.根据开发人员设计的应用系统需求创建数据库对象
-5.根据开发人员的反馈信息,在必要的时候修改数据库的结构
-6.管理数据库的用户维护数据库的安全性
-7.控">
+<meta name="description" content="安装Pyora 监控oracle
+Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DBA职责">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/11/DBA职责/index.html">
+<meta property="og:title" content="zabbix-pyora定制监控Oracle数据库">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2016/12/05/zabbix-pyora定制监控Oracle数据库/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="题目2, DBA 职责及日常工作职责2.1 工作职责1.安装和升级数据库服务器,以及应用程序工具构建和配置网络环境.
-2.熟悉数据库系统的存储结构预测未来的存储需求,制订数据库的存储方案.
-3.根据开发人员设计的应用系统需求创建数据库存储结构.
-4.根据开发人员设计的应用系统需求创建数据库对象
-5.根据开发人员的反馈信息,在必要的时候修改数据库的结构
-6.管理数据库的用户维护数据库的安全性
-7.控">
-<meta property="og:updated_time" content="2016-10-26T01:20:14.079Z">
+<meta property="og:description" content="安装Pyora 监控oracle
+Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-3.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-4.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-5.JPG">
+<meta property="og:updated_time" content="2016-12-05T02:36:35.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DBA职责">
-<meta name="twitter:description" content="题目2, DBA 职责及日常工作职责2.1 工作职责1.安装和升级数据库服务器,以及应用程序工具构建和配置网络环境.
-2.熟悉数据库系统的存储结构预测未来的存储需求,制订数据库的存储方案.
-3.根据开发人员设计的应用系统需求创建数据库存储结构.
-4.根据开发人员设计的应用系统需求创建数据库对象
-5.根据开发人员的反馈信息,在必要的时候修改数据库的结构
-6.管理数据库的用户维护数据库的安全性
-7.控">
+<meta name="twitter:title" content="zabbix-pyora定制监控Oracle数据库">
+<meta name="twitter:description" content="安装Pyora 监控oracle
+Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it">
+<meta name="twitter:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-1.JPG">
 
 
 
@@ -134,10 +125,10 @@
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/11/DBA职责/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/12/05/zabbix-pyora定制监控Oracle数据库/"/>
 
 
-  <title> DBA职责 | Tony Blog </title>
+  <title> zabbix-pyora定制监控Oracle数据库 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -329,7 +320,7 @@
             
             
               
-                DBA职责
+                zabbix-pyora定制监控Oracle数据库
               
             
           </h1>
@@ -341,8 +332,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T11:04:22+08:00" content="2016-10-11">
-              2016-10-11
+            <time itemprop="dateCreated" datetime="2016-12-05T10:32:42+08:00" content="2016-12-05">
+              2016-12-05
             </time>
           </span>
 
@@ -352,8 +343,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/11/DBA职责/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/DBA职责/" itemprop="commentsCount"></span>
+                <a href="/2016/12/05/zabbix-pyora定制监控Oracle数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/05/zabbix-pyora定制监控Oracle数据库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -381,50 +372,32 @@
       
 
       
-        <h2 id="题目2-DBA-职责及日常工作职责"><a href="#题目2-DBA-职责及日常工作职责" class="headerlink" title="题目2, DBA 职责及日常工作职责"></a>题目2, DBA 职责及日常工作职责</h2><h3 id="2-1-工作职责"><a href="#2-1-工作职责" class="headerlink" title="2.1 工作职责"></a>2.1 工作职责</h3><p>1.安装和升级数据库服务器,以及应用程序工具构建和配置网络环境.</p>
-<p>2.熟悉数据库系统的存储结构预测未来的存储需求,制订数据库的存储方案.</p>
-<p>3.根据开发人员设计的应用系统需求创建数据库存储结构.</p>
-<p>4.根据开发人员设计的应用系统需求创建数据库对象</p>
-<p>5.根据开发人员的反馈信息,在必要的时候修改数据库的结构</p>
-<p>6.管理数据库的用户维护数据库的安全性</p>
-<p>7.控制和监控用户对数据库的存取访问</p>
-<p>8.监控和优化数据库的性能</p>
-<p>9.制定数据库备份计划,灾难出现时对数据库信息进行恢复</p>
-<p>10.备份和恢复数据库</p>
-<p>11.联系数据库系统生产厂商,跟踪技术信息</p>
-<p>12.解决客户端中间层和服务器的链接问题</p>
-<p>13.保证安全连接</p>
+        <h3 id="安装Pyora-监控oracle"><a href="#安装Pyora-监控oracle" class="headerlink" title="安装Pyora 监控oracle"></a>安装Pyora 监控oracle</h3><blockquote>
+<p>Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it on a script that you have to access a server to change it. Also if Zabbix already discovery disks and network interfaces why not Oracle tablespaces? Then Pyora was born:</p>
+<p>Pyora is a clean python script that uses cxOracle library to fetch data from the database. To use Pyora you need Oracle client and the cxOracle. I’m assuming that you have both installed on your system, if you don’t have it you check this page and install it.</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="2-2-每日工作"><a href="#2-2-每日工作" class="headerlink" title="2.2 每日工作"></a>2.2 每日工作</h3><p>1 确保服务器工作状态正常,各类数据库状态正常</p>
-<p>2 检查硬盘空间是否够用</p>
-<p>3 查看数据库日志,查看跟踪文件,检查是否有错误信息</p>
-<p>4 检查备份的有效性</p>
-<p>5 通过系统的性能监视器对服务器的性能参数监控发现数据库的性能是否下降,寻找原因并解决</p>
-<p>6 填写dba日志</p>
-<h3 id="2-3-每周工作"><a href="#2-3-每周工作" class="headerlink" title="2.3 每周工作"></a>2.3 每周工作</h3><p>1 监控数据库对象的空间扩展情况</p>
-<p>2 决定是否调整存储参数</p>
-<p>3 对系统健康检查</p>
-<p>4 检查删除没有任何意义的数据对象</p>
-<p>5 检查删除没有意义的约束和触发器</p>
-<p>6 对每周的备份检查处理</p>
-<h3 id="2-4-每月工作"><a href="#2-4-每月工作" class="headerlink" title="2.4 每月工作"></a>2.4 每月工作</h3><p>1 根据上面的检查情况,分析数据库中是否有影响性能的存储碎片存在</p>
-<p>2 根据数据库性能的历史数据,决定如何优化性能</p>
-<p>3 处理每日每周每月的备份</p>
-<p>4 总结工作,提出下一步的管理计划</p>
-<h3 id="2-5-Oracle-DBA职责实例"><a href="#2-5-Oracle-DBA职责实例" class="headerlink" title="2.5 Oracle DBA职责实例"></a>2.5 Oracle DBA职责实例</h3><p>1 每天对Oracle数据库的运行状态、日志文件、备份情况、数据库空间使用情况、系统资源使用情况进行检查，发现并解决问题。</p>
-<p>2 每周对数据库对象的空间扩展情况、数据的增长情况进行监控、对数据库做健康检查、对数据库对象的状态做检查。</p>
-<p>3 每月对表和索引等进行analyze、检查表空间碎片、寻找数据库性能调整的机会、进行数据库性能调整、提出下一步空间管理计划。对Oracle数据库状态进行一次全面检查。</p>
-<hr>
-<p>具体的操作如下：</p>
-<p>每天工作</p>
-<p>1、确认所有的instance状态正常登录到所有数据库或实例，检测Oracle后台进程：<code>#ps -ef | grep ora</code></p>
-<p>2、检查文件系统的使用（剩余空间）。如果文件系统的剩余空间小于20%，需删除不用的文件以释放空间。<code>#df -k</code></p>
-<p>3、检查日志文件和trace文件记录alert和trace文件中的错误。 <code>cd $Oracle_BASE/oradata/&lt;sid&gt;/bdump tail -f alert_&lt;sid&gt;.log</code>发现任何新的ORA_错误，记录并解决。</p>
-<p>4、检查数据库当日备份的有效性<br> 对RMAN备份方式，检查第三方备份工具的备份日志以确定备份是否成功<br> 对EXPORT备份方式，检查exp日志文件以确定备份是否成功<br> 对其它备份方式，检查相应的日志文件</p>
-<p>5、检查数据文件的状态记录状态不是“online”的数据文件，并做恢复。<br><code>select file_name from dba_data_files where status=&quot;OFFLINE&quot;</code></p>
-<p>6、检查表空间的使用情况</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> a.tablespace_name,<span class="keyword">round</span>((total-free)/total,<span class="number">3</span>)*<span class="number">100</span> pecent </div><div class="line">    <span class="keyword">from</span> (<span class="keyword">select</span> tablespace_name,<span class="keyword">sum</span>(<span class="keyword">bytes</span>) free <span class="keyword">from</span> dba_free_space <span class="keyword">group</span> <span class="keyword">by</span> tablespace_name) a,</div><div class="line">         (<span class="keyword">select</span> tablespace_name,<span class="keyword">sum</span>(<span class="keyword">bytes</span>) total <span class="keyword">from</span> dba_data_files <span class="keyword">group</span> <span class="keyword">by</span> tablespace_name) b </div><div class="line">    <span class="keyword">where</span> a.tablespace_name=b.tablespace_name;</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">alert('Hello World!');</div><div class="line"></div><div class="line"><span class="keyword">select</span> a.tablespace_name,<span class="keyword">round</span>((total-free)/total,<span class="number">3</span>)*<span class="number">100</span> pecent </div><div class="line">    <span class="keyword">from</span> (<span class="keyword">select</span> tablespace_name,<span class="keyword">sum</span>(<span class="keyword">bytes</span>) free <span class="keyword">from</span> dba_free_space <span class="keyword">group</span> <span class="keyword">by</span> tablespace_name) a,</div><div class="line">         (<span class="keyword">select</span> tablespace_name,<span class="keyword">sum</span>(<span class="keyword">bytes</span>) total <span class="keyword">from</span> dba_data_files <span class="keyword">group</span> <span class="keyword">by</span> tablespace_name) b </div><div class="line">    <span class="keyword">where</span> a.tablespace_name=b.tablespace_name;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line">####################################################################################################</div><div class="line">#运行pyora之前，需要安装以下软件</div><div class="line">OS: </div><div class="line">[root@ct7 Pyora-master]# more /etc/redhat-release</div><div class="line">CentOS Linux release 7.2.1511 (Core)</div><div class="line"></div><div class="line">注意stop firewalld, disable SElinux, 否则zabbix 报 no permission</div><div class="line">[root@ct7 Pyora-master]# systemctl stop firewalld</div><div class="line">[root@ct7 agent]# vi /etc/sysconfig/selinux</div><div class="line">SELINUX=disabled</div><div class="line">[root@ct7 agent]# setenforce 0</div><div class="line"></div><div class="line"></div><div class="line">Python:</div><div class="line">[root@ct7 Pyora-master]# python -V</div><div class="line">Python 2.7.5</div><div class="line"></div><div class="line">#安装Oracle instance-client:</div><div class="line">[root@ct7 oracle]# pwd</div><div class="line">/home/tony/oracle</div><div class="line"></div><div class="line">[root@ct7 oracle]# ls</div><div class="line">oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm</div><div class="line">oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm </div><div class="line">oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 oracle]# yum localinstall oracle* --nogpgcheck</div><div class="line"></div><div class="line">[root@ct7 oracle]# more /etc/hosts</div><div class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">10.224.188.59   ct7.qa.webex.com</div><div class="line"></div><div class="line">[root@ct7 oracle]# more /etc/profile</div><div class="line">export ORACLE_HOME=/usr/lib/oracle/12.1/client64/</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export LD_LIBRARY_PATH=$ORACLE_HOME/lib</div><div class="line">export TNS_ADMIN=$ORACLE_HOME/network/admin</div><div class="line"></div><div class="line">[root@ct7 oracle]# mkdir -p $ORACLE_HOME/network/admin</div><div class="line"></div><div class="line">[root@ct7 oracle]# more $ORACLE_HOME/network/admin/tnsnames.ora</div><div class="line">cha=</div><div class="line">  (DESCRIPTION=</div><div class="line">    (ADDRESS=</div><div class="line">      (PROTOCOL=TCP)</div><div class="line">      (HOST=10.224.188.188)</div><div class="line">      (PORT=1521)</div><div class="line">    )</div><div class="line">    (CONNECT_DATA=</div><div class="line">      (SERVER=dedicated)</div><div class="line">      (SERVICE_NAME=cha.qa.webex.com)</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div><div class="line">[root@ct7 oracle]# sqlplus system/pass@cha</div><div class="line"></div><div class="line">SQL*Plus: Release 12.1.0.2.0 Production on Thu Sep 8 09:39:04 2016</div><div class="line"></div><div class="line">Copyright (c) 1982, 2014, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Oracle Database 11g Enterprise Edition Release 11.2.0.2.0 - 64bit Production</div><div class="line">With the Partitioning option</div><div class="line"></div><div class="line">SQL&gt;</div><div class="line"></div><div class="line">#安装cxOracle</div><div class="line">[root@ct7 oracle]# rpm -ivh cx_Oracle-5.2.1-12c-py27-1.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 python]# more con-cha.py</div><div class="line">#!/usr/bin/python</div><div class="line">#FileName: con_ora.py</div><div class="line"></div><div class="line">import cx_Oracle</div><div class="line"></div><div class="line">conn = cx_Oracle.connect(&apos;ch/pass@10.224.188.188:1521/cha.qa.webex.com&apos;)</div><div class="line">cursor = conn.cursor()</div><div class="line">cursor.execute(&quot;select * from dept&quot;)</div><div class="line">row = cursor.fetchone()</div><div class="line">print row[0]</div><div class="line"></div><div class="line">cursor.close()</div><div class="line">conn.close()</div><div class="line"></div><div class="line">[root@ct7 python]# python con-cha.py</div><div class="line">300</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#安装Pyora</div><div class="line">https://github.com/bicofino/Pyora.git</div><div class="line"></div><div class="line">[root@ct7 Pyora-master]# ll</div><div class="line">total 28</div><div class="line">-rwxrwxrwx. 1 root root 20799 Jun  6 23:23 pyora.py</div><div class="line">-rw-r--r--. 1 root root  2899 Jun  6 23:23 README.md</div><div class="line">drwxr-xr-x. 2 root root    52 Jun  6 23:23 zabbix-template</div><div class="line"></div><div class="line">[root@ct7 Pyora-master]# python pyora.py -h</div><div class="line">usage: pyora.py [-h] [--username USERNAME] [--password PASSWORD]</div><div class="line">                [--address ADDRESS] [--database DATABASE]</div><div class="line"></div><div class="line">                &#123;activeusercount,asm_volume_use,bufbusywaits,check_active,check_archive,commits,db_close,db_connect,dbfilesize,dbprllwrite,dbscattread,dbseqread,dbsize,dbsnglwrite,deadlocks,directread,directwrite,dsksortratio,enqueue,fra_use,freebufwaits,hparsratio,indexffs,lastapplarclog,lastarclog,latchfree,logfilesync,logonscurrent,logprllwrite,logswcompletion,netresv,netroundtrips,netsent,query_lock,query_redologs,query_rollbacks,query_sessions,query_sysmetrics,rcachehit,redowrites,rollbacks,show_asm_volumes,show_tablespaces,show_tablespaces_temp,show_users,tablespace,tablespace_abs,tablespace_temp,tblrowsscans,tblscans,uptime,user_status,version&#125;</div><div class="line">                ...</div><div class="line"></div><div class="line">positional arguments:</div><div class="line">  &#123;activeusercount,asm_volume_use,bufbusywaits,check_active,check_archive,commits,db_close,db_connect,dbfilesize,dbprllwrite,dbscattread,dbseqread,dbsize,dbsnglwrite,deadlocks,directread,directwrite,dsksortratio,enqueue,fra_use,freebufwaits,hparsratio,indexffs,lastapplarclog,lastarclog,latchfree,logfilesync,logonscurrent,logprllwrite,logswcompletion,netresv,netroundtrips,netsent,query_lock,query_redologs,query_rollbacks,query_sessions,query_sysmetrics,rcachehit,redowrites,rollbacks,show_asm_volumes,show_tablespaces,show_tablespaces_temp,show_users,tablespace,tablespace_abs,tablespace_temp,tblrowsscans,tblscans,uptime,user_status,version&#125;</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help            show this help message and exit</div><div class="line">  --username USERNAME</div><div class="line">  --password PASSWORD</div><div class="line">  --address ADDRESS</div><div class="line">  --database DATABASE</div><div class="line"></div><div class="line">Show the tablespaces names in a JSON format</div><div class="line">[root@ct7 Pyora-master]# python pyora.py --username zabbix --password pass --address 10.224.188.188 --database cha.qa.webex.com show_tablespaces</div><div class="line">&#123;&quot;data&quot;: [&#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;SYSAUX&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;SYSTEM&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TBS_01&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TBS_ZABBIX_01&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TEMP&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TPCCTAB&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;UNDOTBS1&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;USERS&quot;&#125;]&#125;</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#install zabbix agent</div><div class="line">[root@ct7 agent]# wget http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-agent-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 agent]# rpm -ivh zabbix-agent-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 agent]# more /etc/zabbix/zabbix_agentd.conf</div><div class="line">Server=10.224.188.55</div><div class="line">UserParameter=pyora[*],/home/tony/zabbix/pyora/Pyora-master/pyora.py --username $1 --password $2 --address $3 --database $4 $5 $6 $7 $8</div><div class="line"></div><div class="line">[root@ct7 agent]# systemctl start zabbix-agent</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>Import the template zabbix-template/Pyora.xml to your new host</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-1.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-3.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>add a new host and configure the required macros</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-2.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-4.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-5.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>Now you just have to wait and check later the information, Remember that the tablespace discovery take one hour to complete.</li>
+</ul>
+</blockquote>
 
       
     </div>
@@ -447,7 +420,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DBA/" rel="tag">#DBA</a>
+            <a href="/tags/zabbix/" rel="tag">#zabbix</a>
           
         </div>
       
@@ -456,13 +429,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/17/Oracle备份恢复案例3-控制文件的恢复/" rel="next" title="Oracle备份恢复案例3-控制文件的恢复">
+                <i class="fa fa-chevron-left"></i> Oracle备份恢复案例3-控制文件的恢复
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/12/Oracle-DB-概述/" rel="prev" title="Oracle-DB-概述">
-                Oracle-DB-概述 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -488,8 +461,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/11/DBA职责/"
-           data-title="DBA职责" data-url="http://wangbinbin0326.github.io/2016/10/11/DBA职责/">
+      <div class="ds-thread" data-thread-key="2016/12/05/zabbix-pyora定制监控Oracle数据库/"
+           data-title="zabbix-pyora定制监控Oracle数据库" data-url="http://wangbinbin0326.github.io/2016/12/05/zabbix-pyora定制监控Oracle数据库/">
       </div>
     
   </div>
@@ -641,7 +614,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目2-DBA-职责及日常工作职责"><span class="nav-number">1.</span> <span class="nav-text">题目2, DBA 职责及日常工作职责</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-工作职责"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 工作职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-每日工作"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 每日工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-每周工作"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 每周工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-每月工作"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 每月工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Oracle-DBA职责实例"><span class="nav-number">1.5.</span> <span class="nav-text">2.5 Oracle DBA职责实例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Pyora-监控oracle"><span class="nav-number">1.</span> <span class="nav-text">安装Pyora 监控oracle</span></a></li></ol></div>
             
           </div>
         </section>
