@@ -313,6 +313,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/30/Rman恢复-Restore和Recovery的区别/" itemprop="url">
+                  Rman恢复-Restore和Recovery的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-30T09:58:14+08:00" content="2016-12-30">
+              2016-12-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/30/Rman恢复-Restore和Recovery的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/30/Rman恢复-Restore和Recovery的区别/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Restore和Recovery的区别"><a href="#Restore和Recovery的区别" class="headerlink" title="Restore和Recovery的区别"></a>Restore和Recovery的区别</h4><blockquote>
+<p><strong>Restoration</strong>: A corrupted data file is overwritten from a backup of the data file .The data file is at a prior point of time than the current database.</p>
+<p><strong>Recovery</strong>: Recovery applies the changes to the individual blocks,using archive and redo information,to move the database forward to the current point in time.</p>
+<p>从原理上解释，Restore是使用备份文件，将数据库还原到过去的某个状态。</p>
+<p>Recovery是使用redo日志和归档日志将数据库向前恢复，一步步的恢复到现在这个时点。</p>
+<p><strong>举个例子</strong><br>某生产环境的数据库，每天凌晨一点会作一次备份。某天下午两点时数据库文件损害，同时数据库宕机。<br>接着DBA开始恢复数据库。</p>
+<p>1.首先,使用最近一次的备份文件还原数据库到当天凌晨一点的状态。但是凌晨一点到下午两点的数据丢失了。<br>2.接着,使用redo日志和归档日志，把当天凌晨一点开始的数据库操作重做一遍，直到下午两点数据库宕机前。<br>这样数据库就一点都不差的被恢复起来了。</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/30/Rman恢复-Restore和Recovery的区别/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/05/zabbix-pyora定制监控Oracle数据库/" itemprop="url">
                   zabbix-pyora定制监控Oracle数据库
                 </a>
@@ -1273,162 +1383,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/02/SQL-日期函数/" itemprop="url">
-                  SQL-日期函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-02T13:12:11+08:00" content="2016-11-02">
-              2016-11-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/02/SQL-日期函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/SQL-日期函数/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><blockquote>
-<p>处理日期</p>
-<ul>
-<li>Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。</li>
-<li>默认的日期显示格式为DD-MON-RR。</li>
-</ul>
-<p>问题：为什么不使用”日期+数字”，而是用add_months<br>答：需要考虑闰年的问题</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th style="text-align:left">结果</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>months_between(‘2016-10-1’,’2016-1-1’)</td>
-<td style="text-align:left">9</td>
-<td style="text-align:left">两个日期之间的月数</td>
-</tr>
-<tr>
-<td>add_months(sysdate, 24)</td>
-<td style="text-align:left">2018-11-01 08:30:01</td>
-<td style="text-align:left">将日历月添加到日期</td>
-</tr>
-<tr>
-<td>NEXT_DAY(sysdate,’monday’)</td>
-<td style="text-align:left">2016-11-07 08:46:24</td>
-<td style="text-align:left">指定日期之后的下一个日期</td>
-</tr>
-<tr>
-<td>LAST_DAY(sysdate)</td>
-<td style="text-align:left">2016-11-30 08:47:41</td>
-<td style="text-align:left">当月最后一天</td>
-</tr>
-<tr>
-<td>extract(year from date ‘2016-11-1’)</td>
-<td style="text-align:left">2016</td>
-<td style="text-align:left">或者时间间隔（INTERVAL）中截取出特定的部分</td>
-</tr>
-<tr>
-<td>ROUND(2016-11-02,’YEAR’)</td>
-<td style="text-align:left">2017-01-01</td>
-<td style="text-align:left">舍入日期</td>
-</tr>
-<tr>
-<td>TRUNC(2016-11-02,’YEAR’)</td>
-<td style="text-align:left">2016-01-01</td>
-<td style="text-align:left">截断日期</td>
-</tr>
-</tbody>
-</table>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/02/SQL-日期函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1474,7 +1428,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

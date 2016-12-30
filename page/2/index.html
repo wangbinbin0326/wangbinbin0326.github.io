@@ -313,6 +313,162 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/02/SQL-日期函数/" itemprop="url">
+                  SQL-日期函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T13:12:11+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/02/SQL-日期函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/SQL-日期函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><blockquote>
+<p>处理日期</p>
+<ul>
+<li>Oracle DB 以内部数字格式存储日期：世纪、年、月、日、小时、分钟和秒。</li>
+<li>默认的日期显示格式为DD-MON-RR。</li>
+</ul>
+<p>问题：为什么不使用”日期+数字”，而是用add_months<br>答：需要考虑闰年的问题</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">结果</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>months_between(‘2016-10-1’,’2016-1-1’)</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">两个日期之间的月数</td>
+</tr>
+<tr>
+<td>add_months(sysdate, 24)</td>
+<td style="text-align:left">2018-11-01 08:30:01</td>
+<td style="text-align:left">将日历月添加到日期</td>
+</tr>
+<tr>
+<td>NEXT_DAY(sysdate,’monday’)</td>
+<td style="text-align:left">2016-11-07 08:46:24</td>
+<td style="text-align:left">指定日期之后的下一个日期</td>
+</tr>
+<tr>
+<td>LAST_DAY(sysdate)</td>
+<td style="text-align:left">2016-11-30 08:47:41</td>
+<td style="text-align:left">当月最后一天</td>
+</tr>
+<tr>
+<td>extract(year from date ‘2016-11-1’)</td>
+<td style="text-align:left">2016</td>
+<td style="text-align:left">或者时间间隔（INTERVAL）中截取出特定的部分</td>
+</tr>
+<tr>
+<td>ROUND(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2017-01-01</td>
+<td style="text-align:left">舍入日期</td>
+</tr>
+<tr>
+<td>TRUNC(2016-11-02,’YEAR’)</td>
+<td style="text-align:left">2016-01-01</td>
+<td style="text-align:left">截断日期</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/02/SQL-日期函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/02/SQL-数字函数/" itemprop="url">
                   SQL-数字函数
                 </a>
@@ -1408,145 +1564,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/Oracle-DB-概述/" itemprop="url">
-                  Oracle-DB-概述
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T17:12:40+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/Oracle-DB-概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/Oracle-DB-概述/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<h2 id="第一-Oracle-DB-概述"><a href="#第一-Oracle-DB-概述" class="headerlink" title="第一. Oracle DB 概述"></a>第一. Oracle DB 概述</h2><hr>
-<h3 id="1-Oracle-DB"><a href="#1-Oracle-DB" class="headerlink" title="1. Oracle DB"></a>1. Oracle DB</h3><blockquote>
-<p>Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。</p>
-<p>Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。</p>
-</blockquote>
-<hr>
-<h3 id="2-连接到服务器"><a href="#2-连接到服务器" class="headerlink" title="2. 连接到服务器"></a>2. 连接到服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 &lt; ---- &gt; 中间层 &lt; ---- &gt; 服务器</div></pre></td></tr></table></figure>
-<blockquote>
-<p>数据库用户连接到Oracle服务器</p>
-<ul>
-<li>用户登录到运行Oracle实例的操作系统，如sqlplus 工具。</li>
-<li>用户可以启动本地计算机上的应用程序或工具(客户端/服务器)，如toad, plsql</li>
-<li>用户通过本地计算机上的工具（web/服务器），如web浏览器</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="3-体系结构概述"><a href="#3-体系结构概述" class="headerlink" title="3. 体系结构概述"></a>3. 体系结构概述</h3><p><img src="http://www.rjkfw.com/upload/1387509627.png" alt="此处输入图片的描述"></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/Oracle-DB-概述/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1592,7 +1609,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
