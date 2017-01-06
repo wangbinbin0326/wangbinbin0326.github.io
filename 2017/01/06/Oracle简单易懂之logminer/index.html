@@ -1,0 +1,1015 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google49b027d4069d65c6.html" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Oracle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Logminer操作LogMiner介绍
+Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。
+LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle简单易懂之logminer">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2017/01/06/Oracle简单易懂之logminer/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="Logminer操作LogMiner介绍
+Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。
+LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracl">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/database/oracle/logminer.gif">
+<meta property="og:updated_time" content="2017-01-06T06:41:53.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle简单易懂之logminer">
+<meta name="twitter:description" content="Logminer操作LogMiner介绍
+Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。
+LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracl">
+<meta name="twitter:image" content="https://wangbinbin0326.github.io/images/database/oracle/logminer.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/01/06/Oracle简单易懂之logminer/"/>
+
+
+  <title> Oracle简单易懂之logminer | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '87669906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3855b850d8647c4946169eaa4c43202b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Oracle简单易懂之logminer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-06T14:25:35+08:00" content="2017-01-06">
+              2017-01-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/06/Oracle简单易懂之logminer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/06/Oracle简单易懂之logminer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Logminer操作"><a href="#Logminer操作" class="headerlink" title="Logminer操作"></a>Logminer操作</h2><h3 id="LogMiner介绍"><a href="#LogMiner介绍" class="headerlink" title="LogMiner介绍"></a>LogMiner介绍</h3><blockquote>
+<p>Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。</p>
+<p>LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracle8i内置包的一部分）组成，它作为Oracle数据库的一部分来发布是8i产品提供的一个完全免费的工具。但该工具和其他Oracle内建工具相比使用起来显得有些复杂，主要原因是该工具没有提供任何的图形用户界面（GUI）。</p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/database/oracle/logminer.gif" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Figure shows a sample LogMiner configuration. In this figure, the source database in Boston generates redo log files that are archived and shipped to a database in San Francisco. A LogMiner dictionary has been extracted to these redo log files. The mining database, where LogMiner will actually analyze the redo log files, is in San Francisco. The Boston database is running Oracle9i, and the San Francisco database is running Oracle Database 10g.</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="LogMiner作用"><a href="#LogMiner作用" class="headerlink" title="LogMiner作用"></a>LogMiner作用</h3><blockquote>
+<p>在Oracle 8i之前，Oracle没有提供任何协助数据库管理员来读取和解释重作日志文件内容的工具。系统出现问题，对于一个普通的数据管理员来讲，唯一可以作的工作就是将所有的log文件打包，然后发给Oracle公司的技术支持，然后静静地等待Oracle 公司技术支持给我们最后的答案。然而从8i以后，Oracle提供了这样一个强有力的工具–LogMiner。</p>
+<p>LogMiner 工具即可以用来分析在线，也可以用来分析离线日志文件，即可以分析本身自己数据库的重作日志文件，也可以用来分析其他数据库的重作日志文件。</p>
+<p>总的说来，LogMiner工具的主要用途有：</p>
+<p>1、跟踪数据库的变化：可以离线的跟踪数据库的变化，而不会影响在线系统的性能。<br>2、回退数据库的变化：回退特定的变化数据，减少point-in-time recovery的执行。<br>3、优化和扩容计划：可通过分析日志文件中的数据以分析数据增长模式。</p>
+</blockquote>
+<h3 id="LogMiner安装"><a href="#LogMiner安装" class="headerlink" title="LogMiner安装"></a>LogMiner安装</h3><h4 id="运行dbmslm-dbmslmd包"><a href="#运行dbmslm-dbmslmd包" class="headerlink" title="运行dbmslm, dbmslmd包"></a>运行dbmslm, dbmslmd包</h4><blockquote>
+<ul>
+<li><code>$ORACLE_HOME/rdbms/admin/dbmslm.sql</code></li>
+<li><code>$ORACLE_HOME/rdbms/admin/dbmslmd.sql</code></li>
+</ul>
+<p>这两个脚本必须均以DBA用户身份运行。其中第一个脚本用来创建DBMS_LOGMNR包，该包用来分析日志文件。第二个脚本用来创建DBMS_LOGMNR_D包，该包用来创建数据字典文件。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过程</td>
+<td style="text-align:left">Dbms_logmnr_d.build</td>
+<td style="text-align:left">创建一个数据字典文件</td>
+</tr>
+<tr>
+<td>过程</td>
+<td style="text-align:left">Dbms_logmnr.add_logfile</td>
+<td style="text-align:left">在类表中增加日志文件以供分析</td>
+</tr>
+<tr>
+<td>过程</td>
+<td style="text-align:left">Dbms_logmnr.start_logmnr</td>
+<td style="text-align:left">使用一个外部的字典文件和前面确定要分析日志文件来启动LogMiner</td>
+</tr>
+<tr>
+<td>过程</td>
+<td style="text-align:left">Dbms_logmnr.end_logmnr</td>
+<td style="text-align:left">停止LogMiner分析</td>
+</tr>
+<tr>
+<td>视图</td>
+<td style="text-align:left">V\$logmnr_dictionary</td>
+<td style="text-align:left">显示用来决定对象ID名称的字典文件的信息</td>
+</tr>
+<tr>
+<td>视图</td>
+<td style="text-align:left">V\$logmnr_logs</td>
+<td style="text-align:left">在LogMiner启动时显示分析的日志列表</td>
+</tr>
+<tr>
+<td>视图</td>
+<td style="text-align:left">V\$logmnr_contents</td>
+<td style="text-align:left">LogMiner启动后，查询重做日志的内容</td>
+</tr>
+</tbody>
+</table>
+<h4 id="创建数据字典文件"><a href="#创建数据字典文件" class="headerlink" title="创建数据字典文件"></a>创建数据字典文件</h4><blockquote>
+<p>LogMiner工具实际上是由两个新的PL/SQL内建包（(DBMS<em>LOGMNR 和 DBMS</em> LOGMNR_D）和四个V$动态性能视图（视图是在利用过程DBMS_LOGMNR.START_LOGMNR启动LogMiner时创建）组成。在使用LogMiner工具分析redo log文件之前，可以使用DBMS_LOGMNR_D 包将数据字典导出为一个文本文件。该字典文件是可选的，但是如果没有它，LogMiner解释出来的语句中关于数据字典中的部分（如表名、列名等）和数值都将是16进制的形式，我们是无法直接理解的。例如，下面的sql语句：<br><code>INSERT INTO dm_dj_swry (rydm, rymc) VALUES (00005, &#39;张三&#39;);</code></p>
+<p>LogMiner解释出来的结果将是下面这个样子：<br><code>insert into Object#308(col#1, col#2) values (hextoraw(&#39;c30rte567e436&#39;), hextoraw(&#39;4a6f686e20446f65&#39;));</code></p>
+<p>创建数据字典的目的就是让LogMiner引用涉及到内部数据字典中的部分时为他们实际的名字，而不是系统内部的16进制。数据字典文件是一个文本文件，使用包DBMS_LOGMNR_D来创建。如果我们要分析的数据库中的表有变化，影响到库的数据字典也发生变化，这时就需要重新创建该字典文件。另外一种情况是在分析另外一个数据库文件的重作日志时，也必须要重新生成一遍被分析数据库的数据字典文件。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">#创建数据字典文件之前需要配置LogMiner文件夹：</div><div class="line">SQL&gt; create directory utlfile as &apos;/home/oracle/app/oracle/diag/logmnr&apos;;</div><div class="line"></div><div class="line">Directory created.</div><div class="line"></div><div class="line">SQL&gt; show parameter utl_file_dir;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">utl_file_dir                         string</div><div class="line"></div><div class="line">SQL&gt; alter system set utl_file_dir=&apos;/home/oracle/app/oracle/diag/logmnr&apos; scope=spfile;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line">#需要重启DB，才会s</div><div class="line">SQL&gt; show parameter utl_file_dir;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">utl_file_dir                         string</div><div class="line"></div><div class="line">SQL&gt; shutdown immediate;</div><div class="line">Database closed.</div><div class="line">Database dismounted.</div><div class="line">ORACLE instance shut down.</div><div class="line">SQL&gt;</div><div class="line">SQL&gt;</div><div class="line">SQL&gt; startup;</div><div class="line">ORACLE instance started.</div><div class="line"></div><div class="line">Total System Global Area 6664212480 bytes</div><div class="line">Fixed Size                  2239072 bytes</div><div class="line">Variable Size            4311745952 bytes</div><div class="line">Database Buffers         2332033024 bytes</div><div class="line">Redo Buffers               18194432 bytes</div><div class="line">Database mounted.</div><div class="line">Database opened.</div><div class="line">SQL&gt;</div><div class="line">SQL&gt; show parameter utl_file_dir;</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">utl_file_dir                         string      /home/oracle/app/oracle/diag/l</div><div class="line">                                                 ogmnr</div><div class="line">#以DBA用户登录，创建数据字典文件，也称为外部数据字典</div><div class="line">SQL&gt; EXECUTE dbms_logmnr_d.build(dictionary_filename =&gt; &apos;dictionary.ora&apos;, dictionary_location =&gt;&apos;/home/oracle/app/oracle/diag/logmnr&apos;);</div><div class="line"></div><div class="line">PL/SQL procedure successfully completed.</div></pre></td></tr></table></figure>
+<h4 id="加入需分析的日志文件"><a href="#加入需分析的日志文件" class="headerlink" title="加入需分析的日志文件"></a>加入需分析的日志文件</h4><blockquote>
+<p>Oracle的LogMiner可以分析在线（online）和归档（offline）两种日志文件，加入分析日志文件使用dbms_logmnr.add_logfile过程，第一个文件使用dbms_logmnr.NEW参数，后面文件使用dbms_logmnr.ADDFILE参数。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#添加redo log日志分析</div><div class="line">begin</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/oradata/mmpdb3/redo02.log&apos;, options=&gt;dbms_logmnr.NEW);</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/oradata/mmpdb3/redo01.log&apos;, options=&gt;dbms_logmnr.ADDFILE);</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/oradata/mmpdb3/redo03.log&apos;, options=&gt;dbms_logmnr.ADDFILE);</div><div class="line">end;</div><div class="line">/</div><div class="line"></div><div class="line">#添加归档日志分析</div><div class="line">SQL&gt; select name from v$archived_log where first_time &gt; to_date(&apos;2017-1-5 00:00:00&apos;,&apos;YYYY-MM-DD HH24:MI:SS&apos;);</div><div class="line"></div><div class="line">NAME</div><div class="line">----------------------------------------------------------------------------------------------------</div><div class="line">/home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog/2017_01_05/o1_mf_1_196_d6vnqpo3_.arc</div><div class="line">/home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog/2017_01_05/o1_mf_1_197_d6vpn2xx_.arc</div><div class="line">/home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog/2017_01_05/o1_mf_1_198_d6vpn9fb_.arc</div><div class="line"></div><div class="line">begin</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog/2017_01_05/o1_mf_1_198_d6vpn9fb_.arc&apos;, options=&gt;dbms_logmnr.ADDFILE);</div><div class="line">end;</div><div class="line">/</div></pre></td></tr></table></figure>
+<h4 id="使用LogMiner进行日志分析"><a href="#使用LogMiner进行日志分析" class="headerlink" title="使用LogMiner进行日志分析"></a>使用LogMiner进行日志分析</h4><blockquote>
+<p>Oracle的LogMiner分析时分为无限制条件和限制条件两种，无限制条件中分析所有加入到分析列表日志文件，限制条件根据限制条件分析指定范围日志文件。</p>
+<p>1、无限制条件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SQL&gt; execute dbms_logmnr.start_logmnr(dictfilename=&gt;&apos;/home/oracle/app/oracle/diag/logmnr/dictionary.ora&apos;);</div><div class="line"></div><div class="line">PL/SQL procedure successfully completed.</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2、有条件的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ALTER SESSION SET NLS_DATE_FORMAT = &apos;YYYY-MM-DD HH24:MI:SS&apos;;</div><div class="line"></div><div class="line">EXECUTE DBMS_LOGMNR.START_LOGMNR( -</div><div class="line">   DICTFILENAME =&gt; &apos;/home/oracle/app/oracle/diag/logmnr/dictionary.ora&apos;, -</div><div class="line">   STARTTIME =&gt; &apos;2017-1-5 08:30:00&apos;, -</div><div class="line">   ENDTIME =&gt; &apos;2017-1-5 09:00:00&apos;);</div></pre></td></tr></table></figure>
+<h4 id="观察分析结果（v-logmnr-contents）"><a href="#观察分析结果（v-logmnr-contents）" class="headerlink" title="观察分析结果（v$logmnr_contents）"></a>观察分析结果（v$logmnr_contents）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select timestamp, username, table_name, SQL_REDO from v$logmnr_contents where table_name = &apos;TLOG&apos;;</div><div class="line"></div><div class="line">TIMESTAMP USERNAME   TABLE_NAME      SQL_REDO</div><div class="line">--------- ---------- --------------- ------------------------------------------------------------</div><div class="line">05-JAN-17 MP         TLOG            insert into &quot;MP&quot;.&quot;TLOG&quot;(&quot;ID&quot;,&quot;NAME&quot;) values (&apos;10&apos;,&apos;log10&apos;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>需要强调一点的是，视图v$logmnr_contents中的分析结果仅在我们运行过程’dbms_logmrn.start_logmnr’这个会话的生命期中存在。这是因为所有的LogMiner存储都在PGA内存中，所有其他的进程是看不到它的，同时随着进程的结束，分析结果也随之消失。</p>
+<p>最后，使用过程SYS.DBMS_LOGMNR.END_LOGMNR终止日志分析事务，此时PGA内存区域被清除，分析结果也随之不再存在。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SQL&gt; EXECUTE SYS.DBMS_LOGMNR.END_LOGMNR;</div><div class="line"></div><div class="line">PL/SQL procedure successfully completed.</div><div class="line"></div><div class="line">SQL&gt; select timestamp, username, table_name, SQL_REDO from v$logmnr_contents where table_name = &apos;TLOG&apos;;</div><div class="line">select timestamp, username, table_name, SQL_REDO from v$logmnr_contents where table_name = &apos;TLOG&apos;</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01306: dbms_logmnr.start_logmnr() must be invoked before selecting from v$logmnr_contents</div></pre></td></tr></table></figure>
+<h4 id="logminer-遇到问题"><a href="#logminer-遇到问题" class="headerlink" title="logminer 遇到问题"></a>logminer 遇到问题</h4><blockquote>
+<p><strong>issue1:</strong> 查找v$logmnr_contents表没有找到insert,update 操作的记录 </p>
+<p>使用logmnr分析日志，查找v$logmnr_contents表，发现不到对表的insert ,update记录，后来才知道原来是Supplemental logging is turned off。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select supplemental_log_data_pk, supplemental_log_data_ui from v$database;</div><div class="line">SUPPLEMENTAL_LOG_DATA_PK SUPPLEMENTAL_LOG_DATA_UI</div><div class="line">------------------------ ------------------------</div><div class="line">NO NO</div><div class="line">对数据库作如下修改：</div><div class="line">SQL&gt; alter database add supplemental log data (primary key, unique index) columns;</div><div class="line">Database altered</div><div class="line">SQL&gt; select supplemental_log_data_pk, supplemental_log_data_ui from v$database;</div><div class="line">SUPPLEMENTAL_LOG_DATA_PK SUPPLEMENTAL_LOG_DATA_UI</div><div class="line">------------------------ -----------------------</div><div class="line">YES YES</div></pre></td></tr></table></figure>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><blockquote>
+<p>实例一：使用LogMiner读取在线日志</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">#在数据库创建LOGMINER用户，该用户需要具有DBA权限</div><div class="line">SQL&gt; create user logminer identified by pass;</div><div class="line"></div><div class="line">User created.</div><div class="line"></div><div class="line">SQL&gt; grant connect, resource, dba to logminer;</div><div class="line"></div><div class="line">Grant succeeded.</div><div class="line"></div><div class="line">#以mp用户，进行测试数据准备</div><div class="line">SQL&gt; create table t_redo(id number, name varchar(20));</div><div class="line"></div><div class="line">Table created.</div><div class="line"></div><div class="line">SQL&gt; insert into t_redo values(1, &apos;redo log 1&apos;);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; insert into t_redo values(2, &apos;redo log 2&apos;);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">#创建数据字典文件</div><div class="line">#数据库对象发生变化，需要重新创建数据字典文件</div><div class="line">#以LOGMINER用户（DBA权限）登录，生成字典文件</div><div class="line">[oracle@hzvscmdb ~]$ sqlplus logminer/pass as sysdba</div><div class="line"></div><div class="line">SQL&gt; execute dbms_logmnr_d.build(dictionary_filename =&gt; &apos;dictionary.ora&apos;, dictionary_location =&gt; &apos;/home/oracle/app/oracle/diag/logmnr&apos;);</div><div class="line"></div><div class="line">PL/SQL procedure successfully completed.</div><div class="line"></div><div class="line">#确认当前处于联机状态的日志文件</div><div class="line">SQL&gt; select group#, sequence#, status, first_change#, first_time from v$log order by first_change#;</div><div class="line"></div><div class="line">    GROUP#  SEQUENCE# STATUS           FIRST_CHANGE# FIRST_TIM</div><div class="line">---------- ---------- ---------------- ------------- ---------</div><div class="line">         2        203 INACTIVE               6691353 05-JAN-17</div><div class="line">         3        204 INACTIVE               6691760 05-JAN-17</div><div class="line">         1        205 CURRENT                6699917 06-JAN-17</div><div class="line"></div><div class="line">SQL&gt; select GROUP#, STATUS, TYPE, MEMBER from v$logfile;</div><div class="line"></div><div class="line">    GROUP# STATUS  TYPE    MEMBER</div><div class="line">---------- ------- ------- ------------------------------------------------------------</div><div class="line">         1         ONLINE  /home/oracle/app/oracle/oradata/mmpdb3/redo01.log</div><div class="line">         3         ONLINE  /home/oracle/app/oracle/oradata/mmpdb3/redo03.log</div><div class="line">         2         ONLINE  /home/oracle/app/oracle/oradata/mmpdb3/redo02.log</div><div class="line">         1         ONLINE  /home/oracle/app/oracle/oradata/mmpdb3/redo01-1.log</div><div class="line"></div><div class="line">#加入解析在线日志文件</div><div class="line">begin</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/oradata/mmpdb3/redo01.log&apos;, options=&gt;dbms_logmnr.NEW);</div><div class="line">end;</div><div class="line">/</div><div class="line"></div><div class="line">#启动LogMiner进行分析</div><div class="line">execute dbms_logmnr.start_logmnr(dictfilename=&gt;&apos;/home/oracle/app/oracle/diag/logmnr/dictionary.ora&apos;);</div><div class="line"></div><div class="line">#观察分析结果</div><div class="line">SQL&gt; select sql_redo, sql_undo, table_name, username from v$logmnr_contents where seg_name=&apos;T_REDO&apos;;</div><div class="line"></div><div class="line">SQL_REDO                            SQL_UNDO                            TABLE_NAME USERNAME</div><div class="line">----------------------------------- ----------------------------------- ---------- ----------</div><div class="line">create table t_redo(id number, name                                     T_REDO     MP</div><div class="line"> varchar(20));</div><div class="line"></div><div class="line">insert into &quot;MP&quot;.&quot;T_REDO&quot;(&quot;ID&quot;,&quot;NAM delete from &quot;MP&quot;.&quot;T_REDO&quot; where &quot;ID T_REDO     MP</div><div class="line">E&quot;) values (&apos;1&apos;,&apos;redo log 1&apos;);      &quot; = &apos;1&apos; and &quot;NAME&quot; = &apos;redo log 1&apos; a</div><div class="line">                                    nd ROWID = &apos;AAATeZAAFAAA6OTAAA&apos;;</div><div class="line"></div><div class="line">insert into &quot;MP&quot;.&quot;T_REDO&quot;(&quot;ID&quot;,&quot;NAM delete from &quot;MP&quot;.&quot;T_REDO&quot; where &quot;ID T_REDO     MP</div><div class="line">E&quot;) values (&apos;2&apos;,&apos;redo log 2&apos;);      &quot; = &apos;2&apos; and &quot;NAME&quot; = &apos;redo log 2&apos; a</div><div class="line">                                    nd ROWID = &apos;AAATeZAAFAAA6OTAAB&apos;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>实例二：使用LogMiner读取归档日志</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line">[oracle@hzvscmdb ~]$ sqlplus mp/pass</div><div class="line"></div><div class="line">SQL&gt; create table t_arch(id number, name varchar(20));</div><div class="line"></div><div class="line">Table created.</div><div class="line"></div><div class="line">SQL&gt; insert into t_arch values(1, &apos;arch log 1&apos;);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; insert into t_arch values(2, &apos;arch log 2&apos;);</div><div class="line"></div><div class="line">1 row created.</div><div class="line"></div><div class="line">SQL&gt; commit;</div><div class="line"></div><div class="line">Commit complete.</div><div class="line"></div><div class="line">#从v$log视图中找出日志文件的序号</div><div class="line">[oracle@hzvscmdb ~]$ sqlplus logminer/pass as sysdba</div><div class="line"></div><div class="line">SQL&gt; select GROUP#, SEQUENCE#, ARCHIVED, STATUS, FIRST_CHANGE#, FIRST_TIME, NEXT_CHANGE#, NEXT_TIME from v$log;</div><div class="line"></div><div class="line">    GROUP#  SEQUENCE# ARC STATUS           FIRST_CHANGE# FIRST_TIM         NEXT_CHANGE# NEXT_TIME</div><div class="line">---------- ---------- --- ---------------- ------------- --------- -------------------- ---------</div><div class="line">         1        205 YES INACTIVE               6699917 06-JAN-17              6718064 06-JAN-17</div><div class="line">         2        206 NO  CURRENT                6718064 06-JAN-17      281474976710655</div><div class="line">         3        204 YES INACTIVE               6691760 05-JAN-17              6699917 06-JAN-17</div><div class="line"></div><div class="line">SQL&gt; select SEQUENCE#, FIRST_TIME, NEXT_CHANGE#, NEXT_TIME, STATUS, NAME from v$archived_log order by NEXT_TIME desc;</div><div class="line"></div><div class="line"> SEQUENCE# FIRST_TIM NEXT_CHANGE# NEXT_TIME S NAME</div><div class="line">---------- --------- ------------ --------- - ------------------------------------------------------------</div><div class="line">       205 06-JAN-17      6718064 06-JAN-17 A /home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog</div><div class="line">                                              /2017_01_06/o1_mf_1_205_d6y93ow0_.arc</div><div class="line"></div><div class="line">       204 05-JAN-17      6699917 06-JAN-17 A /home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog</div><div class="line">                                              /2017_01_06/o1_mf_1_204_d6xrnj1p_.arc</div><div class="line"></div><div class="line">       203 05-JAN-17      6691760 05-JAN-17 D</div><div class="line">       202 05-JAN-17      6691353 05-JAN-17 D</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; alter system switch logfile;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; select GROUP#, SEQUENCE#, ARCHIVED, STATUS, FIRST_CHANGE#, FIRST_TIME, NEXT_CHANGE#, NEXT_TIME from v$log;</div><div class="line"></div><div class="line">    GROUP#  SEQUENCE# ARC STATUS           FIRST_CHANGE# FIRST_TIM         NEXT_CHANGE# NEXT_TIME</div><div class="line">---------- ---------- --- ---------------- ------------- --------- -------------------- ---------</div><div class="line">         1        205 YES INACTIVE               6699917 06-JAN-17              6718064 06-JAN-17</div><div class="line">         2        206 YES ACTIVE                 6718064 06-JAN-17              6720936 06-JAN-17</div><div class="line">         3        207 NO  CURRENT                6720936 06-JAN-17      281474976710655</div><div class="line"></div><div class="line">SQL&gt; select SEQUENCE#, FIRST_TIME, NEXT_CHANGE#, NEXT_TIME, STATUS, NAME from v$archived_log order by NEXT_TIME desc;</div><div class="line"></div><div class="line"> SEQUENCE# FIRST_TIM         NEXT_CHANGE# NEXT_TIME S NAME</div><div class="line">---------- --------- -------------------- --------- - ------------------------------------------------------------</div><div class="line">       206 06-JAN-17              6720936 06-JAN-17 A /home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog</div><div class="line">                                                      /2017_01_06/o1_mf_1_206_d6ydh37f_.arc</div><div class="line"></div><div class="line">       205 06-JAN-17              6718064 06-JAN-17 A /home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog</div><div class="line">                                                      /2017_01_06/o1_mf_1_205_d6y93ow0_.arc</div><div class="line"></div><div class="line">       204 05-JAN-17              6699917 06-JAN-17 A /home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog</div><div class="line">                                                      /2017_01_06/o1_mf_1_204_d6xrnj1p_.arc</div><div class="line"></div><div class="line">       203 05-JAN-17              6691760 05-JAN-17 D</div><div class="line">       202 05-JAN-17              6691353 05-JAN-17 D</div><div class="line"></div><div class="line">#创建数据字典文件</div><div class="line">#数据库对象发生变化，需要重新创建数据字典文件</div><div class="line">#以LOGMINER用户（DBA权限）登录，生成字典文件</div><div class="line">[oracle@hzvscmdb ~]$ sqlplus logminer/pass as sysdba</div><div class="line"></div><div class="line">SQL&gt; execute dbms_logmnr_d.build(dictionary_filename =&gt; &apos;dictionary.ora&apos;, dictionary_location =&gt; &apos;/home/oracle/app/oracle/diag/logmnr&apos;);</div><div class="line"></div><div class="line">PL/SQL procedure successfully completed.</div><div class="line"></div><div class="line">#加入需分析的归档日志文件</div><div class="line">#加入解析在线日志文件</div><div class="line">begin</div><div class="line">    dbms_logmnr.add_logfile(logfilename=&gt;&apos;/home/oracle/app/oracle/fast_recovery_area/MMPDB3/archivelog/2017_01_06/o1_mf_1_206_d6ydh37f_.arc&apos;, options=&gt;dbms_logmnr.NEW);</div><div class="line">end;</div><div class="line">/</div><div class="line"></div><div class="line">#启动LogMiner进行分析</div><div class="line">execute dbms_logmnr.start_logmnr(dictfilename=&gt;&apos;/home/oracle/app/oracle/diag/logmnr/dictionary.ora&apos;);</div><div class="line"></div><div class="line">#观察分析结果</div><div class="line">SQL&gt; select sql_redo, sql_undo, table_name, username from v$logmnr_contents where seg_name=&apos;T_ARCH&apos;;</div><div class="line"></div><div class="line">SQL_REDO                            SQL_UNDO                            TABLE_NAME      USERNAME</div><div class="line">----------------------------------- ----------------------------------- --------------- ----------</div><div class="line">create table t_arch(id number, name                                     T_ARCH          MP</div><div class="line"> varchar(20));</div><div class="line"></div><div class="line">insert into &quot;MP&quot;.&quot;T_ARCH&quot;(&quot;ID&quot;,&quot;NAM delete from &quot;MP&quot;.&quot;T_ARCH&quot; where &quot;ID T_ARCH          MP</div><div class="line">E&quot;) values (&apos;1&apos;,&apos;arch log 1&apos;);      &quot; = &apos;1&apos; and &quot;NAME&quot; = &apos;arch log 1&apos; a</div><div class="line">                                    nd ROWID = &apos;AAATeaAAFAAA6ObAAA&apos;;</div><div class="line"></div><div class="line">insert into &quot;MP&quot;.&quot;T_ARCH&quot;(&quot;ID&quot;,&quot;NAM delete from &quot;MP&quot;.&quot;T_ARCH&quot; where &quot;ID T_ARCH          MP</div><div class="line">E&quot;) values (&apos;2&apos;,&apos;arch log 2&apos;);      &quot; = &apos;2&apos; and &quot;NAME&quot; = &apos;arch log 2&apos; a</div><div class="line">                                    nd ROWID = &apos;AAATeaAAFAAA6ObAAB&apos;;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oracle/" rel="tag">#Oracle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/30/Rman恢复-Restore和Recovery的区别/" rel="next" title="Rman恢复-Restore和Recovery的区别">
+                <i class="fa fa-chevron-left"></i> Rman恢复-Restore和Recovery的区别
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/06/Oracle简单易懂之logminer/"
+           data-title="Oracle简单易懂之logminer" data-url="http://wangbinbin0326.github.io/2017/01/06/Oracle简单易懂之logminer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangbinbin0326" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-tree"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-umbrella"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://my.oschina.net/wangbinbin0326/blog" title="Open Source" target="_blank">Open Source</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logminer操作"><span class="nav-number">1.</span> <span class="nav-text">Logminer操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LogMiner介绍"><span class="nav-number">1.1.</span> <span class="nav-text">LogMiner介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LogMiner作用"><span class="nav-number">1.2.</span> <span class="nav-text">LogMiner作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LogMiner安装"><span class="nav-number">1.3.</span> <span class="nav-text">LogMiner安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行dbmslm-dbmslmd包"><span class="nav-number">1.3.1.</span> <span class="nav-text">运行dbmslm, dbmslmd包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据字典文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">创建数据字典文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加入需分析的日志文件"><span class="nav-number">1.3.3.</span> <span class="nav-text">加入需分析的日志文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用LogMiner进行日志分析"><span class="nav-number">1.3.4.</span> <span class="nav-text">使用LogMiner进行日志分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#观察分析结果（v-logmnr-contents）"><span class="nav-number">1.3.5.</span> <span class="nav-text">观察分析结果（v$logmnr_contents）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logminer-遇到问题"><span class="nav-number">1.3.6.</span> <span class="nav-text">logminer 遇到问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">1.3.7.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangbinbin0326"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+<script type="text/javascript" src="js/src/particle.js"></script>
+</body>
+</html>

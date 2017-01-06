@@ -313,6 +313,119 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/03/ORACLE简单易懂之分区表和索引/" itemprop="url">
+                  ORACLE简单易懂之分区表和索引
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T17:01:47+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/ORACLE简单易懂之分区表和索引/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/ORACLE简单易懂之分区表和索引/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h2 id="分区表，分区索引"><a href="#分区表，分区索引" class="headerlink" title="分区表，分区索引"></a>分区表，分区索引</h2><blockquote>
+<p>Oracle对于分区表方式其实就是将表分段存储，<strong>一般普通表格是一个段存储，而分区表会分成多个段</strong>，所以查找数据过程都是先定位根据查询条件定位分区范围，即数据在那个分区或那几个内部，然后在分区内部去查找数据，一个分区一般保证四十多万条数据就比较正常了，但是分区表并非乱建立，而其维护性也相对较为复杂一点，而索引的创建也是有点讲究的。</p>
+<p>创建时机:</p>
+<ul>
+<li>2G以上的表，ORACLE推荐创建分区。</li>
+<li>分区的字段一定要是经常用以提取数据的字段，否则会在提取过程中导致遍历多个分区，这样比没有分区还要慢。</li>
+<li>分区字段要选择合适，数据较为均匀分布到各个分区，不要太多也不要太少，而且根据分区字段可以很快定位到分区范围。</li>
+<li>一般情况下，尽量然业务操作在同一个分区内部完成。</li>
+</ul>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/03/ORACLE简单易懂之分区表和索引/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/02/SQL-日期函数/" itemprop="url">
                   SQL-日期函数
                 </a>
@@ -1433,137 +1546,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/Oracle-DB-内存结构/" itemprop="url">
-                  Oracle-DB-内存结构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T13:39:10+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/Oracle-DB-内存结构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/Oracle-DB-内存结构/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="第二-Oracle-DB-内存结构"><a href="#第二-Oracle-DB-内存结构" class="headerlink" title="第二. Oracle DB 内存结构"></a>第二. Oracle DB 内存结构</h2><p><img src="http://img.my.csdn.net/uploads/201008/18/0_1282119950IIO1.gif" alt="此处输入图片的描述"></p>
-<blockquote>
-<p>一个实例有两个关联的基本内存结构：</p>
-<ul>
-<li><p><strong>系统全局区（SGA）</strong>: 称为SGA组件的共享内存结构组，这些组件包含一个Oracle DB实例的数据和控制信息。SGA由所有服务器和后台进程共享。SGA中存储的数据示例包括高速缓存的数据块和共享SQL区域。</p>
-</li>
-<li><p><strong>程序全局区（PGA）</strong>:包含某个服务器进程或后台进程的数据及控制信息的内存区域。PGA 是Oracle DB 在服务器进程或后台进程启动时创建的非共享内存。服务器进程对<br>PGA 的访问是互斥的。每个服务器进程和后台进程都具有自己的PGA。</p>
-</li>
-</ul>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/Oracle-DB-内存结构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1609,7 +1591,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1723,8 +1705,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
