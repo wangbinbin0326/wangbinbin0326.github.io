@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle Issue," />
+  <meta name="keywords" content="Oracle Data Guard," />
 
 
 
@@ -86,28 +86,19 @@
 
 
 
-<meta name="description" content="Oracle 无法正常关闭
-
-Stop the listener - you can at least prevent others from connecting to the instance that you’re trying to shut down:  bash-3.00$ lsnrctl stop
-
-Get a list of processes hitting the databa">
+<meta name="description" content="Renaming a Datafile in the Primary Database
+When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle无法正常关闭">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/11/11/Oracle无法正常关闭/index.html">
+<meta property="og:title" content="Oracle-Data-Guard之物理备库重命名数据文件">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="Oracle 无法正常关闭
-
-Stop the listener - you can at least prevent others from connecting to the instance that you’re trying to shut down:  bash-3.00$ lsnrctl stop
-
-Get a list of processes hitting the databa">
-<meta property="og:updated_time" content="2016-11-11T08:39:51.552Z">
+<meta property="og:description" content="Renaming a Datafile in the Primary Database
+When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
+<meta property="og:updated_time" content="2017-03-27T03:01:45.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle无法正常关闭">
-<meta name="twitter:description" content="Oracle 无法正常关闭
-
-Stop the listener - you can at least prevent others from connecting to the instance that you’re trying to shut down:  bash-3.00$ lsnrctl stop
-
-Get a list of processes hitting the databa">
+<meta name="twitter:title" content="Oracle-Data-Guard之物理备库重命名数据文件">
+<meta name="twitter:description" content="Renaming a Datafile in the Primary Database
+When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
 
 
 
@@ -128,10 +119,10 @@ Get a list of processes hitting the databa">
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/11/11/Oracle无法正常关闭/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/"/>
 
 
-  <title> Oracle无法正常关闭 | Tony Blog </title>
+  <title> Oracle-Data-Guard之物理备库重命名数据文件 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -475,7 +466,7 @@ Get a list of processes hitting the databa">
             
             
               
-                Oracle无法正常关闭
+                Oracle-Data-Guard之物理备库重命名数据文件
               
             
           </h1>
@@ -487,8 +478,8 @@ Get a list of processes hitting the databa">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-11T16:33:24+08:00" content="2016-11-11">
-              2016-11-11
+            <time itemprop="dateCreated" datetime="2017-03-27T10:50:33+08:00" content="2017-03-27">
+              2017-03-27
             </time>
           </span>
 
@@ -498,8 +489,8 @@ Get a list of processes hitting the databa">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/11/Oracle无法正常关闭/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/Oracle无法正常关闭/" itemprop="commentsCount"></span>
+                <a href="/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -527,32 +518,24 @@ Get a list of processes hitting the databa">
       
 
       
-        <h2 id="Oracle-无法正常关闭"><a href="#Oracle-无法正常关闭" class="headerlink" title="Oracle 无法正常关闭"></a>Oracle 无法正常关闭</h2><blockquote>
-<ol>
-<li><p><strong>Stop the listener</strong> - you can at least prevent others from connecting to the instance that you’re trying to shut down:  <code>bash-3.00$ lsnrctl stop</code></p>
-</li>
-<li><p><strong>Get a list of processes hitting the database</strong>.  You’ll need that before you start killing them off one by one:  bash-3.00$ ps -eaf|grep LOCAL</p>
-</li>
-<li><p><strong>Kill the processes.</strong>  Take the second column’s output from step #2 and execute the following:  <code>bash-3.00$ kill -9 396</code> - where “396” is the processid you wish to kill.</p>
-</li>
-</ol>
+        <h3 id="Renaming-a-Datafile-in-the-Primary-Database"><a href="#Renaming-a-Datafile-in-the-Primary-Database" class="headerlink" title="Renaming a Datafile in the Primary Database"></a>Renaming a Datafile in the Primary Database</h3><blockquote>
+<p>When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the same datafiles on the standby database, you must manually make the equivalent modifications on the standby database because the modifications are not performed automatically, even if the <code>STANDBY_FILE_MANAGEMENT</code> initialization parameter is set to <code>AUTO</code>.</p>
+<p><strong>On the Primary</strong></p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 offline;</div><div class="line"></div><div class="line">Tablespace altered.</div><div class="line"></div><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line">SQL&gt; show parameter STANDBY_FILE_MANAGEMENT</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">standby_file_management              string      MANUAL</div><div class="line"></div><div class="line"></div><div class="line">[oracle@hzvscmdb mmpdb3]$ mv /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 rename datafile</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;</div><div class="line"></div><div class="line">Tablespace altered.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- ------------------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf</div><div class="line"></div><div class="line">SQL&gt; alter system switch logfile;</div><div class="line"></div><div class="line">System altered.</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
-<ol>
-<li><p>Enter into SQLPlus and connect as SYSDBA:  <code>SQL&gt; conn /as sysdba</code> - you’ll receive <code>&quot;Connected to an idle instance&quot;</code></p>
-</li>
-<li><p><strong>Shutdown the database</strong> via <code>SQL&gt; shutdown immediate</code> You may be given the following:<br><code>ORA-24324: service handle not initialized</code><br><code>ORA-24323: value not allowed</code><br><code>ORA-01090: shutdown in progress - connection is not permitted</code></p>
-</li>
-<li><p><strong>Reconnect to SQLPlus via sysdba</strong> via <code>SQL&gt; conn /as sysdba</code></p>
-</li>
-<li><p><strong>Execute a <code>startup force</code> command</strong>.</p>
-</li>
-<li><p>Don’t forget to start the listener back up</p>
-</li>
-</ol>
+<p><strong>On the Standby</strong></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">-- issue：主库运行了切换到standby, 失败后，发现数据库无法连接，与操作</div><div class="line">SQL&gt; alter database commit to switchover to physical standby;</div><div class="line">alter database commit to switchover to physical standby</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01093: ALTER DATABASE CLOSE only permitted with no sessions connected</div><div class="line"></div><div class="line">[root@hzvscmdb alert]# tail -f log.xml</div><div class="line">&lt;msg time=&apos;2016-11-10T02:09:42.814+00:00&apos; org_id=&apos;oracle&apos; comp_id=&apos;rdbms&apos;</div><div class="line"> msg_id=&apos;opiexe:3036:2780954927&apos; client_id=&apos;&apos; type=&apos;NOTIFICATION&apos;</div><div class="line"> group=&apos;admin_ddl&apos; level=&apos;16&apos; host_id=&apos;hzvscmdb&apos;</div><div class="line"> host_addr=&apos;10.224.188.188&apos; module=&apos;sqlplus@hzvscmdb (TNS V1-V3)&apos; pid=&apos;24748&apos;&gt;</div><div class="line"> &lt;txt&gt;ORA-1093 signalled during: alter database commit to switchover to physical standby...</div><div class="line"> &lt;/txt&gt;</div><div class="line">&lt;/msg&gt;</div><div class="line"></div><div class="line">[oracle@hzvscmdb dbs]$ sqlplus / as sysdba</div><div class="line"></div><div class="line">SQL*Plus: Release 11.2.0.2.0 Production on Thu Nov 10 02:40:32 2016</div><div class="line"></div><div class="line">Copyright (c) 1982, 2010, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Connected.</div><div class="line">SQL&gt; shutdown immediate;</div><div class="line">ORA-24324: service handle not initialized</div><div class="line">ORA-24323: value not allowed</div><div class="line">ORA-01094: ALTER DATABASE CLOSE in progress. Connections not permitted</div><div class="line"></div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01031: insufficient privileges</div><div class="line"></div><div class="line">--解决方法用 startup force; 是shutdown abort + startup的组合，即强制关闭数据库+ 正常启动数据库</div><div class="line">SQL&gt; conn / as sysdba</div><div class="line">Connected to an idle instance.</div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01012: not logged on</div><div class="line">SQL&gt; startup force;</div><div class="line">ORACLE instance started.</div><div class="line"></div><div class="line">Total System Global Area 1603411968 bytes</div><div class="line">Fixed Size                  2226912 bytes</div><div class="line">Variable Size            1124074784 bytes</div><div class="line">Database Buffers          469762048 bytes</div><div class="line">Redo Buffers                7348224 bytes</div><div class="line">Database mounted.</div><div class="line">Database opened.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf</div><div class="line"></div><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line">SQL&gt; sho parameter STANDBY_FILE_MANAGEMENT</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">standby_file_management              string      MANUAL</div><div class="line"></div><div class="line">SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line">SQL&gt; shut immediate</div><div class="line">ORA-01109: database not open</div><div class="line"></div><div class="line">Database dismounted.</div><div class="line">ORACLE instance shut down.</div><div class="line">SQL&gt;</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 rename datafile</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;  2    3</div><div class="line">alter tablespace tab05 rename datafile</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01109: database not open</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; alter database rename file &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.d</div><div class="line">           bf</div><div class="line"></div><div class="line">SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE</div><div class="line">  2&gt; DISCONNECT FROM SESSION;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>On the Primary and Standby</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;</div><div class="line"></div><div class="line">System altered.</div></pre></td></tr></table></figure>
+<blockquote>
+<p>If you do not rename the corresponding datafile at the standby system, and then try to refresh the standby database control file, the standby database will attempt to use the renamed datafile, but it will not find it. Consequently, you will see error messages similar to the following in the alert log:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ORA-00283: recovery session canceled due to errors</div><div class="line">ORA-01157: cannot identify/lock datafile 4 - see DBWR trace file</div><div class="line">ORA-01110: datafile 4: &apos;/Disk1/oracle/oradata/payroll/tbs_x.dbf&apos;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -574,7 +557,7 @@ Get a list of processes hitting the databa">
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle-Issue/" rel="tag">#Oracle Issue</a>
+            <a href="/tags/Oracle-Data-Guard/" rel="tag">#Oracle Data Guard</a>
           
         </div>
       
@@ -583,17 +566,13 @@ Get a list of processes hitting the databa">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/04/SQL-转换函数/" rel="next" title="SQL-转换函数">
-                <i class="fa fa-chevron-left"></i> SQL-转换函数
+              <a href="/2017/03/24/Oracle-Data-Guard之物理备库创建表空间/" rel="next" title="Oracle-Data-Guard之物理备库创建表空间">
+                <i class="fa fa-chevron-left"></i> Oracle-Data-Guard之物理备库创建表空间
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/11/Oracle无法删除数据文件/" rel="prev" title="Oracle无法删除数据文件">
-                Oracle无法删除数据文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -619,8 +598,8 @@ Get a list of processes hitting the databa">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/11/Oracle无法正常关闭/"
-           data-title="Oracle无法正常关闭" data-url="http://wangbinbin0326.github.io/2016/11/11/Oracle无法正常关闭/">
+      <div class="ds-thread" data-thread-key="2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/"
+           data-title="Oracle-Data-Guard之物理备库重命名数据文件" data-url="http://wangbinbin0326.github.io/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/">
       </div>
     
   </div>
@@ -797,7 +776,7 @@ Get a list of processes hitting the databa">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-无法正常关闭"><span class="nav-number">1.</span> <span class="nav-text">Oracle 无法正常关闭</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Renaming-a-Datafile-in-the-Primary-Database"><span class="nav-number">1.</span> <span class="nav-text">Renaming a Datafile in the Primary Database</span></a></li></ol></div>
             
           </div>
         </section>
