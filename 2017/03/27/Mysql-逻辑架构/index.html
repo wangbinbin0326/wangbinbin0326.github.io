@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -86,15 +86,36 @@
 
 
 
-<meta name="description" content="终会有属于自己的一片天空！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tony Blog">
-<meta property="og:url" content="http://wangbinbin0326.github.io/archives/2017/03/index.html">
+<meta name="description" content="第一 Mysql 逻辑架构
+支持多种存储引擎是众所周知的MySQL特性，也是MySQL架构的关键优势之一。如果能够理解MySQL Server与存储引擎之间是怎样通过API交互的，将大大有利于理解MySQL的核心基础架构。
+
+
+
+
+ConnectorsMySQL首先是一个网络程序，其在TCP之上定义了自己的应用层协议。所以要使用MySQL，我们可以编写代码，跟MySQL Server建立TCP连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql-逻辑架构">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2017/03/27/Mysql-逻辑架构/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="终会有属于自己的一片天空！">
+<meta property="og:description" content="第一 Mysql 逻辑架构
+支持多种存储引擎是众所周知的MySQL特性，也是MySQL架构的关键优势之一。如果能够理解MySQL Server与存储引擎之间是怎样通过API交互的，将大大有利于理解MySQL的核心基础架构。
+
+
+
+
+ConnectorsMySQL首先是一个网络程序，其在TCP之上定义了自己的应用层协议。所以要使用MySQL，我们可以编写代码，跟MySQL Server建立TCP连接">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/database/mysql/MySQL-architecture.png">
+<meta property="og:updated_time" content="2017-03-27T09:18:26.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tony Blog">
-<meta name="twitter:description" content="终会有属于自己的一片天空！">
+<meta name="twitter:title" content="Mysql-逻辑架构">
+<meta name="twitter:description" content="第一 Mysql 逻辑架构
+支持多种存储引擎是众所周知的MySQL特性，也是MySQL架构的关键优势之一。如果能够理解MySQL Server与存储引擎之间是怎样通过API交互的，将大大有利于理解MySQL的核心基础架构。
+
+
+
+
+ConnectorsMySQL首先是一个网络程序，其在TCP之上定义了自己的应用层协议。所以要使用MySQL，我们可以编写代码，跟MySQL Server建立TCP连接">
+<meta name="twitter:image" content="https://wangbinbin0326.github.io/images/database/mysql/MySQL-architecture.png">
 
 
 
@@ -115,10 +136,10 @@
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/archives/2017/03/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/03/27/Mysql-逻辑架构/"/>
 
 
-  <title> 归档 | Tony Blog </title>
+  <title> Mysql-逻辑架构 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +179,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -441,214 +462,182 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 30 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/27/Mysql-逻辑架构/" itemprop="url">
-              
-                <span itemprop="name">Mysql-逻辑架构</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-27T17:13:54+08:00"
-              content="2017-03-27" >
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/" itemprop="url">
-              
-                <span itemprop="name">Oracle-Data-Guard之物理备库重命名数据文件</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-27T10:50:33+08:00"
-              content="2017-03-27" >
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/24/Oracle-Data-Guard之物理备库创建表空间/" itemprop="url">
-              
-                <span itemprop="name">Oracle-Data-Guard之物理备库创建表空间</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-24T16:41:23+08:00"
-              content="2017-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/24/Oracle-Data-Guard之物理备库切换/" itemprop="url">
-              
-                <span itemprop="name">Oracle-Data-Guard之物理备库切换</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-24T13:11:23+08:00"
-              content="2017-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/23/Oracle-Data-Guard之创建物理备库/" itemprop="url">
-              
-                <span itemprop="name">Oracle-Data-Guard之创建物理备库</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-23T10:14:38+08:00"
-              content="2017-03-23" >
-          03-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mysql-逻辑架构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-27T17:13:54+08:00" content="2017-03-27">
+              2017-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/27/Mysql-逻辑架构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/Mysql-逻辑架构/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第一-Mysql-逻辑架构"><a href="#第一-Mysql-逻辑架构" class="headerlink" title="第一 Mysql 逻辑架构"></a>第一 Mysql 逻辑架构</h2><blockquote>
+<p>支持多种存储引擎是众所周知的MySQL特性，也是MySQL架构的关键优势之一。如果能够理解MySQL Server与存储引擎之间是怎样通过API交互的，将大大有利于理解MySQL的核心基础架构。</p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/database/mysql/MySQL-architecture.png" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li><p><strong>Connectors</strong><br>MySQL首先是一个网络程序，其在TCP之上定义了自己的应用层协议。所以要使用MySQL，我们可以编写代码，跟MySQL Server建立TCP连接，之后按照其定义好的协议进行交互。当然这样比较麻烦，比较方便的办法是调用SDK，比如Native C API、JDBC、PHP等各语言MySQL Connector，或者通过ODBC。但通过SDK来访问MySQL，本质上还是在TCP连接上通过MySQL协议跟MySQL进行交互。</p>
+</li>
+<li><p><strong>Connection Management</strong><br>每一个基于TCP的网络服务都需要管理客户端链接，MySQL也不例外。MySQL会为每一个连接绑定一个线程，之后这个连接上的所有查询都在这个线程中执行。为了避免频繁创建和销毁线程带来开销，MySQL通常会缓存线程或者使用线程池，从而避免频繁的创建和销毁线程。<br>客户端连接到MySQL后，在使用MySQL的功能之前，需要进行认证，认证基于用户名、主机名、密码。如果用了SSL或者TLS的方式进行连接，还会进行证书认证。</p>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<ul>
+<li><p><strong>SQL Interface</strong><br>MySQL支持DML（数据操作语言）、DDL（数据定义语言）、存储过程、视图、触发器、自定义函数等多种SQL语言接口。</p>
+</li>
+<li><p><strong>Parser</strong><br>MySQL会解析SQL查询，并为其创建语法树，并根据数据字典丰富查询语法树，会验证该客户端是否具有执行该查询的权限。创建好语法树后，MySQL还会对SQl查询进行语法上的优化，进行查询重写。</p>
+</li>
+<li><p><strong>Optimizer</strong><br>语法解析和查询重写之后，MySQL会根据语法树和数据的统计信息对SQL进行优化，包括决定表的读取顺序、选择合适的索引等，最终生成SQL的具体执行步骤。这些具体的执行步骤里真正的数据操作都是通过预先定义好的存储引擎API来进行的，与具体的存储引擎实现无关。</p>
+</li>
+<li><p><strong>Caches &amp; Buffers</strong><br>MySQL内部维持着一些Cache和Buffer，比如Query Cache用来缓存一条Select语句的执行结果，如果能够在其中找到对应的查询结果，那么就不必再进行查询解析、优化和执行的整个过程了。</p>
+</li>
+<li><p><strong>Pluggable Storage Engine</strong><br>存储引擎的具体实现，这些存储引擎都实现了MySQl定义好的存储引擎API的部分或者全部。MySQL可以动态安装或移除存储引擎，可以有多种存储引擎同时存在，可以为每个Table设置不同的存储引擎。存储引擎负责在文件系统之上，管理表的数据、索引的实际内容，同时也会管理运行时的Cache、Buffer、事务、Log等数据和功能。</p>
+</li>
+<li><p><strong>File System</strong><br>所有的数据，数据库、表的定义，表的每一行的内容，索引，都是存在文件系统上，以文件的方式存在的。当然有些存储引擎比如InnoDB，也支持不使用文件系统直接管理裸设备，但现代文件系统的实现使得这样做没有必要了。<br>在文件系统之下，可以使用本地磁盘，可以使用DAS、NAS、SAN等各种存储系统。</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show engines;</div><div class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</div><div class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</div><div class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</div><div class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</div><div class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</div><div class="line">| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables      | NO           | NO   | NO         |</div><div class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</div><div class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</div><div class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</div><div class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</div><div class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</div><div class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</div><div class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/" rel="next" title="Oracle-Data-Guard之物理备库重命名数据文件">
+                <i class="fa fa-chevron-left"></i> Oracle-Data-Guard之物理备库重命名数据文件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -656,6 +645,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/27/Mysql-逻辑架构/"
+           data-title="Mysql-逻辑架构" data-url="http://wangbinbin0326.github.io/2017/03/27/Mysql-逻辑架构/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -675,8 +672,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
@@ -813,6 +819,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一-Mysql-逻辑架构"><span class="nav-number">1.</span> <span class="nav-text">第一 Mysql 逻辑架构</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -931,11 +948,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   

@@ -465,6 +465,112 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/17/Oracle备份恢复案例3-控制文件的恢复/" itemprop="url">
+                  Oracle备份恢复案例3-控制文件的恢复
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-17T14:32:04+08:00" content="2016-11-17">
+              2016-11-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/17/Oracle备份恢复案例3-控制文件的恢复/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/Oracle备份恢复案例3-控制文件的恢复/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="7-5-3-案例3-（控制文件的恢复）"><a href="#7-5-3-案例3-（控制文件的恢复）" class="headerlink" title="7.5.3 案例3 （控制文件的恢复）"></a>7.5.3 案例3 （控制文件的恢复）</h2><h3 id="7-5-3-1-场景1-控制文件没有全坏-有一个是好的"><a href="#7-5-3-1-场景1-控制文件没有全坏-有一个是好的" class="headerlink" title="7.5.3.1 场景1 控制文件没有全坏,有一个是好的"></a>7.5.3.1 场景1 控制文件没有全坏,有一个是好的</h3><blockquote>
+<p>step 1: 查看控制文件记录的序列号，控制文件和数据文件的SCN</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">-- Control file sequence number incremented by control file transactions</div><div class="line">-- V$DATABASE displays information about the database from the control file.</div><div class="line">SQL&gt; select CONTROLFILE_SEQUENCE# from v$database;</div><div class="line"></div><div class="line">CONTROLFILE_SEQUENCE#</div><div class="line">---------------------</div><div class="line">                 1676</div><div class="line"></div><div class="line">-- The x$kcvfh table is a fixed table in Oracle. The table naming stands for Kernel, Cache, recoVery, File, Header.</div><div class="line">-- FHCSQ：controlfile sequence number in the Memory</div><div class="line">SQL&gt; select hxfil as file#, FHCSQ from x$kcvfh;</div><div class="line"></div><div class="line">     FILE#      FHCSQ</div><div class="line">---------- ----------</div><div class="line">         1       1644</div><div class="line">         2       1644</div><div class="line">         3       1644</div><div class="line">         4       1644</div><div class="line">         5       1644</div><div class="line">         6       1644</div><div class="line"></div><div class="line">-- Last SCN in backup control file; null if the control file is not a backup</div><div class="line">SQL&gt; select controlfile_change# from v$database;</div><div class="line"></div><div class="line">CONTROLFILE_CHANGE#</div><div class="line">-------------------</div><div class="line">            1152251</div><div class="line"></div><div class="line">-- Last SCN checkpointed</div><div class="line">SQL&gt; select checkpoint_change# from v$database;</div><div class="line"></div><div class="line">CHECKPOINT_CHANGE#</div><div class="line">------------------</div><div class="line">           1146902</div><div class="line"></div><div class="line">-- Data file checkpoint change# </div><div class="line">-- &quot;V$DATAFILE_HEADER&quot;, which displays information from data file headers</div><div class="line">SQL&gt; select file#, checkpoint_change# from v$datafile_header;</div><div class="line"></div><div class="line">     FILE# CHECKPOINT_CHANGE#</div><div class="line">---------- ------------------</div><div class="line">         1            1146902</div><div class="line">         2            1146902</div><div class="line">         3            1146902</div><div class="line">         4            1146902</div><div class="line">         5            1146902</div><div class="line">         6            1146902           </div><div class="line"></div><div class="line">-- SCN at last checkpoint </div><div class="line">-- V$DATAFILE displays datafile information from the control file.</div><div class="line">SQL&gt; select file#, checkpoint_change# from v$datafile;</div><div class="line"></div><div class="line">     FILE# CHECKPOINT_CHANGE#</div><div class="line">---------- ------------------</div><div class="line">         1            1146902</div><div class="line">         2            1146902</div><div class="line">         3            1146902</div><div class="line">         4            1146902</div><div class="line">         5            1146902</div><div class="line">         6            1146902</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/17/Oracle备份恢复案例3-控制文件的恢复/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/" itemprop="url">
                   Oracle备份恢复案例2-表空间热备恢复
                 </a>
@@ -1497,135 +1603,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/02/SQL-字符函数/" itemprop="url">
-                  SQL-字符函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-02T13:11:25+08:00" content="2016-11-02">
-              2016-11-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/02/SQL-字符函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/SQL-字符函数/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h2><h3 id="大小写转换函数"><a href="#大小写转换函数" class="headerlink" title="大小写转换函数"></a>大小写转换函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th style="text-align:left">结果</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>LOWER(‘SQL Course’)</td>
-<td style="text-align:left">sql course</td>
-<td style="text-align:left">字符串转换为小写</td>
-</tr>
-<tr>
-<td>UPPER(‘SQL Course’)</td>
-<td style="text-align:left">SQL COURSE</td>
-<td style="text-align:left">字符串转换为大写</td>
-</tr>
-<tr>
-<td>INITCAP(‘SQL Course’)</td>
-<td style="text-align:left">Sql Course</td>
-<td style="text-align:left">字符串首字母大写，其它小写</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> employee_id, last_name, department_id</div><div class="line"><span class="keyword">FROM</span> employees</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">LOWER</span>(last_name) = <span class="string">'higgins'</span>;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/02/SQL-字符函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1671,7 +1648,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1688,7 +1665,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
