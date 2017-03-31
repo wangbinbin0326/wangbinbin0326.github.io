@@ -4,6 +4,121 @@
   
     
     <entry>
+      <title><![CDATA[oracle数据迁移之Exp和Expdp导出数据的性能对比与优化]]></title>
+      <url>http://wangbinbin0326.github.io/2017/03/31/oracle%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E4%B9%8BExp%E5%92%8CExpdp%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94%E4%B8%8E%E4%BC%98%E5%8C%96/</url>
+      <content type="html"><![CDATA[<h3 id="使用Exp和Expdp导出数据的性能对比与优化"><a href="#使用Exp和Expdp导出数据的性能对比与优化" class="headerlink" title="使用Exp和Expdp导出数据的性能对比与优化"></a>使用Exp和Expdp导出数据的性能对比与优化</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>数据备份对信息系统的安全运行至关重要，我们的用户中，使用RMan或第三方专业备份软件的越来越多，但是很多用户仍然保留了传统的Exp作为备份策略的一部分，主要是由于这种备份方式简单易用，而且恢复到其他机器上也很方便，所以，虽然有其他的备份方式，但是Exp方式仍然会同时使用，甚至还有不少的用户只有这种备份方式(可能因为他们觉得掌握其他技术太复杂)。</p>
+<p>随着用户的数据量增长，Exp导出方式存在的问题也日渐突出，主要就是耗时长，有的甚至超过3个小时，加上常见的后台自动作业：汇总表的计算，自动费用的计算，统计信息的收集等工作，使一个晚上的时间安排越来越紧张。 </p>
+<p>有没有办法提高Exp执行的性能呢？以前我做过一些试验，查阅了很多资料，总结过一些经验，最近拿到了一个用户的近300G数据，再次进行了一系列大数据量的导出对比试验，发现几个参数的设置对Exp导出耗时的影响较大，经过优化后，Exp导出的性能得到了较大提升，但是与Expdp相比，仍然是后者要快得多，下面将试验情况和相关知识做一个介绍，以便我们在帮助用户制定备份策略时参考。</p>
+</blockquote>
+<h4 id="试验环境"><a href="#试验环境" class="headerlink" title="试验环境"></a>试验环境</h4><blockquote>
+<p><strong>硬件</strong>：<br>processor: 8<br>model name      : Intel(R) Xeon(R) CPU E7- 2870  @ 2.40GHz<br>cpu MHz         : 2396.863<br>MemTotal:       16333448 kB<br>Disk：SCSI</p>
+<p><strong>软件</strong>：Linux+Oracle 11.2.0.0</p>
+<p><strong>数据</strong>：原始共300G，经过收缩回滚表空间、临时表空间，以及一些表空间文件未使用的空间后，总共占用267G，其中包含了大量电子病历相关的LOB数据。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="试验方法"><a href="#试验方法" class="headerlink" title="试验方法"></a>试验方法</h4><blockquote>
+<p>在相同环境下，试验4种不同的导出数据的方式的耗时</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th style="text-align:right">耗时</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exp常规路径，未优化</td>
+<td style="text-align:right">5小时15分</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>Exp直接路径导出，不加参数优化</td>
+<td style="text-align:right">2小时38分</td>
+<td style="text-align:center">direct=y</td>
+</tr>
+<tr>
+<td>Exp直接路径，参数优化</td>
+<td style="text-align:right">1小时40分</td>
+<td style="text-align:center">direct=y recordlength=65535 buffer=104857600</td>
+</tr>
+<tr>
+<td>使用Expdp导出，参数优化</td>
+<td style="text-align:right">59分</td>
+<td style="text-align:center">parallel=3</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>结果表明：</strong><br>速度最快的是Expdp方式，而Exp方式经过参数优化后，相对于不加任何参数的情况，快了近3倍。</p>
+</blockquote>
+<h4 id="原理说明"><a href="#原理说明" class="headerlink" title="原理说明"></a>原理说明</h4><blockquote>
+<p>Exp默认是传统路径，这种模式下，是用Select来查询数据，然后写入buffer cache，在将这些数据写入evaluate buffer，最后传到Export客户端，再写入dump文件。   </p>
+<p>直接路径模式下，直接从硬盘读取数据，然后写入PGA，格式就是Export的格式，不需要转换，数据再直接传到Export客户端，写入dump文件。这种模式没有经过evaluation buffer，少了一个过程，导出速度提高也是很明显。</p>
+<p>Exp没有并行参数，要进行并行导出，可以写多条命令同时导出，这种方式可用于特定的数据迁移情况，按表或表空间进行快速数据迁移。   </p>
+<p> Expdp是Oracle 10G上推出的一种先进的数据导出方式，比Exp有较大的性能提升，Expdp可以看成是Exp的升级版，相当于exp + direct mode + parallel。</p>
+<p><strong>注意</strong>： 一般情况可以替代Exp，但是还无法完全替代，主要是它需要在数据库服务器上执行，而Exp可以在任何一台客户端上执行。另外，据测试，Expdp在导出大型分区表（1T以上）的时候，光是分析的时间就超过2个小时，而且存在一些BUG。所以，有些用户仍然会使用Exp来进行数据备份。</p>
+</blockquote>
+<h4 id="参数优化"><a href="#参数优化" class="headerlink" title="参数优化"></a>参数优化</h4><blockquote>
+<p><strong>Exp相关参数</strong></p>
+<p>通过上面的分析，我们知道采用“直接路径”可以提高导出速度，这种模式重点说明2个参数：DIRECT和RECORDLENGTH参数。</p>
+<ul>
+<li><p><code>DIRECT</code>参数定义了导出是使用直接路径方式(DIRECT=Y)，还是常规路径方式(DIRECT=N)。常规路径导出使用SELECT语句从表中抽取数据，评估后再写入，而直接路径导出则是将数据直接从磁盘读到PGA再原样写入导出文件，从而避免了SQL命令处理层的数据转换过程，大大提高了导出效率。</p>
+</li>
+<li><p><code>BUFFER</code>参数用于设置了读取记录的缓存的大小，以字节为单位，即在array中最大数量的记录，该参数只对常规路径模式导出有效。</p>
+</li>
+<li><p><code>RECORDLENGTH</code>参数是跟DIRECT=Y配合使用的参数，它定义了Export I/O缓冲的大小，作用类似于常规路径导出使用的BUFFER参数。建议设置RECORDLENGTH参数为最大I/O缓冲，即65535(64kb)。</p>
+</li>
+</ul>
+<p>需要强调是即使用直接路径导出模式，其中涉及LOB对象的表只会通过传统模式导出，所以，DIRECT=Y时，除了设置RECORDLENGTH参数之外，也需要设置BUFFER参数，一般情况可设置为104857600（100M），这一点是网上很多优化文章所忽略的。</p>
+<p>另外，还可以修改Oracle初始化参数Multiple Block Read来提交读取数据的性能，经测试，效果不是很明显，前面的测试环境下，可减少10分钟左右的耗时。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exp userid=sys/his@zyyy full=y direct=y recordlength=65535 buffer=104857600 file=F:\zyyy\exp20120218.dmp log=F:\zyyy\exp20120218.log feedback=10000</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Expdp相关参数</strong></p>
+<p> Parallel参数指明了导出并行度，根据CPU的个数进行设置，缺省是1，如果不设置，导出性能与Exp的直接路径导出模式差不了多少，就没有发挥出它的优势。</p>
+<p>Dumpfile参数可配合Parallel参数指定多个导出文件，用于减少并发写入时的IO争用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expdp sys/his@zyyy full=y directory=dump_dir parallel=3 dumpfile=expdp_0225_1.dmp,expdp_0225_2.dmp,expdp_0225_3.dmp logfile=expdp_0225.log</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>总结：</strong><br>如果你仍然习惯使用Exp方式，如果要减少耗时，最好采用直接路径方式，并且设置RECORDLENGTH和BUFFER两个参数的值，可以大大提高导出性能。   如果你掌握了Expdp方式，使用合适的Parallel参数，实现快速导出，更重要的是Impdp的性能提升才是数据泵模式的真正优势所在，从一些Oracle爱好者的测试结果来看，确实差别非常大。  </p>
+</blockquote>
+<h4 id="Exp和Expdp导出数据"><a href="#Exp和Expdp导出数据" class="headerlink" title="Exp和Expdp导出数据"></a>Exp和Expdp导出数据</h4><table>
+<thead>
+<tr>
+<th>方式</th>
+<th style="text-align:right">耗时</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMP常规路径，未优化</td>
+<td style="text-align:right">3小时17分钟</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>IMPdp的导入速度</td>
+<td style="text-align:right">3小时8分钟</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>使用IMPdp导出，参数优化</td>
+<td style="text-align:right">2小时8分钟</td>
+<td style="text-align:center">parallel=3</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数据泵的导入操作居然花了3个小时8分钟的时间，和IMP的导入速度十分接近，看来并非所有情况下都像Oracle描述的那样，数据泵的导入比普通导入效率有大幅度的提高。</p>
+<p>上面一篇文章的测试中发现IMPDP的导入速度和IMP导入速度相差无几。而Oracle在介绍数据泵的时候，提到IMPDP的导入速度最高是IMP的10倍。不过好在IMPDP还是可以优化调整的，那就是通过设置PARALLEL来提高IMPDP的并行度。</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[oracle数据库如何收费]]></title>
       <url>http://wangbinbin0326.github.io/2017/03/31/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A6%82%E4%BD%95%E6%94%B6%E8%B4%B9/</url>
       <content type="html"><![CDATA[<h2 id="oracle-数据库如何收费"><a href="#oracle-数据库如何收费" class="headerlink" title="oracle 数据库如何收费"></a>oracle 数据库如何收费</h2><blockquote>
