@@ -465,6 +465,116 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/06/Oracle简单易懂之logminer/" itemprop="url">
+                  Oracle简单易懂之logminer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-06T14:25:35+08:00" content="2017-01-06">
+              2017-01-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/06/Oracle简单易懂之logminer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/06/Oracle简单易懂之logminer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Logminer操作"><a href="#Logminer操作" class="headerlink" title="Logminer操作"></a>Logminer操作</h2><h3 id="LogMiner介绍"><a href="#LogMiner介绍" class="headerlink" title="LogMiner介绍"></a>LogMiner介绍</h3><blockquote>
+<p>Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。</p>
+<p>LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracle8i内置包的一部分）组成，它作为Oracle数据库的一部分来发布是8i产品提供的一个完全免费的工具。但该工具和其他Oracle内建工具相比使用起来显得有些复杂，主要原因是该工具没有提供任何的图形用户界面（GUI）。</p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/database/oracle/logminer.gif" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Figure shows a sample LogMiner configuration. In this figure, the source database in Boston generates redo log files that are archived and shipped to a database in San Francisco. A LogMiner dictionary has been extracted to these redo log files. The mining database, where LogMiner will actually analyze the redo log files, is in San Francisco. The Boston database is running Oracle9i, and the San Francisco database is running Oracle Database 10g.</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/06/Oracle简单易懂之logminer/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/30/Rman恢复-Restore和Recovery的区别/" itemprop="url">
                   Rman恢复-Restore和Recovery的区别
                 </a>
@@ -1422,119 +1532,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/03/ORACLE简单易懂之分区表和索引/" itemprop="url">
-                  ORACLE简单易懂之分区表和索引
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-03T17:01:47+08:00" content="2016-11-03">
-              2016-11-03
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/03/ORACLE简单易懂之分区表和索引/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/ORACLE简单易懂之分区表和索引/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<h2 id="分区表，分区索引"><a href="#分区表，分区索引" class="headerlink" title="分区表，分区索引"></a>分区表，分区索引</h2><blockquote>
-<p>Oracle对于分区表方式其实就是将表分段存储，<strong>一般普通表格是一个段存储，而分区表会分成多个段</strong>，所以查找数据过程都是先定位根据查询条件定位分区范围，即数据在那个分区或那几个内部，然后在分区内部去查找数据，一个分区一般保证四十多万条数据就比较正常了，但是分区表并非乱建立，而其维护性也相对较为复杂一点，而索引的创建也是有点讲究的。</p>
-<p>创建时机:</p>
-<ul>
-<li>2G以上的表，ORACLE推荐创建分区。</li>
-<li>分区的字段一定要是经常用以提取数据的字段，否则会在提取过程中导致遍历多个分区，这样比没有分区还要慢。</li>
-<li>分区字段要选择合适，数据较为均匀分布到各个分区，不要太多也不要太少，而且根据分区字段可以很快定位到分区范围。</li>
-<li>一般情况下，尽量然业务操作在同一个分区内部完成。</li>
-</ul>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/03/ORACLE简单易懂之分区表和索引/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1580,7 +1577,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1597,7 +1594,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

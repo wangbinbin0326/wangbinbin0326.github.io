@@ -465,6 +465,112 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/10/Shell检查安装rpm包/" itemprop="url">
+                  Shell检查安装rpm包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-10T14:39:58+08:00" content="2017-04-10">
+              2017-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/10/Shell检查安装rpm包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/Shell检查安装rpm包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Shell检查安装rpm包"><a href="#Shell检查安装rpm包" class="headerlink" title="Shell检查安装rpm包"></a>Shell检查安装rpm包</h4><blockquote>
+<p>Shell检查安装rpm包脚本</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">[root@hzvscmdb check]# vim check_rpm3.sh</div><div class="line">###################RPM_CHECK#################</div><div class="line">#!/bin/bash</div><div class="line">#filename: check_rpm</div><div class="line">uname -r</div><div class="line">rpm --version</div><div class="line"></div><div class="line">P=$&#123;1?&quot; must specify package name.&quot;&#125;</div><div class="line"></div><div class="line">check_rpm()</div><div class="line">&#123;</div><div class="line">    while (( $# &gt; 0 ))</div><div class="line">    do</div><div class="line">        if ! rpm -q $1 &amp;&gt; /dev/null;then</div><div class="line">            yum install $1 -y &amp;&gt;/dev/null</div><div class="line">            if  [ $? == 0 ];then</div><div class="line">                echo &quot;$1 install is success!&quot;</div><div class="line">            else</div><div class="line">                echo &quot;$1 is not in the systerm Packages!&quot;</div><div class="line">            fi</div><div class="line">        else</div><div class="line">            echo &quot;$1 is installed&quot;</div><div class="line">        fi</div><div class="line">    shift</div><div class="line">    done</div><div class="line">    exit 0</div><div class="line">&#125;</div><div class="line"></div><div class="line">check_rpm $@</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/10/Shell检查安装rpm包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/31/oracle数据迁移之Exp和Expdp导出数据的性能对比与优化/" itemprop="url">
                   oracle数据迁移之Exp和Expdp导出数据的性能对比与优化
                 </a>
@@ -1477,116 +1583,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/06/Oracle简单易懂之logminer/" itemprop="url">
-                  Oracle简单易懂之logminer
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-06T14:25:35+08:00" content="2017-01-06">
-              2017-01-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/06/Oracle简单易懂之logminer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/06/Oracle简单易懂之logminer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Logminer操作"><a href="#Logminer操作" class="headerlink" title="Logminer操作"></a>Logminer操作</h2><h3 id="LogMiner介绍"><a href="#LogMiner介绍" class="headerlink" title="LogMiner介绍"></a>LogMiner介绍</h3><blockquote>
-<p>Oracle LogMiner 是Oracle公司从产品8i以后提供的一个实际非常有用的分析工具，使用该工具可以轻松获得Oracle 在线/归档日志文件中的具体内容，特别是该工具可以分析出所有对于数据库操作的DML和DDL语句。该工具特别适用于调试、审计或者回退某个特定的事务。</p>
-<p>LogMiner分析工具实际上是由一组PL/SQL包和一些动态视图（Oracle8i内置包的一部分）组成，它作为Oracle数据库的一部分来发布是8i产品提供的一个完全免费的工具。但该工具和其他Oracle内建工具相比使用起来显得有些复杂，主要原因是该工具没有提供任何的图形用户界面（GUI）。</p>
-</blockquote>
-<p><img src="https://wangbinbin0326.github.io/images/database/oracle/logminer.gif" alt="此处输入图片的描述"></p>
-<blockquote>
-<p>Figure shows a sample LogMiner configuration. In this figure, the source database in Boston generates redo log files that are archived and shipped to a database in San Francisco. A LogMiner dictionary has been extracted to these redo log files. The mining database, where LogMiner will actually analyze the redo log files, is in San Francisco. The Boston database is running Oracle9i, and the San Francisco database is running Oracle Database 10g.</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/06/Oracle简单易懂之logminer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1632,7 +1628,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1649,7 +1645,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
