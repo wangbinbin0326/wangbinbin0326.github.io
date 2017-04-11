@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
+    
+    <lastmod>2017-04-11T02:27:33.098Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wangbinbin0326.github.io/2017/04/11/Linux%E5%8F%8C%E7%BD%91%E5%8D%A1%E5%8F%8C%E7%BD%91%E5%85%B3%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2017-04-11T01:44:43.770Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wangbinbin0326.github.io/2017/04/10/Shell%E6%A3%80%E6%9F%A5%E5%AE%89%E8%A3%85rpm%E5%8C%85/</loc>
     
     <lastmod>2017-04-10T06:47:51.779Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>http://wangbinbin0326.github.io/2017/01/20/ORACLE%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E4%B9%8BRman%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D%E6%A6%82%E5%BF%B5/</loc>
     
     <lastmod>2017-01-20T07:49:37.014Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
-    
-    <lastmod>2017-01-19T07:51:15.961Z</lastmod>
     
   </url>
   

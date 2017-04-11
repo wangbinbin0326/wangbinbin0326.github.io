@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle," />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -86,36 +86,25 @@
 
 
 
-<meta name="description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
-
-
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
+<meta name="description" content="Linux网络配置rhel6.5双网卡双网关的配置
+采用一个网卡配置电信地址，另一个网卡配置联通地址，安装好rhel6.5系统后配置完IP，发现联通地址和电信地址只能有一个可以ping通，若电信地址配置网关，联通地址不配网关，则只能ping通电信地址，反之只能ping通联通地址，若同时配置联通和电信地址则两个都不通。
+rhel6.5中实现双网卡双网关
+服务器环境如下：系统：RHEL6.5电信IP（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle-DB-概述">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/index.html">
+<meta property="og:title" content="Linux双网卡双网关的配置">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2017/04/11/Linux双网卡双网关的配置/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
-
-
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
-<meta property="og:image" content="http://www.rjkfw.com/upload/1387509627.png">
-<meta property="og:updated_time" content="2016-10-20T05:03:34.998Z">
+<meta property="og:description" content="Linux网络配置rhel6.5双网卡双网关的配置
+采用一个网卡配置电信地址，另一个网卡配置联通地址，安装好rhel6.5系统后配置完IP，发现联通地址和电信地址只能有一个可以ping通，若电信地址配置网关，联通地址不配网关，则只能ping通电信地址，反之只能ping通联通地址，若同时配置联通和电信地址则两个都不通。
+rhel6.5中实现双网卡双网关
+服务器环境如下：系统：RHEL6.5电信IP（">
+<meta property="og:updated_time" content="2017-04-11T01:44:43.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle-DB-概述">
-<meta name="twitter:description" content="第一. Oracle DB 概述
-1. Oracle DB
-Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。
-Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。
-
-
-2. 连接到服务器1客户机 &amp;lt; ---- &amp;gt">
-<meta name="twitter:image" content="http://www.rjkfw.com/upload/1387509627.png">
+<meta name="twitter:title" content="Linux双网卡双网关的配置">
+<meta name="twitter:description" content="Linux网络配置rhel6.5双网卡双网关的配置
+采用一个网卡配置电信地址，另一个网卡配置联通地址，安装好rhel6.5系统后配置完IP，发现联通地址和电信地址只能有一个可以ping通，若电信地址配置网关，联通地址不配网关，则只能ping通电信地址，反之只能ping通联通地址，若同时配置联通和电信地址则两个都不通。
+rhel6.5中实现双网卡双网关
+服务器环境如下：系统：RHEL6.5电信IP（">
 
 
 
@@ -136,10 +125,10 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/04/11/Linux双网卡双网关的配置/"/>
 
 
-  <title> Oracle-DB-概述 | Tony Blog </title>
+  <title> Linux双网卡双网关的配置 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -483,7 +472,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
             
             
               
-                Oracle-DB-概述
+                Linux双网卡双网关的配置
               
             
           </h1>
@@ -495,8 +484,8 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T17:12:40+08:00" content="2016-10-12">
-              2016-10-12
+            <time itemprop="dateCreated" datetime="2017-04-11T09:40:10+08:00" content="2017-04-11">
+              2017-04-11
             </time>
           </span>
 
@@ -509,8 +498,8 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -525,8 +514,8 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/Oracle-DB-概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/Oracle-DB-概述/" itemprop="commentsCount"></span>
+                <a href="/2017/04/11/Linux双网卡双网关的配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/11/Linux双网卡双网关的配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -554,74 +543,27 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
       
 
       
-        <hr>
-<h2 id="第一-Oracle-DB-概述"><a href="#第一-Oracle-DB-概述" class="headerlink" title="第一. Oracle DB 概述"></a>第一. Oracle DB 概述</h2><hr>
-<h3 id="1-Oracle-DB"><a href="#1-Oracle-DB" class="headerlink" title="1. Oracle DB"></a>1. Oracle DB</h3><blockquote>
-<p>Oracle DB 数据库是被视为单元的数据的集合，其用途是存储和检索相关信息。</p>
-<p>Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持许多用户并行访问相同的数据。实现此功能的同时还可以保持较高的性能。同时，它可以阻止未授权的访问，并且为故障恢复提供有效的解决方案。</p>
+        <h2 id="Linux网络配置"><a href="#Linux网络配置" class="headerlink" title="Linux网络配置"></a>Linux网络配置</h2><h3 id="rhel6-5双网卡双网关的配置"><a href="#rhel6-5双网卡双网关的配置" class="headerlink" title="rhel6.5双网卡双网关的配置"></a>rhel6.5双网卡双网关的配置</h3><blockquote>
+<p>采用一个网卡配置电信地址，另一个网卡配置联通地址，安装好rhel6.5系统后配置完IP，发现联通地址和电信地址只能有一个可以ping通，若电信地址配置网关，联通地址不配网关，则只能ping通电信地址，反之只能ping通联通地址，若同时配置联通和电信地址则两个都不通。</p>
+<p>rhel6.5中实现双网卡双网关</p>
+<p>服务器环境如下：<br>系统：RHEL6.5<br>电信IP（TEL）：114.80.10.79 netmask 255.255.255.128 gateway 114.80.10.1<br>联通IP（CNC）：112.65.20.23 netmask 255.255.255.128 gateway 112.65.20.1</p>
+<p>1、配置网卡信息</p>
 </blockquote>
-<hr>
-<h3 id="2-连接到服务器"><a href="#2-连接到服务器" class="headerlink" title="2. 连接到服务器"></a>2. 连接到服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">客户机 &lt; ---- &gt; 中间层 &lt; ---- &gt; 服务器</div></pre></td></tr></table></figure>
-<blockquote>
-<p>数据库用户连接到Oracle服务器</p>
-<ul>
-<li>用户登录到运行Oracle实例的操作系统，如sqlplus 工具。</li>
-<li>用户可以启动本地计算机上的应用程序或工具(客户端/服务器)，如toad, plsql</li>
-<li>用户通过本地计算机上的工具（web/服务器），如web浏览器</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="3-体系结构概述"><a href="#3-体系结构概述" class="headerlink" title="3. 体系结构概述"></a>3. 体系结构概述</h3><p><img src="http://www.rjkfw.com/upload/1387509627.png" alt="此处输入图片的描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth12</div><div class="line">DEVICE=eth12</div><div class="line">TYPE=Ethernet</div><div class="line">ONBOOT=yes</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=114.80.10.79</div><div class="line">NETMASK=255.255.255.128</div><div class="line"></div><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth14</div><div class="line">DEVICE=eth14</div><div class="line">TYPE=Ethernet</div><div class="line">ONBOOT=yes</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=112.65.20.23</div><div class="line">NETMASK=255.255.255.128</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
-<p>Oracle DB 服务器由（一个Oracle DB）和（一个或多个数据库实例）组成。</p>
-<ul>
-<li><p>实例由（内存结构）和（后台进程）构成。每当启动一个实例时，都会分配一个称为系统全局区（SGA）的共享内存区，并启动后台进程。</p>
-</li>
-<li><p>数据库包括（物理结构）和（逻辑结构）。由于物理结构和逻辑结构是分开的，因此管理数据的物理存储时不会影响对逻辑存储结构的访问。</p>
-</li>
-</ul>
+<p>注意：两个网卡配置文件里不加网关.如果加网关，那么在route -n中只会显示一条默认路由，另一个网段是不通的。</p>
 </blockquote>
-<hr>
-<h3 id="4-连接到数据库"><a href="#4-连接到数据库" class="headerlink" title="4. 连接到数据库"></a>4. 连接到数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">用户 &lt;---&gt; SQL&gt; select &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 数据库</div><div class="line">                                |&lt;----连接------&gt;|</div><div class="line">  |&lt;-------------------------会话----------------------------&gt;|</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@test network-scripts]# route -n</div><div class="line">Kernel IP routing table</div><div class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</div><div class="line">112.65.20.0     0.0.0.0         255.255.255.128   U     0      0        0 eth14</div><div class="line">114.80.10.0     0.0.0.0         255.255.255.128   U     0      0        0 eth12</div><div class="line">112.65.20.0     0.0.0.0         255.255.255.0     U     0      0        0 eth14</div><div class="line">114.80.10.0     0.0.0.0         255.255.255.0     U     0      0        0 eth12</div><div class="line">169.254.0.0     0.0.0.0         255.255.0.0       U     1016   0        0 eth14</div><div class="line">169.254.0.0     0.0.0.0         255.255.0.0       U     1016   0        0 eth12</div><div class="line">0.0.0.0         112.65.20.1     255.255.255.128    UG    0      0        0 eth14</div></pre></td></tr></table></figure>
 <blockquote>
-<ul>
-<li>连接：用户进程和实例之间的通信</li>
-<li>会话：用户通过用户进程与实例建立的特定连接</li>
-</ul>
+<p>2、修改rc.local<br>可以直接增加这两条路由，但是重启后会丢失。</p>
 </blockquote>
-<hr>
-<h3 id="5-与Oracle-DB交互"><a href="#5-与Oracle-DB交互" class="headerlink" title="5. 与Oracle DB交互"></a>5. 与Oracle DB交互</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">用户（SQL&gt; select） &lt;---&gt; 用户进程  &lt;---&gt; 服务进程  &lt;---&gt; 实例&lt;---&gt; 数据库</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">route add -net 114.80.10.0/25 gw 114.80.10.1 dev eth12</div><div class="line">route add -net 112.65.20.0/25 gw 112.65.20.1 dev eth14</div></pre></td></tr></table></figure>
 <blockquote>
-<ol>
-<li><p>在安装了Oracle DB的节点（通常称为“主机”或“数据库服务器”）上启动了一个实例。</p>
-</li>
-<li><p>用户启动一个应用程序，该应用程序衍生了一个用户进程。该应用程序尝试建立一个与服务器的连接（此连接可能是本地连接、客户机/服务器连接或者来自中间层的三层连接）。</p>
-</li>
-<li><p>服务器运行具有相应Oracle Net Services处理程序的监听程序。监听程序检查到应用程序发出的连接请求，并创建一个代表用户进程的专用服务器进程。</p>
-</li>
-<li><p>用户运行一条DML类型的SQL语句并提交事务处理。</p>
-</li>
-<li><p>服务器进程接受该语句，并检查共享池（一个SGA组件）中是否有包含相同SQL语句的共享SQL区域。如果找到共享SQL区域，服务器进程将检查用户对于所请求数据的访问权限，并且使用现有的共享SQL区域处理该语句。如果未找到共享SQL区域，则为该语句分配一个新的共享SQL区域，以便对该语句进行语法分析和处理。</p>
-</li>
-<li><p>服务器进程从实际数据文件（表）或数据库缓冲区高速缓存中存储的值中检索任何必需的数据值。</p>
-</li>
-<li><p>服务器进程修改SGA中的数据。因为提交了事务处理，所以日志写进程（LGWR）会立即将该事务处理记录到重做日志文件中。数据库写进程（DBWn）会待执行效率高时将修改后的块永久写入磁盘。</p>
-</li>
-<li><p>如果事务处理成功，服务器进程将通过网络向应用程序发送一条消息。如果事务处理不成功，则传送一条错误消息。</p>
-</li>
-<li><p>在整个过程中，其它后台进程同时在运行，用于监视是否有需要干预的情况。此外，数据库服务器管理其他用户的事务处理，并防止在请求相同数据的事务处理之间发生争用。</p>
-</li>
-</ol>
+<p>所以为永久生效，还是修改rc.local</p>
 </blockquote>
-<hr>
-<h3 id="6-Oracle-DB服务器结构"><a href="#6-Oracle-DB服务器结构" class="headerlink" title="6. Oracle DB服务器结构"></a>6. Oracle DB服务器结构</h3><blockquote>
-<ul>
-<li>内存结构</li>
-<li>进程</li>
-<li>存储结构</li>
-</ul>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local</div><div class="line">[root@test network-scripts]# cat /etc/rc.d/rc.local</div><div class="line">#!/bin/sh</div><div class="line">#</div><div class="line"># This script will be executed *after* all the other init scripts.</div><div class="line"># You can put your own initialization stuff in here if you don&apos;t</div><div class="line"># want to do the full Sys V style init stuff.</div><div class="line">touch /var/lock/subsys/local</div><div class="line">route add -net 114.80.10.0/25 gw 114.80.10.1 dev eth12</div><div class="line">route add -net 112.65.20.0/25 gw 112.65.20.1 dev eth14</div><div class="line">然后route -n</div><div class="line">[root@test network-scripts]# route -n</div><div class="line">Kernel IP routing table</div><div class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</div><div class="line">112.65.20.0     112.65.20.1     255.255.255.128   UG     0      0       0 eth14</div><div class="line">114.80.10.0     114.80.10.1     255.255.255.128   UG     0      0       0 eth12</div><div class="line">112.65.20.0     0.0.0.0         255.255.255.0     U     0      0        0 eth14</div><div class="line">114.80.10.0     0.0.0.0         255.255.255.0     U     0      0        0 eth12</div><div class="line">169.254.0.0     0.0.0.0         255.255.0.0       U     1016   0        0 eth14</div><div class="line">169.254.0.0     0.0.0.0         255.255.0.0       U     1016   0        0 eth12</div><div class="line"></div><div class="line">#如果只需要添加默认路由可以这样设置：</div><div class="line">　　route add default gw 112.65.20.1</div><div class="line">#可以删除默认路由，用此方法改变后几分钟就可以生效</div><div class="line">　　route del default gw 112.65.20.1</div></pre></td></tr></table></figure>
+<p>本文出自 “滴水穿石孙杰” 博客，请务必保留此出处<a href="http://xjsunjie.blog.51cto.com/999372/1604759" target="_blank" rel="external">http://xjsunjie.blog.51cto.com/999372/1604759</a></p>
 
       
     </div>
@@ -644,7 +586,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle/" rel="tag">#Oracle</a>
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
           
         </div>
       
@@ -653,17 +595,13 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/11/DBA职责/" rel="next" title="DBA职责">
-                <i class="fa fa-chevron-left"></i> DBA职责
+              <a href="/2017/04/10/Shell检查安装rpm包/" rel="next" title="Shell检查安装rpm包">
+                <i class="fa fa-chevron-left"></i> Shell检查安装rpm包
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/13/Oracle-DB-内存结构/" rel="prev" title="Oracle-DB-内存结构">
-                Oracle-DB-内存结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -689,8 +627,8 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/12/Oracle-DB-概述/"
-           data-title="Oracle-DB-概述" data-url="http://wangbinbin0326.github.io/2016/10/12/Oracle-DB-概述/">
+      <div class="ds-thread" data-thread-key="2017/04/11/Linux双网卡双网关的配置/"
+           data-title="Linux双网卡双网关的配置" data-url="http://wangbinbin0326.github.io/2017/04/11/Linux双网卡双网关的配置/">
       </div>
     
   </div>
@@ -885,7 +823,7 @@ Oracle DB 能够可靠地管理多用户环境中的大量数据，从而支持�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一-Oracle-DB-概述"><span class="nav-number">1.</span> <span class="nav-text">第一. Oracle DB 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Oracle-DB"><span class="nav-number">1.1.</span> <span class="nav-text">1. Oracle DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-连接到服务器"><span class="nav-number">1.2.</span> <span class="nav-text">2. 连接到服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-体系结构概述"><span class="nav-number">1.3.</span> <span class="nav-text">3. 体系结构概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-连接到数据库"><span class="nav-number">1.4.</span> <span class="nav-text">4. 连接到数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-与Oracle-DB交互"><span class="nav-number">1.5.</span> <span class="nav-text">5. 与Oracle DB交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Oracle-DB服务器结构"><span class="nav-number">1.6.</span> <span class="nav-text">6. Oracle DB服务器结构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux网络配置"><span class="nav-number">1.</span> <span class="nav-text">Linux网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rhel6-5双网卡双网关的配置"><span class="nav-number">1.1.</span> <span class="nav-text">rhel6.5双网卡双网关的配置</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
