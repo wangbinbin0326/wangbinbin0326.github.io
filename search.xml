@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[Python学习路径与资源]]></title>
+      <url>http://wangbinbin0326.github.io/2017/04/24/Python%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E4%B8%8E%E8%B5%84%E6%BA%90/</url>
+      <content type="html"><![CDATA[<h1 id="Python-—-学习路径与资源"><a href="#Python-—-学习路径与资源" class="headerlink" title="Python — 学习路径与资源"></a>Python — 学习路径与资源</h1><p>Tags：Python</p>
+<hr>
+<h2 id="Python-编写程序软件"><a href="#Python-编写程序软件" class="headerlink" title="Python 编写程序软件"></a>Python 编写程序软件</h2><blockquote>
+<ul>
+<li><a href="https://www.jetbrains.com/pycharm-edu/" target="_blank" rel="external">PyCharm</a></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Python-初级阶段"><a href="#Python-初级阶段" class="headerlink" title="Python 初级阶段"></a>Python 初级阶段</h2><blockquote>
+<ul>
+<li><a href="https://python.swaroopch.com/first_steps.html" target="_blank" rel="external">简明Python教程</a></li>
+<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html" target="_blank" rel="external">Python快速教程</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">廖雪峰的Python学习教程</a></li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="Python-中级阶段"><a href="#Python-中级阶段" class="headerlink" title="Python 中级阶段"></a>Python 中级阶段</h2>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux双网卡双网关的配置]]></title>
       <url>http://wangbinbin0326.github.io/2017/04/11/Linux%E5%8F%8C%E7%BD%91%E5%8D%A1%E5%8F%8C%E7%BD%91%E5%85%B3%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h2 id="Linux网络配置"><a href="#Linux网络配置" class="headerlink" title="Linux网络配置"></a>Linux网络配置</h2><h3 id="rhel6-5双网卡双网关的配置"><a href="#rhel6-5双网卡双网关的配置" class="headerlink" title="rhel6.5双网卡双网关的配置"></a>rhel6.5双网卡双网关的配置</h3><blockquote>
