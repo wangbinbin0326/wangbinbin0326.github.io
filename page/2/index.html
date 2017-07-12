@@ -465,6 +465,147 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/23/Oracle-Data-Guard之创建物理备库/" itemprop="url">
+                  Oracle-Data-Guard之创建物理备库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-23T10:14:38+08:00" content="2017-03-23">
+              2017-03-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/23/Oracle-Data-Guard之创建物理备库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/Oracle-Data-Guard之创建物理备库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="第一-Creating-a-Physical-Standby-Database"><a href="#第一-Creating-a-Physical-Standby-Database" class="headerlink" title="第一. Creating a Physical Standby Database"></a>第一. Creating a Physical Standby Database</h2><hr>
+<h3 id="1-1-实验背景"><a href="#1-1-实验背景" class="headerlink" title="1.1 实验背景"></a>1.1 实验背景</h3><p><img src="http://docs.oracle.com/cd/E11882_01/server.112/e41134/img/sbydb042.gif" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>You have two servers (physical or VMs) with an operating system and Oracle installed on them. In this case I’ve used Oracle Linux 5.6 and Oracle Database 11.2.0.2.</li>
+<li>The primary server has a running instance.</li>
+<li>The standby server has a software only installation.</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>IP</th>
+<th style="text-align:center">DB_SID</th>
+<th style="text-align:center">DB_NAME</th>
+<th style="text-align:center">DB_UNIQUE_NAME</th>
+<th style="text-align:center">Oracle Net Service Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary</td>
+<td>10.224.188.188</td>
+<td style="text-align:center">mmpdb3</td>
+<td style="text-align:center">mmpdb3</td>
+<td style="text-align:center">mmpdb3</td>
+<td style="text-align:center">mmpdb3</td>
+</tr>
+<tr>
+<td>Physical standby</td>
+<td>10.224.188.189</td>
+<td style="text-align:center">mmpdb3</td>
+<td style="text-align:center">mmpdb3</td>
+<td style="text-align:center">mmpdb3sby</td>
+<td style="text-align:center">mmpdb3sby</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/23/Oracle-Data-Guard之创建物理备库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/20/ORACLE简单易懂之Rman备份恢复概念/" itemprop="url">
                   ORACLE简单易懂之Rman备份恢复概念
                 </a>
@@ -1422,112 +1563,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/11/Oracle无法删除数据文件/" itemprop="url">
-                  Oracle无法删除数据文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-11T16:34:24+08:00" content="2016-11-11">
-              2016-11-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/11/Oracle无法删除数据文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/Oracle无法删除数据文件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Oracle无法删除数据文件"><a href="#Oracle无法删除数据文件" class="headerlink" title="Oracle无法删除数据文件"></a>Oracle无法删除数据文件</h2><blockquote>
-<p>有些时候，想删除一个数据文件(临时文件),在10g之前的版本，要删除一个数据文件，必须删除该数据文件所属的表空间(特殊处理方法除外)。不太懂数据库的朋友直接os级别删除数据文件，导致数据库不能正常启动;稍微等点数据库的朋友，会先offline数据文件，然后os级别删除，但是这条数据文件的记录还保留在数据字典中，。在10g及其以后版本中，oracle提供了alter tablespace talbespace_name drop datafile/tempfile path/file_id进行删除某个数据文件。</p>
-<p>Cannot Drop Empty Datafile From Tablespace ORA-03262 in oracle 11g R2</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/11/Oracle无法删除数据文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1573,7 +1608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
