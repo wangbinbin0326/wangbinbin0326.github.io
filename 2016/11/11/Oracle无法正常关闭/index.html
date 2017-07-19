@@ -100,7 +100,7 @@ Get a list of processes hitting the databa">
 Stop the listener - you can at least prevent others from connecting to the instance that you’re trying to shut down:  bash-3.00$ lsnrctl stop
 
 Get a list of processes hitting the databa">
-<meta property="og:updated_time" content="2016-11-11T08:39:51.552Z">
+<meta property="og:updated_time" content="2017-07-19T01:47:17.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle无法正常关闭">
 <meta name="twitter:description" content="Oracle 无法正常关闭
@@ -496,13 +496,6 @@ Get a list of processes hitting the databa">
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/11/Oracle无法正常关闭/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/Oracle无法正常关闭/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -552,7 +545,7 @@ Get a list of processes hitting the databa">
 </li>
 </ol>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">-- issue：主库运行了切换到standby, 失败后，发现数据库无法连接，与操作</div><div class="line">SQL&gt; alter database commit to switchover to physical standby;</div><div class="line">alter database commit to switchover to physical standby</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01093: ALTER DATABASE CLOSE only permitted with no sessions connected</div><div class="line"></div><div class="line">[root@hzvscmdb alert]# tail -f log.xml</div><div class="line">&lt;msg time=&apos;2016-11-10T02:09:42.814+00:00&apos; org_id=&apos;oracle&apos; comp_id=&apos;rdbms&apos;</div><div class="line"> msg_id=&apos;opiexe:3036:2780954927&apos; client_id=&apos;&apos; type=&apos;NOTIFICATION&apos;</div><div class="line"> group=&apos;admin_ddl&apos; level=&apos;16&apos; host_id=&apos;hzvscmdb&apos;</div><div class="line"> host_addr=&apos;10.224.188.188&apos; module=&apos;sqlplus@hzvscmdb (TNS V1-V3)&apos; pid=&apos;24748&apos;&gt;</div><div class="line"> &lt;txt&gt;ORA-1093 signalled during: alter database commit to switchover to physical standby...</div><div class="line"> &lt;/txt&gt;</div><div class="line">&lt;/msg&gt;</div><div class="line"></div><div class="line">[oracle@hzvscmdb dbs]$ sqlplus / as sysdba</div><div class="line"></div><div class="line">SQL*Plus: Release 11.2.0.2.0 Production on Thu Nov 10 02:40:32 2016</div><div class="line"></div><div class="line">Copyright (c) 1982, 2010, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Connected.</div><div class="line">SQL&gt; shutdown immediate;</div><div class="line">ORA-24324: service handle not initialized</div><div class="line">ORA-24323: value not allowed</div><div class="line">ORA-01094: ALTER DATABASE CLOSE in progress. Connections not permitted</div><div class="line"></div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01031: insufficient privileges</div><div class="line"></div><div class="line">--解决方法用 startup force; 是shutdown abort + startup的组合，即强制关闭数据库+ 正常启动数据库</div><div class="line">SQL&gt; conn / as sysdba</div><div class="line">Connected to an idle instance.</div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01012: not logged on</div><div class="line">SQL&gt; startup force;</div><div class="line">ORACLE instance started.</div><div class="line"></div><div class="line">Total System Global Area 1603411968 bytes</div><div class="line">Fixed Size                  2226912 bytes</div><div class="line">Variable Size            1124074784 bytes</div><div class="line">Database Buffers          469762048 bytes</div><div class="line">Redo Buffers                7348224 bytes</div><div class="line">Database mounted.</div><div class="line">Database opened.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">-- issue：主库运行了切换到standby, 失败后，发现数据库无法连接，与操作</div><div class="line">SQL&gt; alter database commit to switchover to physical standby;</div><div class="line">alter database commit to switchover to physical standby</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01093: ALTER DATABASE CLOSE only permitted with no sessions connected</div><div class="line"></div><div class="line">[root@hzvscmdb alert]# tail -f log.xml</div><div class="line">&lt;msg time=&apos;2016-11-10T02:09:42.814+00:00&apos; org_id=&apos;oracle&apos; comp_id=&apos;rdbms&apos;</div><div class="line"> msg_id=&apos;opiexe:3036:2780954927&apos; client_id=&apos;&apos; type=&apos;NOTIFICATION&apos;</div><div class="line"> group=&apos;admin_ddl&apos; level=&apos;16&apos; host_id=&apos;hzvscmdb&apos;</div><div class="line"> host_addr=&apos;0.0.0.188&apos; module=&apos;sqlplus@hzvscmdb (TNS V1-V3)&apos; pid=&apos;24748&apos;&gt;</div><div class="line"> &lt;txt&gt;ORA-1093 signalled during: alter database commit to switchover to physical standby...</div><div class="line"> &lt;/txt&gt;</div><div class="line">&lt;/msg&gt;</div><div class="line"></div><div class="line">[oracle@hzvscmdb dbs]$ sqlplus / as sysdba</div><div class="line"></div><div class="line">SQL*Plus: Release 11.2.0.2.0 Production on Thu Nov 10 02:40:32 2016</div><div class="line"></div><div class="line">Copyright (c) 1982, 2010, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Connected.</div><div class="line">SQL&gt; shutdown immediate;</div><div class="line">ORA-24324: service handle not initialized</div><div class="line">ORA-24323: value not allowed</div><div class="line">ORA-01094: ALTER DATABASE CLOSE in progress. Connections not permitted</div><div class="line"></div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01031: insufficient privileges</div><div class="line"></div><div class="line">--解决方法用 startup force; 是shutdown abort + startup的组合，即强制关闭数据库+ 正常启动数据库</div><div class="line">SQL&gt; conn / as sysdba</div><div class="line">Connected to an idle instance.</div><div class="line">SQL&gt; startup;</div><div class="line">ORA-01012: not logged on</div><div class="line">SQL&gt; startup force;</div><div class="line">ORACLE instance started.</div><div class="line"></div><div class="line">Total System Global Area 1603411968 bytes</div><div class="line">Fixed Size                  2226912 bytes</div><div class="line">Variable Size            1124074784 bytes</div><div class="line">Database Buffers          469762048 bytes</div><div class="line">Redo Buffers                7348224 bytes</div><div class="line">Database mounted.</div><div class="line">Database opened.</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -618,10 +611,6 @@ Get a list of processes hitting the databa">
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/11/11/Oracle无法正常关闭/"
-           data-title="Oracle无法正常关闭" data-url="http://wangbinbin0326.github.io/2016/11/11/Oracle无法正常关闭/">
-      </div>
     
   </div>
 
@@ -970,30 +959,9 @@ Get a list of processes hitting the databa">
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wangbinbin0326"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

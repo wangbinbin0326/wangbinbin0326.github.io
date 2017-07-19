@@ -89,7 +89,7 @@
 <meta name="description" content="在CentOS上搭建docker私服
 环境：
 
-IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+IP:0.0.0.50(Docker Registry Server)0.0.0.59(Docker client )
 
 OS: CentOS Linux release 7.2.1511 (Core)
 
@@ -99,7 +99,7 @@ Docker Version: Docker version 1.12.0, build 8eab29e
 
 
 
-Step">
+Step 1: 以下操作运行在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS搭建docker-registry仓库">
 <meta property="og:url" content="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/index.html">
@@ -107,7 +107,7 @@ Step">
 <meta property="og:description" content="在CentOS上搭建docker私服
 环境：
 
-IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+IP:0.0.0.50(Docker Registry Server)0.0.0.59(Docker client )
 
 OS: CentOS Linux release 7.2.1511 (Core)
 
@@ -117,14 +117,14 @@ Docker Version: Docker version 1.12.0, build 8eab29e
 
 
 
-Step">
-<meta property="og:updated_time" content="2016-10-28T06:32:01.923Z">
+Step 1: 以下操作运行在">
+<meta property="og:updated_time" content="2017-07-19T01:41:46.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS搭建docker-registry仓库">
 <meta name="twitter:description" content="在CentOS上搭建docker私服
 环境：
 
-IP:10.224.188.50(Docker Registry Server)10.224.188.59(Docker client )
+IP:0.0.0.50(Docker Registry Server)0.0.0.59(Docker client )
 
 OS: CentOS Linux release 7.2.1511 (Core)
 
@@ -134,7 +134,7 @@ Docker Version: Docker version 1.12.0, build 8eab29e
 
 
 
-Step">
+Step 1: 以下操作运行在">
 
 
 
@@ -523,13 +523,6 @@ Step">
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/28/CentOS搭建docker-registry仓库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/CentOS搭建docker-registry仓库/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -557,7 +550,7 @@ Step">
         <h2 id="在CentOS上搭建docker私服"><a href="#在CentOS上搭建docker私服" class="headerlink" title="在CentOS上搭建docker私服"></a>在CentOS上搭建docker私服</h2><blockquote>
 <p>环境：</p>
 <ul>
-<li><p>IP:<br>10.224.188.50(Docker Registry Server)<br>10.224.188.59(Docker client )</p>
+<li><p>IP:<br>0.0.0.50(Docker Registry Server)<br>0.0.0.59(Docker client )</p>
 </li>
 <li><p>OS: CentOS Linux release 7.2.1511 (Core)</p>
 </li>
@@ -567,16 +560,16 @@ Step">
 </blockquote>
 <hr>
 <blockquote>
-<p>Step 1: 以下操作运行在10.224.188.50(Docker Registry Server)上</p>
+<p>Step 1: 以下操作运行在0.0.0.50(Docker Registry Server)上</p>
 <p>安装docker-registry, 运行以下命令<br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
-<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://10.224.188.50:5000/v1/_ping
+<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://0.0.0.50:5000/v1/_ping
 404 page not found</code></p>
 <p>如果有如下返回值则代表成功，无返回则说明进程没有启动，把所有的container都删除然后在重新启动<br><code>docker rm $(docker ps -a -q)</code><br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
 </blockquote>
 <a id="more"></a>
 <hr>
 <blockquote>
-<p>Step 2: 以下操作运行在10.224.188.59(Docker client)上</p>
+<p>Step 2: 以下操作运行在0.0.0.59(Docker client)上</p>
 <p>1.查看当前的images</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">gethue/hue                          latest              f7f2abf45534        4 months ago        2.284 GB</div></pre></td></tr></table></figure>
@@ -591,15 +584,15 @@ Step">
 <blockquote>
 <p>4.Create a new image from a container’s changes</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker commit 5b45fcfb4c4c 10.224.188.50:5000/hue-v1</div><div class="line">sha256:8f41bc37f2b4164c79a9924ca9b6f38581a7ca8f50e60d2ac49818a765c35f09</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        15 seconds ago      2.57 GB</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker commit 5b45fcfb4c4c 0.0.0.50:5000/hue-v1</div><div class="line">sha256:8f41bc37f2b4164c79a9924ca9b6f38581a7ca8f50e60d2ac49818a765c35f09</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">0.0.0.50:5000/hue-v1           latest              8f41bc37f2b4        15 seconds ago      2.57 GB</div></pre></td></tr></table></figure>
 <blockquote>
 <p>5.push new image into docker private registry</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker push 10.224.188.50:5000/hue-v1</div><div class="line">The push refers to a repository [10.224.188.50:5000/hue-v1]</div><div class="line">eb8378240c72: Pushed</div><div class="line">1e71236cfd2b: Pushed</div><div class="line">fccab3c2b82b: Pushed</div><div class="line">30c28efdecff: Pushed</div><div class="line">634827038ea7: Pushed</div><div class="line">8f22c1173848: Pushed</div><div class="line">8191da9e7f9a: Pushed</div><div class="line">173f1156fe76: Pushed</div><div class="line">5b771cc18969: Pushed</div><div class="line">ae16cd6221a3: Pushed</div><div class="line">7dce18002c8d: Pushed</div><div class="line">5f70bf18a086: Pushed</div><div class="line">6f8be37bd578: Pushed</div><div class="line">9f7ab087e6e6: Pushed</div><div class="line">dc109d4b4ccf: Pushed</div><div class="line">a7e1c363defb: Pushed</div><div class="line">latest: digest: sha256:b9ee12c606e3da3554b3f5df9f88364eb8986b1f6fe1ae625542c8e3343e1627 size: 3691</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">如果push的时候报以下错误时：&quot;server gave HTTP response to HTTPS client&quot;</div><div class="line">创建/etc/docker/daemon.json文件，并写入</div><div class="line">[root@ct7 system]# more /etc/docker/daemon.json</div><div class="line">&#123; &quot;insecure-registries&quot;:[&quot;10.224.188.50:5000&quot;] &#125;</div><div class="line">然后重启docker：</div><div class="line">[root@ct7 system]# service docker restart</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@ct7 system]# docker push 0.0.0.50:5000/hue-v1</div><div class="line">The push refers to a repository [0.0.0.50:5000/hue-v1]</div><div class="line">eb8378240c72: Pushed</div><div class="line">1e71236cfd2b: Pushed</div><div class="line">fccab3c2b82b: Pushed</div><div class="line">30c28efdecff: Pushed</div><div class="line">634827038ea7: Pushed</div><div class="line">8f22c1173848: Pushed</div><div class="line">8191da9e7f9a: Pushed</div><div class="line">173f1156fe76: Pushed</div><div class="line">5b771cc18969: Pushed</div><div class="line">ae16cd6221a3: Pushed</div><div class="line">7dce18002c8d: Pushed</div><div class="line">5f70bf18a086: Pushed</div><div class="line">6f8be37bd578: Pushed</div><div class="line">9f7ab087e6e6: Pushed</div><div class="line">dc109d4b4ccf: Pushed</div><div class="line">a7e1c363defb: Pushed</div><div class="line">latest: digest: sha256:b9ee12c606e3da3554b3f5df9f88364eb8986b1f6fe1ae625542c8e3343e1627 size: 3691</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">如果push的时候报以下错误时：&quot;server gave HTTP response to HTTPS client&quot;</div><div class="line">创建/etc/docker/daemon.json文件，并写入</div><div class="line">[root@ct7 system]# more /etc/docker/daemon.json</div><div class="line">&#123; &quot;insecure-registries&quot;:[&quot;0.0.0.50:5000&quot;] &#125;</div><div class="line">然后重启docker：</div><div class="line">[root@ct7 system]# service docker restart</div></pre></td></tr></table></figure>
 <blockquote>
 <p>6.verify the new image from docker private registry</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">--删除old image</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v1           latest              9095f95a6f9f        18 hours ago        2.57 GB</div><div class="line">[root@ct7 system]# docker rmi 10.224.188.50:5000/hue-v1</div><div class="line">Untagged: 10.224.188.50:5000/hue-v1:latest</div><div class="line">Deleted: sha256:9095f95a6f9fb97de276752db6a5dd44bf279b58cfdf4c723c48090b6ef3a5f5</div><div class="line">Deleted: sha256:8a560d1d95af6e2436ba2ff73125b383bef343e6e6d4ff45c3dc61352342c7c8</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">--查看docker registry images</div><div class="line">[root@ct7 system]# curl http://10.224.188.50:5000/v1/search</div><div class="line">404 page not found</div><div class="line">网上都用这个curl http://10.224.188.50:5000/v1/search,但是报404 page not found，后查证是v1版本的api查看方式，我们现在的版本是v2，所以用如下方法查看：</div><div class="line">curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">[root@ct7 system]# curl -X GET http://10.224.188.50:5000/v2/_catalog</div><div class="line">&#123;&quot;repositories&quot;:[&quot;centos7-python&quot;,&quot;hue-v1&quot;]&#125;</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">-- pull new images</div><div class="line">[root@ct7 system]# docker pull 10.224.188.50:5000/hue-v1</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">10.224.188.50:5000/hue-v2           latest              1905f45f6154        15 hours ago        2.486 GB</div><div class="line">10.224.188.50:5000/hue-v1           latest              8f41bc37f2b4        20 hours ago        2.57 GB</div><div class="line">由于commit方式不会保存mount的数据，所以需要对应用做如下操作</div><div class="line">The commit operation will not include any data contained in volumes mounted inside the container.</div><div class="line">root@3201bbe4b443:/home/tony/hue# scp 10.224.188.58:/storage/software/hue/pseudo-distributed.ini /hue/desktop/conf/pseudo-distributed.ini</div><div class="line">source /etc/profile</div><div class="line">root@3201bbe4b443:/home/tony/hue# /home/tony/hue/start_hue.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">--删除old image</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">0.0.0.50:5000/hue-v1           latest              9095f95a6f9f        18 hours ago        2.57 GB</div><div class="line">[root@ct7 system]# docker rmi 0.0.0.50:5000/hue-v1</div><div class="line">Untagged: 0.0.0.50:5000/hue-v1:latest</div><div class="line">Deleted: sha256:9095f95a6f9fb97de276752db6a5dd44bf279b58cfdf4c723c48090b6ef3a5f5</div><div class="line">Deleted: sha256:8a560d1d95af6e2436ba2ff73125b383bef343e6e6d4ff45c3dc61352342c7c8</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">--查看docker registry images</div><div class="line">[root@ct7 system]# curl http://0.0.0.50:5000/v1/search</div><div class="line">404 page not found</div><div class="line">网上都用这个curl http://0.0.0.50:5000/v1/search,但是报404 page not found，后查证是v1版本的api查看方式，我们现在的版本是v2，所以用如下方法查看：</div><div class="line">curl -X GET http://0.0.0.50:5000/v2/_catalog</div><div class="line">[root@ct7 system]# curl -X GET http://0.0.0.50:5000/v2/_catalog</div><div class="line">&#123;&quot;repositories&quot;:[&quot;centos7-python&quot;,&quot;hue-v1&quot;]&#125;</div><div class="line">——————————————————————————————————————————————————————————————————————————————————————</div><div class="line">-- pull new images</div><div class="line">[root@ct7 system]# docker pull 0.0.0.50:5000/hue-v1</div><div class="line">[root@ct7 system]# docker images</div><div class="line">REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">0.0.0.50:5000/hue-v2           latest              1905f45f6154        15 hours ago        2.486 GB</div><div class="line">0.0.0.50:5000/hue-v1           latest              8f41bc37f2b4        20 hours ago        2.57 GB</div><div class="line">由于commit方式不会保存mount的数据，所以需要对应用做如下操作</div><div class="line">The commit operation will not include any data contained in volumes mounted inside the container.</div><div class="line">root@3201bbe4b443:/home/tony/hue# scp 0.0.0.58:/storage/software/hue/pseudo-distributed.ini /hue/desktop/conf/pseudo-distributed.ini</div><div class="line">source /etc/profile</div><div class="line">root@3201bbe4b443:/home/tony/hue# /home/tony/hue/start_hue.sh</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -666,10 +659,6 @@ Step">
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/10/28/CentOS搭建docker-registry仓库/"
-           data-title="CentOS搭建docker-registry仓库" data-url="http://wangbinbin0326.github.io/2016/10/28/CentOS搭建docker-registry仓库/">
-      </div>
     
   </div>
 
@@ -1018,30 +1007,9 @@ Step">
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wangbinbin0326"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 
