@@ -4,6 +4,186 @@
   
     
     <entry>
+      <title><![CDATA[Linux杀毒软件-ClamAV]]></title>
+      <url>http://wangbinbin0326.github.io/2017/11/08/Linux%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6-ClamAV/</url>
+      <content type="html"><![CDATA[<h2 id="第一篇-Install-ClamAV"><a href="#第一篇-Install-ClamAV" class="headerlink" title="第一篇 Install ClamAV"></a>第一篇 Install ClamAV</h2><p><img src="https://wangbinbin0326.github.io/images/linux/clam01.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>ClamAV® is an open source (GPL) anti-virus engine used in a variety of situations including email scanning, web scanning, and end point security. It provides a number of utilities including a flexible and scalable multi-threaded daemon, a command line scanner and an advanced tool for automatic database updates.</p>
+</blockquote>
+<hr>
+<h3 id="1-Install-and-Configure-ClamAV-on-CentOS-7"><a href="#1-Install-and-Configure-ClamAV-on-CentOS-7" class="headerlink" title="1. Install and Configure ClamAV on CentOS 7"></a>1. Install and Configure ClamAV on CentOS 7</h3><pre><code>yum install epel-release
+
+yum install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+</code></pre><a id="more"></a>
+<h3 id="2-Disable-SELinux-for-ClamAV"><a href="#2-Disable-SELinux-for-ClamAV" class="headerlink" title="2. Disable SELinux for ClamAV"></a>2. Disable SELinux for ClamAV</h3><pre><code>[root@ct7 system]# more /etc/selinux/config
+SELINUX=disabled
+</code></pre><h3 id="3-Configuration-of-Clam-daemon"><a href="#3-Configuration-of-Clam-daemon" class="headerlink" title="3. Configuration of Clam daemon"></a>3. Configuration of Clam daemon</h3><pre><code>cp /usr/share/clamav/template/clamd.conf /etc/clamd.d/clamd.conf
+sed -i ‘/^Example/d’ /etc/clamd.d/clamd.conf
+
+mkdir -p /var/run/clamd.servce/
+chown clamscan:clamscan clamd.service
+
+vi /etc/clamd.d/clamd.conf
+User clamscan
+LocalSocket /var/run/clamd.servce/clamd.sock
+</code></pre><h3 id="4-Configuration-of-Clam-scan-daemon"><a href="#4-Configuration-of-Clam-scan-daemon" class="headerlink" title="4. Configuration of Clam scan daemon"></a>4. Configuration of Clam scan daemon</h3><pre><code>cp /etc/clamd.d/scan.conf /etc/clamd.d/scan.conf.backup
+sed -i -e &quot;s/^Example/#Example/&quot; /etc/clamd.d/scan.conf
+
+vi /etc/clamd.d/scan.conf
+User clamscan
+LocalSocket /var/run/clamd.scan/clamd.sock
+</code></pre><h3 id="5-Enable-Freshclam"><a href="#5-Enable-Freshclam" class="headerlink" title="5. Enable Freshclam"></a>5. Enable Freshclam</h3><blockquote>
+<p>Freshclam helps with keeping the database of ClamAV up-to-date. First delete the related “Example” line from /etc/freshclam.conf.</p>
+</blockquote>
+<pre><code>cp /etc/freshclam.conf /etc/freshclam.conf.bak
+sed -i ‘/^Example/d’ /etc/freshclam.conf
+</code></pre><h3 id="6-Missing-systemd-service-file"><a href="#6-Missing-systemd-service-file" class="headerlink" title="6. Missing systemd service file"></a>6. Missing systemd service file</h3><blockquote>
+<p>We didn’t get a systemd service file, so creating a quick file here. The process should be forking itself and start freshclam in daemon mode. In this case we configure it to check 4 times a day for new files.</p>
+<p>Create a new file /usr/lib/systemd/system/clam-freshclam.service</p>
+</blockquote>
+<pre><code># Run the freshclam as daemon
+[Unit]
+Description = freshclam scanner
+After = network.target
+
+[Service]
+Type = forking
+ExecStart = /usr/bin/freshclam -d -c 4
+Restart = on-failure
+PrivateTmp = true
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><blockquote>
+<p>Now enable and start the service.</p>
+</blockquote>
+<pre><code>systemctl enable clam-freshclam.service
+systemctl start clam-freshclam.service
+
+[root@ct7 system]# systemctl status clam-freshclam.service
+● clam-freshclam.service - freshclam scanner
+   Loaded: loaded (/usr/lib/systemd/system/clam-freshclam.service; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2017-11-08 02:31:36 GMT; 3h 33min ago
+ Main PID: 26033 (freshclam)
+   Memory: 1.3M
+   CGroup: /system.slice/clam-freshclam.service
+           └─26033 /usr/bin/freshclam -d -c 4
+
+Nov 08 02:31:36 ct7.qa.webex.com systemd[1]: Starting freshclam scanner...
+Nov 08 02:31:36 ct7.qa.webex.com freshclam[26033]: freshclam daemon 0.99.2 (OS: linux-gnu, ARCH: x86_64, CPU: x86_64)
+Nov 08 02:31:36 ct7.qa.webex.com freshclam[26033]: ClamAV update process started at Wed Nov  8 02:31:36 2017
+Nov 08 02:31:36 ct7.qa.webex.com systemd[1]: Started freshclam scanner.
+Nov 08 02:31:37 ct7.qa.webex.com freshclam[26033]: main.cld is up to date (version: 58, sigs: 4566249, f-level: 60, builder: sigmgr)
+Nov 08 02:31:37 ct7.qa.webex.com freshclam[26033]: daily.cvd is up to date (version: 24023, sigs: 1774015, f-level: 63, builder: neo)
+Nov 08 02:31:37 ct7.qa.webex.com freshclam[26033]: bytecode.cld is up to date (version: 318, sigs: 75, f-level: 63, builder: raynman)
+Nov 08 02:31:37 ct7.qa.webex.com freshclam[26033]: --------------------------------------
+</code></pre><h3 id="7-Missing-systemd-service-file"><a href="#7-Missing-systemd-service-file" class="headerlink" title="7. Missing systemd service file"></a>7. Missing systemd service file</h3><blockquote>
+<p>By default, the service files seem to be messy and not working.</p>
+</blockquote>
+<pre><code>#These are the files bundled:
+
+[root@centos7 system]# ls -l /usr/lib/systemd/system/clam*
+-rw-r--r--. 1 root root 136 Apr 29 20:38 /usr/lib/systemd/system/clamd@scan.service
+-rw-r--r--. 1 root root 231 Apr 29 20:38 /usr/lib/systemd/system/clamd@.service
+
+#When enabling the clamd service, we would see something like this:
+
+[root@centos7 system]# systemctl enable /usr/lib/systemd/system/clamd@.service
+ Failed to issue method call: Unit /usr/lib/systemd/system/clamd@.service does not exist.
+
+#So let’s fix it. First rename the /usr/lib/systemd/system/clamd@.service file.
+#Rename the clamd@ file.
+
+mv /usr/lib/systemd/system/clamd@.service /usr/lib/systemd/system/clamd.service
+
+#Now we have to change the clamd@scan service as well, as it refers to a non-existing file now. Change this line in /usr/lib/systemd/system/clamd@scan.service and remove the @ sign.
+[root@ct7 system]# more  /usr/lib/systemd/system/clamd@scan.service
+.include /lib/systemd/system/clamd.service
+
+#Next step is changing the clamd service file /usr/lib/systemd/system/clamd.service
+[root@ct7 system]# more  /usr/lib/systemd/system/clamd@scan.service
+.include /lib/systemd/system/clamd.service
+
+[Unit]
+Description = Generic clamav scanner daemon
+
+[Install]
+WantedBy = multi-user.target
+[root@ct7 system]# more /usr/lib/systemd/system/clamd.service
+[Unit]
+Description = clamd scanner daemon
+After = syslog.target nss-lookup.target network.target
+
+[Service]
+Type = simple
+ExecStart = /usr/sbin/clamd -c /etc/clamd.d/clamd.conf --foreground=yes
+Restart = on-failure
+PrivateTmp = true
+
+[Install]
+WantedBy=multi-user.target
+
+#Start all services.
+cd /usr/lib/systemd/system
+[root@centos7 system]# systemctl enable clamd.service
+[root@centos7 system]# systemctl enable clamd@scan.service
+[root@centos7 system]# systemctl start clamd.service
+[root@centos7 system]# systemctl start clamd@scan.service
+
+#Check the status
+[root@ct7 system]# systemctl status clamd.service
+● clamd.service - clamd scanner daemon
+   Loaded: loaded (/usr/lib/systemd/system/clamd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2017-11-08 05:31:45 GMT; 38min ago
+ Main PID: 32202 (clamd)
+   Memory: 510.1M
+   CGroup: /system.slice/clamd.service
+           └─32202 /usr/sbin/clamd -c /etc/clamd.d/clamd.conf --foreground=yes
+
+Nov 08 05:31:58 ct7.qa.webex.com clamd[32202]: HTML support enabled.
+Nov 08 05:31:58 ct7.qa.webex.com clamd[32202]: XMLDOCS support enabled.
+Nov 08 05:31:58 ct7.qa.webex.com clamd[32202]: HWP3 support enabled.
+Nov 08 05:31:58 ct7.qa.webex.com clamd[32202]: Self checking every 600 seconds.
+Nov 08 05:42:00 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+Nov 08 05:42:00 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+Nov 08 05:52:03 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+Nov 08 05:52:03 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+Nov 08 06:02:11 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+Nov 08 06:02:11 ct7.qa.webex.com clamd[32202]: SelfCheck: Database status OK.
+
+[root@ct7 system]# systemctl status clamd@scan.service
+● clamd@scan.service - Generic clamav scanner daemon
+   Loaded: loaded (/usr/lib/systemd/system/clamd@scan.service; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2017-11-08 06:11:17 GMT; 4s ago
+ Main PID: 1622 (clamd)
+   CGroup: /system.slice/system-clamd.slice/clamd@scan.service
+           └─1622 /usr/sbin/clamd -c /etc/clamd.d/clamd.conf --foreground=yes
+
+Nov 08 06:11:17 ct7.qa.webex.com systemd[1]: Started Generic clamav scanner daemon.
+Nov 08 06:11:17 ct7.qa.webex.com systemd[1]: Starting Generic clamav scanner daemon...
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Received 0 file descriptor(s) from systemd.
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: clamd daemon 0.99.2 (OS: linux-gnu, ARCH: x86_64, CPU: x86_64)
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Running as user clamscan (UID 387, GID 386)
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Log file size limited to 1048576 bytes.
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Reading databases from /var/lib/clamav
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Not loading PUA signatures.
+Nov 08 06:11:17 ct7.qa.webex.com clamd[1622]: Bytecode: Security mode set to &quot;TrustSigned&quot;.
+</code></pre><h3 id="8-if-not-work-check-this-log"><a href="#8-if-not-work-check-this-log" class="headerlink" title="8. if not work, check this log"></a>8. if not work, check this log</h3><pre><code>[root@ct7 clamd.service]# tail -f /var/log/messages
+Nov  8 06:13:22 ct7 systemd: clamd@scan.service holdoff time over, scheduling restart.
+Nov  8 06:13:22 ct7 systemd: Started Generic clamav scanner daemon.
+Nov  8 06:13:22 ct7 systemd: Starting Generic clamav scanner daemon...
+Nov  8 06:13:22 ct7 clamd[1721]: Received 0 file descriptor(s) from systemd.
+Nov  8 06:13:22 ct7 clamd[1721]: clamd daemon 0.99.2 (OS: linux-gnu, ARCH: x86_64, CPU: x86_64)
+Nov  8 06:13:22 ct7 clamd[1721]: Running as user clamscan (UID 387, GID 386)
+Nov  8 06:13:22 ct7 clamd[1721]: Log file size limited to 1048576 bytes.
+Nov  8 06:13:22 ct7 clamd[1721]: Reading databases from /var/lib/clamav
+Nov  8 06:13:22 ct7 clamd[1721]: Not loading PUA signatures.
+Nov  8 06:13:22 ct7 clamd[1721]: Bytecode: Security mode set to &quot;TrustSigned&quot;.
+Nov  8 06:13:33 ct7 clamd[1721]: Loaded 6335039 signatures.
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Online-Redefinition在线重定义对象]]></title>
       <url>http://wangbinbin0326.github.io/2017/10/25/Online-Redefinition%E5%9C%A8%E7%BA%BF%E9%87%8D%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1/</url>
       <content type="html"><![CDATA[<p>##第四. Online Redefinition在线重定义对象</p>

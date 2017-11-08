@@ -465,6 +465,120 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/28/CentOS搭建docker-registry仓库/" itemprop="url">
+                  CentOS搭建docker-registry仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T14:03:20+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="在CentOS上搭建docker私服"><a href="#在CentOS上搭建docker私服" class="headerlink" title="在CentOS上搭建docker私服"></a>在CentOS上搭建docker私服</h2><blockquote>
+<p>环境：</p>
+<ul>
+<li><p>IP:<br>0.0.0.50(Docker Registry Server)<br>0.0.0.59(Docker client )</p>
+</li>
+<li><p>OS: CentOS Linux release 7.2.1511 (Core)</p>
+</li>
+<li><p>Docker Version: Docker version 1.12.0, build 8eab29e</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Step 1: 以下操作运行在0.0.0.50(Docker Registry Server)上</p>
+<p>安装docker-registry, 运行以下命令<br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+<p>安装，启动好之后，运行访问这个URL来验证是否成功：<br><code>[root@ct7 system]# curl http://0.0.0.50:5000/v1/_ping
+404 page not found</code></p>
+<p>如果有如下返回值则代表成功，无返回则说明进程没有启动，把所有的container都删除然后在重新启动<br><code>docker rm $(docker ps -a -q)</code><br><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/28/CentOS搭建docker-registry仓库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/25/python实现递归的汉诺塔/" itemprop="url">
                   python实现递归的汉诺塔
                 </a>
@@ -1324,7 +1438,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
