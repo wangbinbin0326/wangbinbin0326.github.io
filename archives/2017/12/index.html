@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle Data Guard," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,19 +86,15 @@
 
 
 
-<meta name="description" content="Renaming a Datafile in the Primary Database
-When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Oracle-Data-Guard之物理备库重命名数据文件">
-<meta property="og:url" content="http://wangbinbin0326.github.io/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/index.html">
+<meta name="description" content="终会有属于自己的一片天空！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tony Blog">
+<meta property="og:url" content="http://wangbinbin0326.github.io/archives/2017/12/index.html">
 <meta property="og:site_name" content="Tony Blog">
-<meta property="og:description" content="Renaming a Datafile in the Primary Database
-When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
-<meta property="og:updated_time" content="2017-03-27T03:01:45.055Z">
+<meta property="og:description" content="终会有属于自己的一片天空！">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle-Data-Guard之物理备库重命名数据文件">
-<meta name="twitter:description" content="Renaming a Datafile in the Primary Database
-When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the sa">
+<meta name="twitter:title" content="Tony Blog">
+<meta name="twitter:description" content="终会有属于自己的一片天空！">
 
 
 
@@ -119,10 +115,10 @@ When you rename one or more datafiles in the primary database, the change is not
 
 
 
-  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/03/27/Oracle-Data-Guard之物理备库重命名数据文件/"/>
+  <link rel="canonical" href="http://wangbinbin0326.github.io/archives/2017/12/"/>
 
 
-  <title> Oracle-Data-Guard之物理备库重命名数据文件 | Tony Blog </title>
+  <title> 归档 | Tony Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -162,7 +158,7 @@ When you rename one or more datafiles in the primary database, the change is not
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -445,147 +441,65 @@ When you rename one or more datafiles in the primary database, the change is not
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+       
+      
+      OK! 目前共计 39 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
+      
+      
+      
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
+      
         
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+        </div>
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2017/12/04/zabbix-step-by-step/" itemprop="url">
               
-                Oracle-Data-Guard之物理备库重命名数据文件
+                <span itemprop="name">zabbix-step-by-step</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T10:50:33+08:00" content="2017-03-27">
-              2017-03-27
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-12-04T10:48:40+08:00"
+              content="2017-12-04" >
+          12-04
+        </time>
+      </div>
 
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-              &nbsp; | &nbsp;
-              <span class="page-pv"><i class="fa fa-file-o"></i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Renaming-a-Datafile-in-the-Primary-Database"><a href="#Renaming-a-Datafile-in-the-Primary-Database" class="headerlink" title="Renaming a Datafile in the Primary Database"></a>Renaming a Datafile in the Primary Database</h3><blockquote>
-<p>When you rename one or more datafiles in the primary database, the change is not propagated to the standby database. Therefore, if you want to rename the same datafiles on the standby database, you must manually make the equivalent modifications on the standby database because the modifications are not performed automatically, even if the <code>STANDBY_FILE_MANAGEMENT</code> initialization parameter is set to <code>AUTO</code>.</p>
-<p><strong>On the Primary</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 offline;</div><div class="line"></div><div class="line">Tablespace altered.</div><div class="line"></div><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line">SQL&gt; show parameter STANDBY_FILE_MANAGEMENT</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">standby_file_management              string      MANUAL</div><div class="line"></div><div class="line"></div><div class="line">[oracle@hzvscmdb mmpdb3]$ mv /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 rename datafile</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;</div><div class="line"></div><div class="line">Tablespace altered.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- ------------------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf</div><div class="line"></div><div class="line">SQL&gt; alter system switch logfile;</div><div class="line"></div><div class="line">System altered.</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<blockquote>
-<p><strong>On the Standby</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf</div><div class="line"></div><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</div><div class="line"></div><div class="line">System altered.</div><div class="line"></div><div class="line">SQL&gt; sho parameter STANDBY_FILE_MANAGEMENT</div><div class="line"></div><div class="line">NAME                                 TYPE        VALUE</div><div class="line">------------------------------------ ----------- ------------------------------</div><div class="line">standby_file_management              string      MANUAL</div><div class="line"></div><div class="line">SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line">SQL&gt; shut immediate</div><div class="line">ORA-01109: database not open</div><div class="line"></div><div class="line">Database dismounted.</div><div class="line">ORACLE instance shut down.</div><div class="line">SQL&gt;</div><div class="line"></div><div class="line">SQL&gt; alter tablespace tab05 rename datafile</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to</div><div class="line">  &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;  2    3</div><div class="line">alter tablespace tab05 rename datafile</div><div class="line">*</div><div class="line">ERROR at line 1:</div><div class="line">ORA-01109: database not open</div><div class="line"></div><div class="line"></div><div class="line">SQL&gt; alter database rename file &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05.dbf&apos; to &apos;/home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.dbf&apos;;</div><div class="line"></div><div class="line">Database altered.</div><div class="line"></div><div class="line">SQL&gt; select FILE#, NAME from v$datafile where file# = 9;</div><div class="line"></div><div class="line">     FILE# NAME</div><div class="line">---------- --------------------------------------------------</div><div class="line">         9 /home/oracle/app/oracle/oradata/mmpdb3/tab05_tbs.d</div><div class="line">           bf</div><div class="line"></div><div class="line">SQL&gt; ALTER DATABASE RECOVER MANAGED STANDBY DATABASE</div><div class="line">  2&gt; DISCONNECT FROM SESSION;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>On the Primary and Standby</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SQL&gt; ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;</div><div class="line"></div><div class="line">System altered.</div></pre></td></tr></table></figure>
-<blockquote>
-<p>If you do not rename the corresponding datafile at the standby system, and then try to refresh the standby database control file, the standby database will attempt to use the renamed datafile, but it will not find it. Consequently, you will see error messages similar to the following in the alert log:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ORA-00283: recovery session canceled due to errors</div><div class="line">ORA-01157: cannot identify/lock datafile 4 - see DBWR trace file</div><div class="line">ORA-01110: datafile 4: &apos;/Disk1/oracle/oradata/payroll/tbs_x.dbf&apos;</div></pre></td></tr></table></figure>
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Oracle-Data-Guard/" rel="tag">#Oracle Data Guard</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/24/Oracle-Data-Guard之物理备库创建表空间/" rel="next" title="Oracle-Data-Guard之物理备库创建表空间">
-                <i class="fa fa-chevron-left"></i> Oracle-Data-Guard之物理备库创建表空间
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/27/Mysql-逻辑架构/" rel="prev" title="Mysql-逻辑架构">
-                Mysql-逻辑架构 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -593,10 +507,6 @@ When you rename one or more datafiles in the primary database, the change is not
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -616,17 +526,8 @@ When you rename one or more datafiles in the primary database, the change is not
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
@@ -799,17 +700,6 @@ When you rename one or more datafiles in the primary database, the change is not
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Renaming-a-Datafile-in-the-Primary-Database"><span class="nav-number">1.</span> <span class="nav-text">Renaming a Datafile in the Primary Database</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
 
     </div>
   </aside>
@@ -928,9 +818,11 @@ When you rename one or more datafiles in the primary database, the change is not
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   

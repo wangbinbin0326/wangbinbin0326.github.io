@@ -1,0 +1,1383 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google49b027d4069d65c6.html" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="zabbix," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Oracle 监控Tags：Oracle
+
+第一章 zabbix介绍
+1.1 zabbix 安装
+OS: CentOS7, zbbix3.0
+
+setp 1. Installing repository configuration package
+
+
+1rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix-step-by-step">
+<meta property="og:url" content="http://wangbinbin0326.github.io/2017/12/04/zabbix-step-by-step/index.html">
+<meta property="og:site_name" content="Tony Blog">
+<meta property="og:description" content="Oracle 监控Tags：Oracle
+
+第一章 zabbix介绍
+1.1 zabbix 安装
+OS: CentOS7, zbbix3.0
+
+setp 1. Installing repository configuration package
+
+
+1rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-3.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-7.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-4.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-5.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-6.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-8.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-9.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-actions-1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-actions-2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-actions-3.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-actions-4.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network3.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network4.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network5.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-network6.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-mysql1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-mysql2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/database/oracle/Orabbix_architecture.png">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/database/oracle/Orabbix01.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/database/oracle/Orabbix02.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/database/oracle/Orabbix03.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-1.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-3.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-2.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-4.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-pyora-5.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/zabbix-orauser01.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/zabbix-orauser02.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/zabbix-orauser03.JPG">
+<meta property="og:image" content="https://wangbinbin0326.github.io/images/software/zabbix-orauser04.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-sender-01.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-sender-02.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-sender-03.JPG">
+<meta property="og:image" content="http://wangbinbin0326.github.io/images/software/zabbix-sender-04.JPG">
+<meta property="og:updated_time" content="2017-12-04T02:52:29.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zabbix-step-by-step">
+<meta name="twitter:description" content="Oracle 监控Tags：Oracle
+
+第一章 zabbix介绍
+1.1 zabbix 安装
+OS: CentOS7, zbbix3.0
+
+setp 1. Installing repository configuration package
+
+
+1rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3">
+<meta name="twitter:image" content="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-1.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangbinbin0326.github.io/2017/12/04/zabbix-step-by-step/"/>
+
+
+  <title> zabbix-step-by-step | Tony Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '87669906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3855b850d8647c4946169eaa4c43202b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tony Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">迈小步，不停步</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                zabbix-step-by-step
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-04T10:48:40+08:00" content="2017-12-04">
+              2017-12-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Oracle-监控"><a href="#Oracle-监控" class="headerlink" title="Oracle 监控"></a>Oracle 监控</h1><p>Tags：Oracle</p>
+<hr>
+<h2 id="第一章-zabbix介绍"><a href="#第一章-zabbix介绍" class="headerlink" title="第一章 zabbix介绍"></a>第一章 zabbix介绍</h2><hr>
+<h3 id="1-1-zabbix-安装"><a href="#1-1-zabbix-安装" class="headerlink" title="1.1 zabbix 安装"></a>1.1 zabbix 安装</h3><blockquote>
+<p>OS: CentOS7, zbbix3.0</p>
+<ul>
+<li>setp 1. Installing repository configuration package</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>setp 2. Installing Zabbix packages</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-server-mysql zabbix-web-mysql zabbix-agent</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<ul>
+<li>setp 3. Install mysql database</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">1. download the repo file from this URL</div><div class="line">http://dev.mysql.com/downloads/repo/yum/</div><div class="line">[root@ct7 zabbix]# ll</div><div class="line">total 12</div><div class="line">-rwxr--r--. 1 root root 9116 Aug 24 14:29 mysql57-community-release-el7-8.noarch.rpm</div><div class="line"></div><div class="line">2. Install the downloaded release package with the following command</div><div class="line">[root@ct7 zabbix]# yum localinstall mysql57-community-release-el7-8.noarch.rpm</div><div class="line"></div><div class="line">3. check repo file</div><div class="line">[root@ct7 zabbix]# yum list</div><div class="line">[root@ct7 zabbix]# yum repolist all | grep mysql</div><div class="line"></div><div class="line">4. remove the mariadb</div><div class="line">[root@ct7 yum.repos.d]# yum erase mariadb</div><div class="line">Removing:</div><div class="line"> mariadb</div><div class="line">Removing for dependencies:</div><div class="line"> akonadi-mysql</div><div class="line"> mariadb-server</div><div class="line"> </div><div class="line">5. Install MySQL</div><div class="line">[root@ct7 zabbix]# yum install mysql-community-server</div><div class="line">Installing:</div><div class="line"> mysql-community-devel </div><div class="line"> mysql-community-libs</div><div class="line"> mysql-community-libs-compat</div><div class="line"> mysql-community-server</div><div class="line">Installing for dependencies:</div><div class="line"> mysql-community-client</div><div class="line"> mysql-community-common</div><div class="line">Updating for dependencies:</div><div class="line"> qt </div><div class="line"> qt-devel</div><div class="line"> qt-mysql </div><div class="line"> qt-odbc </div><div class="line"> qt-postgresql </div><div class="line"> qt-x11</div><div class="line"> </div><div class="line">6. Starting the MySQL Server</div><div class="line">[root@ct7 yum.repos.d]# service mysqld start</div><div class="line">Redirecting to /bin/systemctl start  mysqld.service</div><div class="line">[root@ct7 yum.repos.d]# service mysqld status</div><div class="line">Redirecting to /bin/systemctl status  mysqld.service</div><div class="line">● mysqld.service - MySQL Server</div><div class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</div><div class="line">   Active: active (running) since Wed 2016-08-24 16:59:12 CST; 22s ago</div><div class="line">  Process: 17914 ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid $MYSQLD_OPTS (code=exited, status=0/SUCCESS)</div><div class="line">  Process: 17790 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)</div><div class="line"> Main PID: 17916 (mysqld)</div><div class="line">   Memory: 309.1M</div><div class="line">   CGroup: /system.slice/mysqld.service</div><div class="line">           └─17916 /usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid</div><div class="line">Aug 24 16:59:06 ct7.qa.webex.com systemd[1]: Starting MySQL Server...</div><div class="line">Aug 24 16:59:12 ct7.qa.webex.com systemd[1]: Started MySQL Server.</div><div class="line"></div><div class="line">7. modify the mysql password</div><div class="line">A superuser account &apos;root&apos;@localhost is created. A password for the superuser is set and stored in the error log file. To reveal it, use the following command:</div><div class="line">[root@ct7 yum.repos.d]# grep &apos;temporary password&apos; /var/log/mysqld.log</div><div class="line">2016-08-24T08:59:08.455018Z 1 [Note] A temporary password is generated for root@localhost: thYxs8wwD!)W</div><div class="line">[root@ct7 yum.repos.d]# mysql -uroot -p</div><div class="line">Enter password:thYxs8wwD!)W</div><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 4</div><div class="line">Server version: 5.7.14</div><div class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div><div class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;pass&apos;;</div><div class="line">ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</div><div class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;CCM%lab123&apos;;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line">mysql&gt; grant all privileges on zabbix.* to zabbix@localhost identified by &apos;Pass1234!&apos;;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>setp 4. Creating initial database</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zcat create.sql.gz | mysql -uroot -p zabbix</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>setp 5. Starting Zabbix server process</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># vi /etc/zabbix/zabbix_server.conf</div><div class="line">DBHost=localhost</div><div class="line">DBName=zabbix</div><div class="line">DBUser=zabbix</div><div class="line">DBPassword=Pass1234!</div><div class="line"></div><div class="line"># vi /etc/httpd/conf.d/zabbix.conf</div><div class="line">php_value max_execution_time 300</div><div class="line">php_value memory_limit 128M</div><div class="line">php_value post_max_size 16M</div><div class="line">php_value upload_max_filesize 2M</div><div class="line">php_value max_input_time 300</div><div class="line">php_value always_populate_raw_post_data -1</div><div class="line">php_value date.timezone GMT</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>setp 6. troubleshooting</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Issue 1: Zabbix server is not running: the information displayed may not be current</div><div class="line"></div><div class="line">solution: Disable the Selinux</div><div class="line"></div><div class="line">[root@ct7 selinux]# vi /etc/selinux/config</div><div class="line">SELINUX=disabled</div><div class="line"></div><div class="line">[root@ct7 selinux]# setenforce 0</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="1-2-zabbix-simple-check"><a href="#1-2-zabbix-simple-check" class="headerlink" title="1.2 zabbix simple check"></a>1.2 zabbix simple check</h3><blockquote>
+<p>不需要安装zabbix agent， 来监控mysql service 3306 port是否work。</p>
+<ul>
+<li>setp 1. configuration –&gt; Templates –&gt; Create Template</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-1.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>setp 2. Application (app-mysql-simple-check)</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-2.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>setp 3. Item (mysql-simple-check-runing)</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-3.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-7.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>setp 4. Trigger (mysql-simple-check-down)</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-4.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-5.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-6.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>setp 5. host 绑定 template</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-8.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-simple-check-9.JPG" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="1-3-zabbix-actions-重启服务"><a href="#1-3-zabbix-actions-重启服务" class="headerlink" title="1.3 zabbix actions 重启服务"></a>1.3 zabbix actions 重启服务</h3><blockquote>
+<p><strong>Remote commands</strong></p>
+<ul>
+<li>通过remote commands 的 <code>ssh</code>来实现自动重启服务</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-actions-1.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-actions-2.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>通过remote commands 的 <code>Custom script</code>来实现自动重启服务</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#install zabbix-agent, Make sure that the EnableRemoteCommands parameter is set to 1 and uncommented. Restart agent daemon if changing this parameter.</div><div class="line"></div><div class="line">[root@mydb2 ~]# more /etc/zabbix/zabbix_agentd.conf</div><div class="line">EnableRemoteCommands = 1</div><div class="line"></div><div class="line">[root@mydb2 ~]# service zabbix-agent restart</div><div class="line"></div><div class="line">#Access permissions: Make sure that the &apos;zabbix&apos; user has execute permissions for configured commands. One may be interested in using sudo to give access to privileged commands. To configure access, execute as root:</div><div class="line"></div><div class="line">[root@mydb2 ~]# visudo</div><div class="line"># allows &apos;zabbix&apos; user to run all commands without password.</div><div class="line">zabbix ALL=NOPASSWD: ALL</div><div class="line"></div><div class="line"># allows &apos;zabbix&apos; user to restart apache without password.</div><div class="line">zabbix ALL=NOPASSWD: /etc/init.d/apache restart</div><div class="line"></div><div class="line">#configuring a new action in Configuration→Actions:</div><div class="line">In the Operations tab, select the Remote command operation type</div><div class="line">Select the remote command type (Custom script)</div><div class="line">Enter the remote command</div><div class="line"></div><div class="line">sudo /etc/init.d/sshd restart</div><div class="line"></div><div class="line">Note the use of sudo - Zabbix user does not have permissions to restart system services by default. See below for hints on how to configure sudo.</div></pre></td></tr></table></figure>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-actions-3.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-actions-4.JPG" alt="此处输入图片的描述"></p>
+<hr>
+<h2 id="第二章-zabbix-agent"><a href="#第二章-zabbix-agent" class="headerlink" title="第二章 zabbix agent"></a>第二章 zabbix agent</h2><h3 id="2-1-安装zabbix-agent"><a href="#2-1-安装zabbix-agent" class="headerlink" title="2.1 安装zabbix agent"></a>2.1 安装zabbix agent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">zabbix server: xx.xx.188.58</div><div class="line"></div><div class="line">zabbix client agent: xx.xx.188.188</div><div class="line"></div><div class="line">wget  http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-agent-2.2.11-1.el6.x86_64.rpm</div><div class="line">wget  http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-2.2.11-1.el6.x86_64.rpm</div><div class="line"></div><div class="line">rpm -ivh zabbix-2.2.11-1.el6.x86_64.rpm zabbix-agent-2.2.11-1.el6.x86_64.rpm</div><div class="line"></div><div class="line">vim /etc/zabbix/zabbix_agentd.conf</div><div class="line">### Option: Server</div><div class="line">#       List of comma delimited IP addresses (or hostnames) of Zabbix servers.</div><div class="line">#       Incoming connections will be accepted only from the hosts listed here.</div><div class="line">#       If IPv6 support is enabled then &apos;127.0.0.1&apos;, &apos;::127.0.0.1&apos;, &apos;::ffff:127.0.0.1&apos; are treated equally.</div><div class="line">#</div><div class="line"># Mandatory: no</div><div class="line"># Default:</div><div class="line"># Server=</div><div class="line"></div><div class="line">Server=xx.xx.188.58</div><div class="line"></div><div class="line">### Option: Hostname</div><div class="line">#       Unique, case sensitive hostname.</div><div class="line">#       Required for active checks and must match hostname as configured on the server.</div><div class="line">#       Value is acquired from HostnameItem if undefined.</div><div class="line">#</div><div class="line"># Mandatory: no</div><div class="line"># Default:</div><div class="line"># Hostname=</div><div class="line"></div><div class="line">Hostname=xx.xx.188.58</div><div class="line"></div><div class="line">service zabbix-agent status</div><div class="line">service zabbix-agent stop</div><div class="line">service zabbix-agent start</div></pre></td></tr></table></figure>
+<h3 id="2-2-zabbix监控server网络流量"><a href="#2-2-zabbix监控server网络流量" class="headerlink" title="2.2 zabbix监控server网络流量"></a>2.2 zabbix监控server网络流量</h3><blockquote>
+<p>前提：被监控的server 需要安装 Zabbix agent</p>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network1.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network2.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network3.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network4.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network5.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-network6.JPG" alt="此处输入图片的描述"></p>
+<h2 id="第三章-zabbix监控MySQL"><a href="#第三章-zabbix监控MySQL" class="headerlink" title="第三章 zabbix监控MySQL"></a>第三章 zabbix监控MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line">####################################################################################################</div><div class="line">####以下步骤是mysql client 运行</div><div class="line">step 1, 安装zabbix-agent</div><div class="line">[root@mtgdb yum.repos.d]# yum install openssl</div><div class="line"></div><div class="line">Updating:</div><div class="line"> openssl</div><div class="line">Installing for dependencies:</div><div class="line"> make</div><div class="line"></div><div class="line">[root@mtgdb yum.repos.d]# yum install zabbix-agent</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">step 2, 查看zabbix_agentd.conf文件，检索Include</div><div class="line">[root@ct7 zabbix]# grep Include /etc/zabbix/zabbix_agentd.conf</div><div class="line">### Option: Include</div><div class="line"># Include=</div><div class="line">Include=/etc/zabbix/zabbix_agentd.d/</div><div class="line"># Include=/usr/local/etc/zabbix_agentd.userparams.conf</div><div class="line"># Include=/usr/local/etc/zabbix_agentd.conf.d/</div><div class="line"># Include=/usr/local/etc/zabbix_agentd.conf.d/*.conf</div><div class="line"></div><div class="line">[root@ct7 zabbix]# ll /etc/zabbix/zabbix_agentd.d/</div><div class="line">total 4</div><div class="line">-rw-r--r--. 1 root root 1531 Aug 25 17:36 userparameter_mysql.conf</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">step 3, 查看userparameter_mysql.conf文件， 的HOME</div><div class="line">[root@ct7 zabbix_agentd.d]# ls</div><div class="line">userparameter_mysql.conf</div><div class="line">[root@ct7 zabbix_agentd.d]# more userparameter_mysql.conf</div><div class="line"># For all the following commands HOME should be set to the directory that has .my.cnf file with password information.</div><div class="line"></div><div class="line"># Flexible parameter to grab global variables. On the frontend side, use keys like mysql.status[Com_insert].</div><div class="line"># Key syntax is mysql.status[variable].</div><div class="line">UserParameter=mysql.status[*],echo &quot;show global status where Variable_name=&apos;$1&apos;;&quot; | HOME=/var/lib/zabbix mysql -N | awk &apos;&#123;print $$2&#125;&apos;</div><div class="line"></div><div class="line"># Flexible parameter to determine database or table size. On the frontend side, use keys like mysql.size[zabbix,history,data].</div><div class="line"># Key syntax is mysql.size[&lt;database&gt;,&lt;table&gt;,&lt;type&gt;].</div><div class="line"># Database may be a database name or &quot;all&quot;. Default is &quot;all&quot;.</div><div class="line"># Table may be a table name or &quot;all&quot;. Default is &quot;all&quot;.</div><div class="line"># Type may be &quot;data&quot;, &quot;index&quot;, &quot;free&quot; or &quot;both&quot;. Both is a sum of data and index. Default is &quot;both&quot;.</div><div class="line"># Database is mandatory if a table is specified. Type may be specified always.</div><div class="line"># Returns value in bytes.</div><div class="line"># &apos;sum&apos; on data_length or index_length alone needed when we are getting this information for whole database instead of a single table</div><div class="line">UserParameter=mysql.size[*],bash -c &apos;echo &quot;select sum($(case &quot;$3&quot; in both|&quot;&quot;) echo &quot;data_length+index_length&quot;;; data|index) echo &quot;$3_length&quot;;; free) echo &quot;data_free&quot;;; esac)) from informa</div><div class="line">tion_schema.tables$([[ &quot;$1&quot; = &quot;all&quot; || ! &quot;$1&quot; ]] || echo &quot; where table_schema=\&quot;$1\&quot;&quot;)$([[ &quot;$2&quot; = &quot;all&quot; || ! &quot;$2&quot; ]] || echo &quot;and table_name=\&quot;$2\&quot;&quot;);&quot; | HOME=/var/lib/zabbix mysql -N&apos;</div><div class="line"></div><div class="line">UserParameter=mysql.ping,HOME=/var/lib/zabbix mysqladmin ping | grep -c alive</div><div class="line">UserParameter=mysql.version,mysql -V</div><div class="line"></div><div class="line">[root@mtgdb zabbix_agentd.d]# cd /var/lib/</div><div class="line"></div><div class="line">[root@mtgdb lib]# mkdir zabbix</div><div class="line"></div><div class="line">[root@mtgdb lib]# cd zabbix/</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#首先在客户端的mysql里添加权限，即本机使用zabbix账号连接本地的mysql</div><div class="line">mysql&gt; grant all on *.* to zabbix@&apos;localhost&apos; identified by &quot;Pass1234!&quot;;</div><div class="line">mysql&gt; GRANT PROCESS,SUPER,REPLICATION CLIENT ON *.* TO zabbix@&apos;127.0.0.1&apos; IDENTIFIED BY &apos;Pass1234!&apos;; </div><div class="line">mysql&gt; flush privileges;</div><div class="line"></div><div class="line">不赋予权限127.0.0.1，就会报ERROR 1045 (28000): Access denied for user</div><div class="line"></div><div class="line"></div><div class="line">[root@mtgdb zabbix]# pwd</div><div class="line">/var/lib/zabbix</div><div class="line"></div><div class="line">[root@mtgdb zabbix]# vi .my.cnf</div><div class="line">[client]</div><div class="line">user=zabbix</div><div class="line">password=Pass1234!</div><div class="line"></div><div class="line">#注意权限的问题</div><div class="line">[root@mtgdb zabbix]# ll -a</div><div class="line">total 12</div><div class="line">drwxr-xr-x   2 root root 4096 Aug 26 02:44 .</div><div class="line">drwxr-xr-x. 20 root root 4096 Aug 26 02:34 ..</div><div class="line">-rwxr-xr-x   1 root root   40 Aug 26 02:44 .my.cnf</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#step 5. 启动 zabbix agent</div><div class="line">[root@mtgdb zabbix]# /etc/init.d/zabbix-agent start</div><div class="line">Starting Zabbix agent: [  OK  ]</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">以下步骤运行在 zabbix server</div><div class="line">#step 6. 验证zabbix server 和 agent client 的通信</div><div class="line">[root@ct7 zabbix_agentd.d]# zabbix_get -s xx.xx.192.113 -p10050 -k &quot;system.cpu.load[all,avg15]&quot;;</div><div class="line">zabbix_get [10400]: Check access restrictions in Zabbix agent configuration</div><div class="line"></div><div class="line">报&apos;Check access restrictions&apos;这个错误，是因为zabbix agent client 没有配置zabbix连接的server IP地址(xx.xx.188.55)，登陆到Zabbix agent client</div><div class="line">[root@mtgdb zabbix]# vi /etc/zabbix/zabbix_agentd.conf</div><div class="line">##### Passive checks related</div><div class="line"></div><div class="line">### Option: Server</div><div class="line">#       List of comma delimited IP addresses (or hostnames) of Zabbix servers.</div><div class="line">#       Incoming connections will be accepted only from the hosts listed here.</div><div class="line">#       If IPv6 support is enabled then &apos;127.0.0.1&apos;, &apos;::127.0.0.1&apos;, &apos;::ffff:127.0.0.1&apos; are treated equally.</div><div class="line">#</div><div class="line"># Mandatory: no</div><div class="line"># Default:</div><div class="line"># Server=</div><div class="line"></div><div class="line">Server=127.0.0.1,xx.xx.188.55</div><div class="line"></div><div class="line">[root@mtgdb zabbix]# /etc/init.d/zabbix-agent restart</div><div class="line">Shutting down Zabbix agent: [  OK  ]</div><div class="line">Starting Zabbix agent: [  OK  ]</div><div class="line"></div><div class="line">登陆到zabbix server 上在重启验证一下</div><div class="line">[root@ct7 zabbix]# zabbix_get -s xx.xx.192.113 -p10050 -k &quot;system.cpu.load[all,avg15]&quot;;</div><div class="line">0.000000</div><div class="line"></div><div class="line">zabbix_get -s xx.xx.192.113 -p10050 -k vfs.fs.discovery</div></pre></td></tr></table></figure>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-mysql1.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-mysql2.JPG" alt="此处输入图片的描述"></p>
+<hr>
+<h2 id="第四章-zabbix-Orabbix"><a href="#第四章-zabbix-Orabbix" class="headerlink" title="第四章 zabbix+Orabbix"></a>第四章 zabbix+Orabbix</h2><blockquote>
+<p>参考： <a href="http://www.smartmarmot.com/wiki/index.php?title=Orabbix" target="_blank" rel="external">http://www.smartmarmot.com/wiki/index.php?title=Orabbix</a></p>
+<p>Orabbix是设计用来为zabbix监控Oracle数据库的插件，它提供多层次的监控，包括可用性和服务器性能指标。<br>      它提供了从众多Oracle实例采集数据的有效机制，进而提供此信息的监控和性能指标。然后，您可以利用的zabbix的报告功能为收集的所有数据，并提供分析。目前的发行版中包含了一组预先定义的模板，包括从初始部署警报和图形功能。然而，这些可以进行微调，以满足您的需求和数据/监控要求。</p>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/database/oracle/Orabbix_architecture.png" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Orabbix能监控什么？</p>
+<ul>
+<li>数据库版本</li>
+<li>归档日志与生产趋势分析</li>
+<li>触发器，表/过程等命中率</li>
+<li>逻辑I / O性能</li>
+<li>物理I / O性能</li>
+<li>PGA</li>
+<li>SGA</li>
+<li>共享池</li>
+<li>Sessions</li>
+<li>数据库大小</li>
+</ul>
+<hr>
+<p>第一步：安装需求</p>
+<ul>
+<li>Zabbix 2.2.9 Server<ul>
+<li>Java Runtime Environment 6</li>
+<li>RHEL5.3 </li>
+<li>IP: xx.xx.188.58    </li>
+</ul>
+</li>
+<li>DB Server:<ul>
+<li>Oracle 11g</li>
+<li>IP: xx.xx.188.188    </li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>第二步：下载Orabbix到Zabbix Server上<br><a href="http://www.smartmarmot.com/product/orabbix/download/" target="_blank" rel="external">http://www.smartmarmot.com/product/orabbix/download/</a></p>
+<p>On the Zabbix Server(xx.xx.188.58)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#unzip Orabbix to: /opt/orabbix</div><div class="line">[root@hzbacksto orabbix]# pwd</div><div class="line">/opt/orabbix</div><div class="line">[root@hzbacksto orabbix]# ll orabbix-1.2.3.zip</div><div class="line">-rwxr--r-- 1 root root 4858160 Oct 13 06:50 orabbix-1.2.3.zip</div><div class="line">[root@hzbacksto orabbix]# unzip orabbix-1.2.3.zip</div><div class="line">[root@hzbacksto orabbix]# tree -L 1 ./</div><div class="line">./</div><div class="line">|-- conf</div><div class="line">|-- doc</div><div class="line">|-- init.d</div><div class="line">|-- install.cmd</div><div class="line">|-- lib</div><div class="line">|-- logs</div><div class="line">|-- orabbix-1.2.3.jar</div><div class="line">|-- orabbix-1.2.3.zip</div><div class="line">|-- orabbix.exe</div><div class="line">|-- orabbixw.exe</div><div class="line">|-- run.bat</div><div class="line">|-- run.sh</div><div class="line">|-- template</div><div class="line">|-- uninstall.cmd</div><div class="line"></div><div class="line">#Copy file /opt/orabbix/init.d/orabbix to /etc/init.d/orabbix</div><div class="line">[root@hzbacksto orabbix]# cp /opt/orabbix/init.d/orabbix /etc/init.d/orabbix</div><div class="line"></div><div class="line">#Grant execute permissions to the following files:</div><div class="line">[root@hzbacksto orabbix]# chmod 755 /etc/init.d/orabbix</div><div class="line">[root@hzbacksto orabbix]# chmod 755 /opt/orabbix/run.sh</div></pre></td></tr></table></figure>
+<blockquote>
+<hr>
+<p>第三步：在需要监控的DB上创建zabbix用户，使Orabbix来访问DB</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#On the DB Server(xx.xx.188.188)</div><div class="line">CREATE TABLESPACE TBS_ZABBIX_01 DATAFILE </div><div class="line">  &apos;/home/oracle/app/oracle/oradata/cha/tbs_zabbix_01.dbf&apos; SIZE 100M AUTOEXTEND ON NEXT 5M MAXSIZE UNLIMITED</div><div class="line">LOGGING</div><div class="line">ONLINE</div><div class="line">EXTENT MANAGEMENT LOCAL AUTOALLOCATE</div><div class="line">BLOCKSIZE 8K</div><div class="line">SEGMENT SPACE MANAGEMENT AUTO</div><div class="line">FLASHBACK ON;</div><div class="line"></div><div class="line">CREATE USER ZABBIX</div><div class="line">IDENTIFIED BY pass</div><div class="line">DEFAULT TABLESPACE TBS_ZABBIX_01</div><div class="line">TEMPORARY TABLESPACE TEMP</div><div class="line">PROFILE DEFAULT</div><div class="line">ACCOUNT UNLOCK;</div><div class="line">GRANT CONNECT TO ZABBIX;</div><div class="line">GRANT RESOURCE TO ZABBIX;</div><div class="line">ALTER USER ZABBIX DEFAULT ROLE ALL;</div><div class="line">GRANT SELECT ANY TABLE TO ZABBIX;</div><div class="line">GRANT CREATE SESSION TO ZABBIX;</div><div class="line">GRANT SELECT ANY DICTIONARY TO ZABBIX;</div><div class="line">GRANT UNLIMITED TABLESPACE TO ZABBIX;</div><div class="line">GRANT SELECT ANY DICTIONARY TO ZABBIX;</div><div class="line"> </div><div class="line">exec dbms_network_acl_admin.create_acl(acl =&gt; &apos;resolve.xml&apos;,description =&gt; &apos;resolve acl&apos;, principal =&gt;&apos;ZABBIX&apos;, is_grant =&gt; true, privilege =&gt; &apos;resolve&apos;);</div><div class="line">exec dbms_network_acl_admin.assign_acl(acl =&gt; &apos;resolve.xml&apos;, host =&gt;&apos;*&apos;);</div><div class="line">commit;</div><div class="line"></div><div class="line">#verify the above is correct by running</div><div class="line">select utl_inaddr.get_host_name(&apos;127.0.0.1&apos;) from dual;</div><div class="line"></div><div class="line">#On the Zabbix Server(xx.xx.188.58)</div><div class="line">chkconfig --add orabbix</div><div class="line">chkconfig --list</div></pre></td></tr></table></figure>
+<blockquote>
+<hr>
+<p>第四步：配置文件config.props</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">cp /opt/orabbix/conf/config.props.sample config.props</div><div class="line"></div><div class="line">#comma separed list of Zabbix servers</div><div class="line">ZabbixServerList=ZabbixServer1      #此处的ZabbixServer1与以下两行开头对应</div><div class="line"></div><div class="line">ZabbixServer1.Address=xx.xx.188.58 #zabbixserver地址</div><div class="line">ZabbixServer1.Port=10051            #zabbixserver端口</div><div class="line"></div><div class="line">#pidFile</div><div class="line">OrabbixDaemon.PidFile=./logs/orabbix.pid</div><div class="line">#frequency of item&apos;s refresh</div><div class="line">OrabbixDaemon.Sleep=300</div><div class="line">#MaxThreadNumber should be &gt;= than the number of your databases</div><div class="line">OrabbixDaemon.MaxThreadNumber=100</div><div class="line"></div><div class="line">#put here your databases in a comma separated list</div><div class="line">DatabaseList=cha                    # 名称与该机在 zabbix 中监控的主机名称保持一致</div><div class="line"></div><div class="line">#Configuration of Connection pool</div><div class="line">#if not specified Orabbis is going to use default values (hardcoded)</div><div class="line">#Maximum number of active connection inside pool</div><div class="line">DatabaseList.MaxActive=10</div><div class="line">#The maximum number of milliseconds that the pool will wait</div><div class="line">#(when there are no available connections) for a connection to be returned</div><div class="line">#before throwing an exception, or &lt;= 0 to wait indefinitely.</div><div class="line">DatabaseList.MaxWait=100</div><div class="line">DatabaseList.MaxIdle=1</div><div class="line"></div><div class="line">#define here your connection string for each database</div><div class="line">cha.Url=jdbc:oracle:thin:@xx.xx.188.188:1521:cha   #通过jbdc连接，确保系统有jdk环境</div><div class="line">cha.User=zabbix</div><div class="line">cha.Password=pass</div><div class="line">#Those values are optionals if not specified Orabbix is going to use the general values</div><div class="line">cha.MaxActive=10</div><div class="line">cha.MaxWait=100</div><div class="line">cha.MaxIdle=1</div><div class="line">cha.QueryListFile=./conf/query.props #此句指定数据查询文件，可针对不同数据库，定制不同的查询文件</div><div class="line"></div><div class="line">#DB2.Url=jdbc:oracle:thin:@server2.domain.example.com:&lt;LISTENER_PORT&gt;:DB2</div><div class="line">#DB2.User=zabbix</div><div class="line">#DB2.Password=zabbix_password</div><div class="line">#DB2.QueryListFile=./conf/query.props</div><div class="line"></div><div class="line">#DB3.Url=jdbc:oracle:thin:@server3.domain.example.com:&lt;LISTENER_PORT&gt;:DB3</div><div class="line">#DB3.User=zabbix</div><div class="line">#DB3.Password=zabbix_password</div><div class="line">#DB3.QueryListFile=./conf/query.props</div></pre></td></tr></table></figure>
+<blockquote>
+<hr>
+<p>第五步：启动orabbix程序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@hzbacksto conf]# /etc/init.d/orabbix start</div><div class="line"></div><div class="line">[root@hzbacksto ~]# tail -f /opt/orabbix/logs/orabbix.log</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - maxPoolSize=10</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - maxIdleSize=1</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - maxIdleTime=1800000ms</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - poolTimeout=100</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - timeBetweenEvictionRunsMillis=-1</div><div class="line"> 2015-10-13 03:32:32,773 [main] INFO  Orabbix - numTestsPerEvictionRun=3</div><div class="line"> 2015-10-13 03:32:33,283 [main] INFO  Orabbix - Connected as ZABBIX</div><div class="line"> 2015-10-13 03:32:33,286 [main] INFO  Orabbix - --------- on Database -&gt; cha</div><div class="line"> 2015-10-13 03:32:34,344 [pool-1-thread-1] INFO  Orabbix - Done with dbJob on database cha QueryList elapsed time 998 ms</div></pre></td></tr></table></figure>
+<blockquote>
+<hr>
+<p>第六步：导入模板</p>
+<p>将该模板 Orabbix_export_full.xml下载到本机，导入zabbix server template中</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@hzbacksto template]# pwd</div><div class="line">/opt/orabbix/template</div><div class="line">[root@hzbacksto template]# ll</div><div class="line">total 236</div><div class="line">-rw-r--r-- 1 root root 107257 Oct 25  2011 Orabbix_export_full.xml</div></pre></td></tr></table></figure>
+<blockquote>
+<p>添加主机(名字必须跟config.props里面定义的名称的配置保持一致),所以主机名必须是cha</p>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/database/oracle/Orabbix01.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/database/oracle/Orabbix02.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/database/oracle/Orabbix03.JPG" alt="此处输入图片的描述"></p>
+<hr>
+<h3 id="4-1-安装Pyora-监控oracle"><a href="#4-1-安装Pyora-监控oracle" class="headerlink" title="4.1 安装Pyora 监控oracle"></a>4.1 安装Pyora 监控oracle</h3><blockquote>
+<p>Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it on a script that you have to access a server to change it. Also if Zabbix already discovery disks and network interfaces why not Oracle tablespaces? Then Pyora was born:</p>
+<p>Pyora is a clean python script that uses cxOracle library to fetch data from the database. To use Pyora you need Oracle client and the cxOracle. I’m assuming that you have both installed on your system, if you don’t have it you check this page and install it.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line">####################################################################################################</div><div class="line">#运行pyora之前，需要安装以下软件</div><div class="line">OS: </div><div class="line">[root@ct7 Pyora-master]# more /etc/redhat-release</div><div class="line">CentOS Linux release 7.2.1511 (Core)</div><div class="line"></div><div class="line">注意stop firewalld, disable SElinux, 否则zabbix 报 no permission</div><div class="line">[root@ct7 Pyora-master]# systemctl stop firewalld</div><div class="line">[root@ct7 agent]# vi /etc/sysconfig/selinux</div><div class="line">SELINUX=disabled</div><div class="line">[root@ct7 agent]# setenforce 0</div><div class="line"></div><div class="line"></div><div class="line">Python:</div><div class="line">[root@ct7 Pyora-master]# python -V</div><div class="line">Python 2.7.5</div><div class="line"></div><div class="line">#安装Oracle instance-client:</div><div class="line">[root@ct7 oracle]# pwd</div><div class="line">/home/tony/oracle</div><div class="line"></div><div class="line">[root@ct7 oracle]# ls</div><div class="line">oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm</div><div class="line">oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm </div><div class="line">oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 oracle]# yum localinstall oracle* --nogpgcheck</div><div class="line"></div><div class="line">[root@ct7 oracle]# more /etc/hosts</div><div class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">xx.xx.188.59   ct7.qa.webex.com</div><div class="line"></div><div class="line">[root@ct7 oracle]# more /etc/profile</div><div class="line">export ORACLE_HOME=/usr/lib/oracle/12.1/client64/</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export LD_LIBRARY_PATH=$ORACLE_HOME/lib</div><div class="line">export TNS_ADMIN=$ORACLE_HOME/network/admin</div><div class="line"></div><div class="line">[root@ct7 oracle]# mkdir -p $ORACLE_HOME/network/admin</div><div class="line"></div><div class="line">[root@ct7 oracle]# more $ORACLE_HOME/network/admin/tnsnames.ora</div><div class="line">cha=</div><div class="line">  (DESCRIPTION=</div><div class="line">    (ADDRESS=</div><div class="line">      (PROTOCOL=TCP)</div><div class="line">      (HOST=xx.xx.188.188)</div><div class="line">      (PORT=1521)</div><div class="line">    )</div><div class="line">    (CONNECT_DATA=</div><div class="line">      (SERVER=dedicated)</div><div class="line">      (SERVICE_NAME=cha.qa.webex.com)</div><div class="line">    )</div><div class="line">  )</div><div class="line"></div><div class="line">[root@ct7 oracle]# sqlplus system/pass@cha</div><div class="line"></div><div class="line">SQL*Plus: Release 12.1.0.2.0 Production on Thu Sep 8 09:39:04 2016</div><div class="line"></div><div class="line">Copyright (c) 1982, 2014, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Oracle Database 11g Enterprise Edition Release 11.2.0.2.0 - 64bit Production</div><div class="line">With the Partitioning option</div><div class="line"></div><div class="line">SQL&gt;</div><div class="line"></div><div class="line">#安装cxOracle</div><div class="line">[root@ct7 oracle]# rpm -ivh cx_Oracle-5.2.1-12c-py27-1.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 python]# more con-cha.py</div><div class="line">#!/usr/bin/python</div><div class="line">#FileName: con_ora.py</div><div class="line"></div><div class="line">import cx_Oracle</div><div class="line"></div><div class="line">conn = cx_Oracle.connect(&apos;ch/pass@xx.xx.188.188:1521/cha.qa.webex.com&apos;)</div><div class="line">cursor = conn.cursor()</div><div class="line">cursor.execute(&quot;select * from dept&quot;)</div><div class="line">row = cursor.fetchone()</div><div class="line">print row[0]</div><div class="line"></div><div class="line">cursor.close()</div><div class="line">conn.close()</div><div class="line"></div><div class="line">[root@ct7 python]# python con-cha.py</div><div class="line">300</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#安装Pyora</div><div class="line">https://github.com/bicofino/Pyora.git</div><div class="line"></div><div class="line">[root@ct7 Pyora-master]# ll</div><div class="line">total 28</div><div class="line">-rwxrwxrwx. 1 root root 20799 Jun  6 23:23 pyora.py</div><div class="line">-rw-r--r--. 1 root root  2899 Jun  6 23:23 README.md</div><div class="line">drwxr-xr-x. 2 root root    52 Jun  6 23:23 zabbix-template</div><div class="line"></div><div class="line">[root@ct7 Pyora-master]# python pyora.py -h</div><div class="line">usage: pyora.py [-h] [--username USERNAME] [--password PASSWORD]</div><div class="line">                [--address ADDRESS] [--database DATABASE]</div><div class="line"></div><div class="line">                &#123;activeusercount,asm_volume_use,bufbusywaits,check_active,check_archive,commits,db_close,db_connect,dbfilesize,dbprllwrite,dbscattread,dbseqread,dbsize,dbsnglwrite,deadlocks,directread,directwrite,dsksortratio,enqueue,fra_use,freebufwaits,hparsratio,indexffs,lastapplarclog,lastarclog,latchfree,logfilesync,logonscurrent,logprllwrite,logswcompletion,netresv,netroundtrips,netsent,query_lock,query_redologs,query_rollbacks,query_sessions,query_sysmetrics,rcachehit,redowrites,rollbacks,show_asm_volumes,show_tablespaces,show_tablespaces_temp,show_users,tablespace,tablespace_abs,tablespace_temp,tblrowsscans,tblscans,uptime,user_status,version&#125;</div><div class="line">                ...</div><div class="line"></div><div class="line">positional arguments:</div><div class="line">  &#123;activeusercount,asm_volume_use,bufbusywaits,check_active,check_archive,commits,db_close,db_connect,dbfilesize,dbprllwrite,dbscattread,dbseqread,dbsize,dbsnglwrite,deadlocks,directread,directwrite,dsksortratio,enqueue,fra_use,freebufwaits,hparsratio,indexffs,lastapplarclog,lastarclog,latchfree,logfilesync,logonscurrent,logprllwrite,logswcompletion,netresv,netroundtrips,netsent,query_lock,query_redologs,query_rollbacks,query_sessions,query_sysmetrics,rcachehit,redowrites,rollbacks,show_asm_volumes,show_tablespaces,show_tablespaces_temp,show_users,tablespace,tablespace_abs,tablespace_temp,tblrowsscans,tblscans,uptime,user_status,version&#125;</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help            show this help message and exit</div><div class="line">  --username USERNAME</div><div class="line">  --password PASSWORD</div><div class="line">  --address ADDRESS</div><div class="line">  --database DATABASE</div><div class="line"></div><div class="line">Show the tablespaces names in a JSON format</div><div class="line">[root@ct7 Pyora-master]# python pyora.py --username zabbix --password pass --address xx.xx.188.188 --database cha.qa.webex.com show_tablespaces</div><div class="line">&#123;&quot;data&quot;: [&#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;SYSAUX&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;SYSTEM&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TBS_01&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TBS_ZABBIX_01&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TEMP&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;TPCCTAB&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;UNDOTBS1&quot;&#125;, &#123;&quot;&#123;#TABLESPACE&#125;&quot;: &quot;USERS&quot;&#125;]&#125;</div><div class="line"></div><div class="line">####################################################################################################</div><div class="line">#install zabbix agent</div><div class="line">[root@ct7 agent]# wget http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-agent-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 agent]# rpm -ivh zabbix-agent-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 agent]# more /etc/zabbix/zabbix_agentd.conf</div><div class="line">Server=xx.xx.188.55</div><div class="line">UserParameter=pyora[*],/home/tony/zabbix/pyora/Pyora-master/pyora.py --username $1 --password $2 --address $3 --database $4 $5 $6 $7 $8</div><div class="line"></div><div class="line">[root@ct7 agent]# systemctl start zabbix-agent</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>Import the template zabbix-template/Pyora.xml to your new host</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-1.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-3.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>add a new host and configure the required macros</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-2.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-4.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-pyora-5.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>Now you just have to wait and check later the information, Remember that the tablespace discovery take one hour to complete.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="4-2-定制监控-user-lock"><a href="#4-2-定制监控-user-lock" class="headerlink" title="4.2 定制监控 user lock"></a>4.2 定制监控 user lock</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#lock the ch user</div><div class="line">SQL&gt; alter user ch account lock;</div><div class="line"></div><div class="line">User altered.</div><div class="line"></div><div class="line">SQL&gt; select USERNAME, ACCOUNT_STATUS, LOCK_DATE, EXPIRY_DATE from dba_users where username = &apos;CH&apos;;</div><div class="line"></div><div class="line">USERNAME                       ACCOUNT_STATUS                   LOCK_DATE EXPIRY_DA</div><div class="line">------------------------------ -------------------------------- --------- ---------</div><div class="line">CH                             LOCKED                           18-SEP-17</div><div class="line"></div><div class="line">#edit the script in the x.x.x.59</div><div class="line">[root@ct7 Pyora-master]# vim pyora.py</div><div class="line">    def check_users(self, dbuser):</div><div class="line">        &quot;&quot;&quot;Determines whether a user is locked or not&quot;&quot;&quot;</div><div class="line">        sql = &quot;SELECT account_status FROM dba_users WHERE username=&apos;&#123;0&#125;&apos;&quot; \</div><div class="line">            .format(dbuser)</div><div class="line">        self.cur.execute(sql)</div><div class="line">        res = self.cur.fetchall()</div><div class="line">        for i in res:</div><div class="line">            print i[0]</div><div class="line"></div><div class="line">[root@ct7 Pyora-master]# python pyora.py --username system --password pass --address xx.xx.188.188 --database cha.qa.webex.com check_users CH</div><div class="line">LOCKED</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Configuration —&gt; Templates —&gt; item —&gt; Create item<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Name: Oracle/Check User status on &#123;$DATABASE&#125;</div><div class="line">Key:pyora[&#123;$USERNAME&#125;,&#123;$PASSWORD&#125;,&#123;$ADDRESS&#125;,&#123;$DATABASE&#125;,check_users,&#123;$USERS&#125;]</div><div class="line">Type of information: Text</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/software/zabbix-orauser01.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>Configuration —&gt; Templates —&gt; Triggers —&gt; Create Triggers<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Name: Oracle/Database &#123;$DATABASE&#125; user locked</div><div class="line">Key:&#123;Pyora:pyora[&#123;$USERNAME&#125;,&#123;$PASSWORD&#125;,&#123;$ADDRESS&#125;,&#123;$DATABASE&#125;,check_users,&#123;$USERS&#125;].regexp(LOCKED)&#125;=1</div><div class="line">Type of information: Text</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="https://wangbinbin0326.github.io/images/software/zabbix-orauser02.JPG" alt="此处输入图片的描述"></p>
+<p><img src="https://wangbinbin0326.github.io/images/software/zabbix-orauser03.JPG" alt="此处输入图片的描述"></p>
+<p><img src="https://wangbinbin0326.github.io/images/software/zabbix-orauser04.JPG" alt="此处输入图片的描述"></p>
+<hr>
+<h2 id="第五章-zabbix-Trapper-and-sender"><a href="#第五章-zabbix-Trapper-and-sender" class="headerlink" title="第五章 zabbix Trapper and sender"></a>第五章 zabbix Trapper and sender</h2><blockquote>
+<p>zabbix获取数据有超时时间，如果一些数据需要执行比较长的时间才能获取的话，那么zabbix会出现异常，考虑到这种情况，zabbix增加了Trapper功能，客户端自己提交数据给zabbix，这个通道便是trapper.<br>使用trapper的步骤如下：</p>
+<ul>
+<li>服务端想要接受到zabbix_sender发来的数据，先要创建 trapper item，在zabbix中配置trapper监控项</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-sender-01.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>在所需要发送data的server上安装，zabbix sender</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">[root@ct7 zabbix]# wget http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-sender-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">[root@ct7 zabbix]# rpm -ivh zabbix-sender-3.0.4-1.el7.x86_64.rpm</div><div class="line"></div><div class="line">#测试发送数据：</div><div class="line">[root@ct7 sender]# zabbix_sender -z xx.xx.188.55 -p 10051 -s &quot;hzvscmdb.qa.webex.com&quot; -k topsql -o &apos;ttlsa.com&apos;</div><div class="line">info from server: &quot;processed: 0; failed: 1; total: 1; seconds spent: 0.000034&quot;</div><div class="line">sent: 1; skipped: 0; total: 1</div><div class="line"></div><div class="line">[root@ct7 zabbix]# zabbix_sender -z xx.xx.188.55 -p 10051 -s xx.xx.188.59 -k topsql -o &apos;ttlsa.com&apos;</div><div class="line">info from server: &quot;processed: 0; failed: 1; total: 1; seconds spent: 0.000047&quot;</div><div class="line">sent: 1; skipped: 0; total: 1</div><div class="line"></div><div class="line">此时发现两条数据发送都是failed， 我们来看下具体的参数意义</div><div class="line"></div><div class="line">-z - 指定zabbix server的IP</div><div class="line">-p - 指定zabbix server的端口，默认为10051</div><div class="line">-s - 指定目标主机，主机名必须是配置中的hostname而不是visible name，切记</div><div class="line">-k - 指定key，我们定义的trapper的key，这边便是我们前面定义的trap</div><div class="line">-o - 指定要传递的数据</div><div class="line"></div><div class="line">发现是因为 -s 的hostname是错误的，应该写pyora</div><div class="line">[root@ct7 zabbix]# zabbix_sender -z xx.xx.188.55 -p 10051 -s &quot;pyora&quot; -k topsql -o &apos;ttlsa.com&apos;</div><div class="line">info from server: &quot;processed: 1; failed: 0; total: 1; seconds spent: 0.000040&quot;</div><div class="line">sent: 1; skipped: 0; total: 1</div></pre></td></tr></table></figure>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-sender-02.JPG" alt="此处输入图片的描述"></p>
+<blockquote>
+<ul>
+<li>查看接收到的数据</li>
+</ul>
+</blockquote>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-sender-03.JPG" alt="此处输入图片的描述"></p>
+<p><img src="http://wangbinbin0326.github.io/images/software/zabbix-sender-04.JPG" alt="此处输入图片的描述"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zabbix/" rel="tag">#zabbix</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/Linux杀毒软件-ClamAV/" rel="next" title="Linux杀毒软件-ClamAV">
+                <i class="fa fa-chevron-left"></i> Linux杀毒软件-ClamAV
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wangbinbin0326.github.io/images/job/myimage.jpg"
+               alt="Tony Wang" />
+          <p class="site-author-name" itemprop="name">Tony Wang</p>
+          <p class="site-description motion-element" itemprop="description">终会有属于自己的一片天空！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangbinbin0326" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-umbrella"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://dbaplus.cn/" target="_blank" title="DBAplus">
+                  
+                    <i class="fa fa-fw fa-tree"></i>
+                  
+                  DBAplus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://db-engines.com/en/ranking" target="_blank" title="数据库排名">
+                  
+                    <i class="fa fa-fw fa-database"></i>
+                  
+                  数据库排名
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.tiobe.com/tiobe-index/" target="_blank" title="程序排名">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  程序排名
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://docs.oracle.com/database/122/CNCPT/toc.htm" target="_blank" title="Oracle">
+                  
+                    <i class="fa fa-fw fa-database"></i>
+                  
+                  Oracle
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://docs.oracle.com/cd/E17952_01/mysql-5.7-en/index.html" target="_blank" title="Mysql">
+                  
+                    <i class="fa fa-fw fa-database"></i>
+                  
+                  Mysql
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://docs.pythontab.com/" target="_blank" title="Pythontab">
+                  
+                    <i class="fa fa-fw fa-umbrella"></i>
+                  
+                  Pythontab
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.percona.com/blog/" target="_blank" title="Performance">
+                  
+                    <i class="fa fa-fw fa-database"></i>
+                  
+                  Performance
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://my.oschina.net/wangbinbin0326/blog" title="Open Source" target="_blank">Open Source</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xifenfei.com/" title="惜分飞" target="_blank">惜分飞</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.eygle.com/" title="DBA eygle" target="_blank">DBA eygle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://asktom.oracle.com" title="asktom" target="_blank">asktom</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://oracleblog.org/" title="天堂向左 DBA向右" target="_blank">天堂向左 DBA向右</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-监控"><span class="nav-number">1.</span> <span class="nav-text">Oracle 监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-zabbix介绍"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 zabbix介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-zabbix-安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 zabbix 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-zabbix-simple-check"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 zabbix simple check</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-zabbix-actions-重启服务"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 zabbix actions 重启服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-zabbix-agent"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 zabbix agent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-安装zabbix-agent"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 安装zabbix agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-zabbix监控server网络流量"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 zabbix监控server网络流量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-zabbix监控MySQL"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 zabbix监控MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-zabbix-Orabbix"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 zabbix+Orabbix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-安装Pyora-监控oracle"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 安装Pyora 监控oracle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-定制监控-user-lock"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 定制监控 user lock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-zabbix-Trapper-and-sender"><span class="nav-number">1.5.</span> <span class="nav-text">第五章 zabbix Trapper and sender</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+<script type="text/javascript" src="js/src/particle.js"></script>
+</body>
+</html>

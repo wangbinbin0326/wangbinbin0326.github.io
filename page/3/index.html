@@ -465,6 +465,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/" itemprop="url">
+                  Oracle备份恢复案例2-表空间热备恢复
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T14:59:28+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="7-5-2-案例2-（数据库打开时的恢复以用户数据的表空间为例-热备-）"><a href="#7-5-2-案例2-（数据库打开时的恢复以用户数据的表空间为例-热备-）" class="headerlink" title="7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(热备)）"></a>7.5.2 案例2 （数据库打开时的恢复以用户数据的表空间为例(<strong>热备</strong>)）</h4><blockquote>
+<p><strong>热备份</strong>是当数据库打开并对用户有效是的OS级的数据备份。热备份只能用于<code>ARCHIVELOG</code>方式的数据库。在数据文件备份之前，对应的表空间必须通过使用<code>ALTER TABLESPACE …… BEGIN BACKUP</code>以备份方式放置。然后组成表空间的数据文件可以使用类似冷备份的操作系统命令进行拷贝。在数据文件用操作系统命令拷贝后，应使用<code>ALTER TABLESPACE …… END BACKUP</code>命令使表空间脱离热备份方式。<br>热备份没有必要备份联机日志，但必须是归档状态，在实例恢复的时候，可能需要用到归档日志。当前联机日志一定要保护好或是处于镜相状态，当前联机日志的损坏，对于数据库的损坏是巨大的，只能以数据的丢失来进行数据库的恢复工作。 </p>
+<p>对于临时表空间，存放的是临时信息，在热备份是也可以考虑不用备份，如果临时文件发生故障，可以删除该数据文件与表空间，重建一个临时表空间。</p>
+<p>热备份的优点:</p>
+<ul>
+<li>可在表空间或数据文件级备份，备份时间短。  </li>
+<li>备份时数据库仍可使用。  </li>
+<li>可达到秒级恢复（恢复到某一时间点上）。  </li>
+<li>可对几乎所有数据库实体作恢复。  </li>
+<li>恢复是快速的，在大多数情况下在数据库仍工作时恢复。</li>
+</ul>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/16/Oracle备份恢复案例2-表空间热备恢复/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/16/Oracle备份恢复案例1-使用冷备份数据文件实现恢复/" itemprop="url">
                   Oracle备份恢复案例1-使用冷备份数据文件实现恢复
                 </a>
@@ -1449,107 +1556,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/01/Portus管理Docker的Registry仓库/" itemprop="url">
-                  Portus管理Docker的Registry仓库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T15:24:14+08:00" content="2016-11-01">
-              2016-11-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>系统版本： CentOS Linux release 7.2.1511 (Core)</p>
-</blockquote>
-<h2 id="step-1-更新系统"><a href="#step-1-更新系统" class="headerlink" title="step 1: 更新系统"></a>step 1: 更新系统</h2><p><code>yum update -y</code></p>
-<h2 id="step-2-安装docker-compose"><a href="#step-2-安装docker-compose" class="headerlink" title="step 2: 安装docker-compose"></a>step 2: 安装docker-compose</h2><p><code>yum -y install epel-release    #pip安装包在epel源中</code><br><code>yum -y install python-pip</code><br><code>pip install -U docker-compose</code></p>
-<h2 id="step-3-安装git客户端"><a href="#step-3-安装git客户端" class="headerlink" title="step 3: 安装git客户端"></a>step 3: 安装git客户端</h2><p><code>yum install -y git</code></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/01/Portus管理Docker的Registry仓库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1595,7 +1601,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
