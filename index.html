@@ -465,6 +465,114 @@
             
               
                 
+                <a class="post-title-link" href="/2018/06/14/python-线程Threading/" itemprop="url">
+                  python-线程Threading
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-14T16:51:38+08:00" content="2018-06-14">
+              2018-06-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Python-—-线程threading"><a href="#Python-—-线程threading" class="headerlink" title="Python — 线程threading"></a>Python — 线程threading</h1><p>Tags：Python</p>
+<hr>
+<h2 id="第1章-使用threading模块实现多线程"><a href="#第1章-使用threading模块实现多线程" class="headerlink" title="第1章 使用threading模块实现多线程"></a>第1章 使用threading模块实现多线程</h2><hr>
+<h3 id="1-1-综述"><a href="#1-1-综述" class="headerlink" title="1.1 综述"></a>1.1 综述</h3><blockquote>
+<p>Python这门解释性语言也有专门的线程模型，Python虚拟机使用GIL（Global Interpreter Lock，全局解释器锁）来互斥线程对共享资源的访问，但暂时无法利用多处理器的优势。</p>
+<p>在Python中我们主要是通过thread和 threading这两个模块来实现的，其中Python的threading模块是对thread做了一些包装的，可以更加方便的被使用，所以我们使用 threading模块实现多线程编程。这篇文章我们主要来看看Python对多线程编程的支持。</p>
+<p>在语言层面，Python对多线程提供了很好的支持，可以方便地支持创建线程、互斥锁、信号量、同步等特性。下面就是官网上介绍threading模块的基本资料及功能：</p>
+<p><strong>实现模块</strong></p>
+<ul>
+<li><strong>thread</strong>：多线程的底层支持模块，一般不建议使用；</li>
+<li><strong>threading</strong>：对thread进行了封装，将一些线程的操作对象化</li>
+</ul>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/06/14/python-线程Threading/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/12/04/zabbix-step-by-step/" itemprop="url">
                   zabbix-step-by-step
                 </a>
@@ -1453,132 +1561,6 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Mysql-逻辑架构/" itemprop="url">
-                  Mysql-逻辑架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T17:13:54+08:00" content="2017-03-27">
-              2017-03-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="第一-Mysql-逻辑架构"><a href="#第一-Mysql-逻辑架构" class="headerlink" title="第一 Mysql 逻辑架构"></a>第一 Mysql 逻辑架构</h2><blockquote>
-<p>支持多种存储引擎是众所周知的MySQL特性，也是MySQL架构的关键优势之一。如果能够理解MySQL Server与存储引擎之间是怎样通过API交互的，将大大有利于理解MySQL的核心基础架构。</p>
-</blockquote>
-<p><img src="https://wangbinbin0326.github.io/images/database/mysql/MySQL-architecture.png" alt="此处输入图片的描述"></p>
-<blockquote>
-<ul>
-<li><p><strong>Connectors</strong><br>MySQL首先是一个网络程序，其在TCP之上定义了自己的应用层协议。所以要使用MySQL，我们可以编写代码，跟MySQL Server建立TCP连接，之后按照其定义好的协议进行交互。当然这样比较麻烦，比较方便的办法是调用SDK，比如Native C API、JDBC、PHP等各语言MySQL Connector，或者通过ODBC。但通过SDK来访问MySQL，本质上还是在TCP连接上通过MySQL协议跟MySQL进行交互。</p>
-</li>
-<li><p><strong>Connection Management</strong><br>每一个基于TCP的网络服务都需要管理客户端链接，MySQL也不例外。MySQL会为每一个连接绑定一个线程，之后这个连接上的所有查询都在这个线程中执行。为了避免频繁创建和销毁线程带来开销，MySQL通常会缓存线程或者使用线程池，从而避免频繁的创建和销毁线程。<br>客户端连接到MySQL后，在使用MySQL的功能之前，需要进行认证，认证基于用户名、主机名、密码。如果用了SSL或者TLS的方式进行连接，还会进行证书认证。</p>
-</li>
-</ul>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/27/Mysql-逻辑架构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1624,7 +1606,7 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1800,7 +1782,7 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
