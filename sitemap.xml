@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wangbinbin0326.github.io/2018/06/22/python-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8Bmysql/</loc>
+    
+    <lastmod>2018-06-22T09:08:43.980Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
+    
+    <lastmod>2018-06-22T08:57:43.450Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wangbinbin0326.github.io/2018/06/14/python-%E7%BA%BF%E7%A8%8BThreading/</loc>
     
     <lastmod>2018-06-14T08:57:09.732Z</lastmod>
@@ -89,13 +103,6 @@
     <loc>http://wangbinbin0326.github.io/2017/07/12/mysql%E9%87%8D%E7%BD%AEroot%E5%AF%86%E7%A0%81/</loc>
     
     <lastmod>2017-07-12T08:36:52.482Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
-    
-    <lastmod>2017-07-07T02:43:44.928Z</lastmod>
     
   </url>
   

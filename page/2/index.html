@@ -465,6 +465,110 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/31/oracle数据库如何收费/" itemprop="url">
+                  oracle数据库如何收费
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-31T10:02:04+08:00" content="2017-03-31">
+              2017-03-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="oracle-数据库如何收费"><a href="#oracle-数据库如何收费" class="headerlink" title="oracle 数据库如何收费"></a>oracle 数据库如何收费</h2><blockquote>
+<p>Oracle软件本身是免费的，所以任何人都可以从Oracle官方网站下载并安装Oracle的数据库软件，收费的是License，即软件授权，如果数据库用于商业用途，就需要购买相应Oracle产品的License。</p>
+<p>与免费的下载版本不同，正式版的Oracle在购买后，用户会得到一个产品服务码，凭此Oracle服务码，可以得到Oracle的在线升级等服务，Oracle的服务分为好多级，不同级别提供相对应的在线或是现场服务。</p>
+<p>现在Oracle有两种授权方式，按CPU(Process)数和按用户数(Named User Plus)。前一种方式一般用于用户数不确定或者用户数量很大的情况，典型的如互联网环境，而后一种则通常被用于用户数确定或者较少的情况。</p>
+</blockquote>
+<h3 id="按CPU-Process-收费"><a href="#按CPU-Process-收费" class="headerlink" title="按CPU(Process)收费"></a>按CPU(Process)收费</h3><blockquote>
+<p><strong>按CPU：</strong>  License数=CPU 数*系数。系数来自Oracle的一个参数表，如IBM Power6的处理器为1，AMD和Intel的处理器为0.5，详细情况见下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">参数	  处理器型号</div><div class="line">0.25	Sun UltraSPARC T1 处理器</div><div class="line">0.50	Sun UltraSPARC T1处理器</div><div class="line">0.50	Intel、AMD处理器</div><div class="line">0.50	Sun UltraSPARC T2+ 处理器</div><div class="line">1.00	IBM POWER6、POWER7 处理器</div><div class="line">0.75	其他多核处理器</div><div class="line">1.00	单核处理器</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/31/oracle数据库如何收费/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/27/Mysql-逻辑架构/" itemprop="url">
                   Mysql-逻辑架构
                 </a>
@@ -1411,110 +1515,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/05/zabbix-pyora定制监控Oracle数据库/" itemprop="url">
-                  zabbix-pyora定制监控Oracle数据库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T10:32:42+08:00" content="2016-12-05">
-              2016-12-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="安装Pyora-监控oracle"><a href="#安装Pyora-监控oracle" class="headerlink" title="安装Pyora 监控oracle"></a>安装Pyora 监控oracle</h3><blockquote>
-<p>Today Zabbix have some nice improvements like macros and Discovery, so we can set the database settings(user,password,database and such) on the host using macros and not hard code it on a script that you have to access a server to change it. Also if Zabbix already discovery disks and network interfaces why not Oracle tablespaces? Then Pyora was born:</p>
-<p>Pyora is a clean python script that uses cxOracle library to fetch data from the database. To use Pyora you need Oracle client and the cxOracle. I’m assuming that you have both installed on your system, if you don’t have it you check this page and install it.</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/05/zabbix-pyora定制监控Oracle数据库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1555,7 +1560,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1572,7 +1577,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
