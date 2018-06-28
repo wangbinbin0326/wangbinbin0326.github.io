@@ -4,6 +4,20 @@
   
     
     <entry>
+      <title><![CDATA[zabbix时区设置]]></title>
+      <url>http://wangbinbin0326.github.io/2018/06/28/zabbix%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<h3 id="1-4-zabbix-时区设置"><a href="#1-4-zabbix-时区设置" class="headerlink" title="1.4 zabbix 时区设置"></a>1.4 zabbix 时区设置</h3><blockquote>
+<p>修改Linux 服务器时区</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# mv /etc/localtime /etc/localtime-GMT</div><div class="line">[root@ct7 ~]# cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>修改Zabbix 时区</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">[root@ct7 zabbix]# vim /etc/php.ini</div><div class="line">[Date]</div><div class="line">; Defines the default timezone used by the date functions</div><div class="line">; http://php.net/date.timezone</div><div class="line">date.timezone = Asia/Shanghai</div><div class="line"></div><div class="line">[root@ct7 zabbix]# vim /etc/httpd/conf.d/zabbix.conf</div><div class="line">    &lt;IfModule mod_php5.c&gt;</div><div class="line">        php_value max_execution_time 300</div><div class="line">        php_value memory_limit 128M</div><div class="line">        php_value post_max_size 16M</div><div class="line">        php_value upload_max_filesize 2M</div><div class="line">        php_value max_input_time 300</div><div class="line">        php_value always_populate_raw_post_data -1</div><div class="line">        php_value date.timezone Asia/Shanghai</div><div class="line">    &lt;/IfModule&gt;</div><div class="line"></div><div class="line">[root@ct7 zabbix]# more restart_zabbix.sh</div><div class="line">#restart zabbix service</div><div class="line">systemctl stop httpd</div><div class="line">systemctl stop zabbix-server</div><div class="line">systemctl stop zabbix-agent</div><div class="line">systemctl start zabbix-server</div><div class="line">systemctl start httpd</div><div class="line">systemctl start zabbix-agent</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[python-数据库编程mysql]]></title>
       <url>http://wangbinbin0326.github.io/2018/06/22/python-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8Bmysql/</url>
       <content type="html"><![CDATA[<h1 id="Python-—-数据库编程之Mysql"><a href="#Python-—-数据库编程之Mysql" class="headerlink" title="Python — 数据库编程之Mysql"></a>Python — 数据库编程之Mysql</h1><p>Tags：Python</p>

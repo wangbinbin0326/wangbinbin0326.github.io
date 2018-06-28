@@ -465,6 +465,105 @@
             
               
                 
+                <a class="post-title-link" href="/2018/06/28/zabbix时区设置/" itemprop="url">
+                  zabbix时区设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-28T13:23:04+08:00" content="2018-06-28">
+              2018-06-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-4-zabbix-时区设置"><a href="#1-4-zabbix-时区设置" class="headerlink" title="1.4 zabbix 时区设置"></a>1.4 zabbix 时区设置</h3><blockquote>
+<p>修改Linux 服务器时区</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# mv /etc/localtime /etc/localtime-GMT</div><div class="line">[root@ct7 ~]# cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/06/28/zabbix时区设置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/06/22/python-数据库编程mysql/" itemprop="url">
                   python-数据库编程mysql
                 </a>
@@ -1459,111 +1558,6 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/31/oracle数据迁移之Exp和Expdp导出数据的性能对比与优化/" itemprop="url">
-                  oracle数据迁移之Exp和Expdp导出数据的性能对比与优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-31T10:10:03+08:00" content="2017-03-31">
-              2017-03-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用Exp和Expdp导出数据的性能对比与优化"><a href="#使用Exp和Expdp导出数据的性能对比与优化" class="headerlink" title="使用Exp和Expdp导出数据的性能对比与优化"></a>使用Exp和Expdp导出数据的性能对比与优化</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
-<p>数据备份对信息系统的安全运行至关重要，我们的用户中，使用RMan或第三方专业备份软件的越来越多，但是很多用户仍然保留了传统的Exp作为备份策略的一部分，主要是由于这种备份方式简单易用，而且恢复到其他机器上也很方便，所以，虽然有其他的备份方式，但是Exp方式仍然会同时使用，甚至还有不少的用户只有这种备份方式(可能因为他们觉得掌握其他技术太复杂)。</p>
-<p>随着用户的数据量增长，Exp导出方式存在的问题也日渐突出，主要就是耗时长，有的甚至超过3个小时，加上常见的后台自动作业：汇总表的计算，自动费用的计算，统计信息的收集等工作，使一个晚上的时间安排越来越紧张。 </p>
-<p>有没有办法提高Exp执行的性能呢？以前我做过一些试验，查阅了很多资料，总结过一些经验，最近拿到了一个用户的近300G数据，再次进行了一系列大数据量的导出对比试验，发现几个参数的设置对Exp导出耗时的影响较大，经过优化后，Exp导出的性能得到了较大提升，但是与Expdp相比，仍然是后者要快得多，下面将试验情况和相关知识做一个介绍，以便我们在帮助用户制定备份策略时参考。</p>
-</blockquote>
-<h4 id="试验环境"><a href="#试验环境" class="headerlink" title="试验环境"></a>试验环境</h4><blockquote>
-<p><strong>硬件</strong>：<br>processor: 8<br>model name      : Intel(R) Xeon(R) CPU E7- 2870  @ 2.40GHz<br>cpu MHz         : 2396.863<br>MemTotal:       16333448 kB<br>Disk：SCSI</p>
-<p><strong>软件</strong>：Linux+Oracle 11.2.0.0</p>
-<p><strong>数据</strong>：原始共300G，经过收缩回滚表空间、临时表空间，以及一些表空间文件未使用的空间后，总共占用267G，其中包含了大量电子病历相关的LOB数据。</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/31/oracle数据迁移之Exp和Expdp导出数据的性能对比与优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1609,7 +1603,7 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
