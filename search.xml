@@ -4,6 +4,155 @@
   
     
     <entry>
+      <title><![CDATA[Python-运行原理]]></title>
+      <url>http://wangbinbin0326.github.io/2018/10/19/Python-%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/</url>
+      <content type="html"><![CDATA[<h2 id="1-简单的例子"><a href="#1-简单的例子" class="headerlink" title="1. 简单的例子"></a>1. 简单的例子</h2><blockquote>
+<p>foo.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></div><div class="line">    <span class="keyword">return</span> a+b</div></pre></td></tr></table></figure></p>
+<p>demo.py</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> foo</div><div class="line"></div><div class="line">a = [<span class="number">1</span>, <span class="string">'python'</span>]</div><div class="line">a = <span class="string">'a string'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></div><div class="line">    a = <span class="number">1</span></div><div class="line">    b = <span class="number">257</span></div><div class="line">    <span class="keyword">print</span> (a+b)</div><div class="line"></div><div class="line"><span class="keyword">print</span> a</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    fun()</div><div class="line">    foo.add(<span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a string</div><div class="line">258</div><div class="line"></div><div class="line">(venv) Tony2018deMacBook-Pro:pyc binbiwan$ ls</div><div class="line">demo.py foo.py  foo.pyc</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>同时，该文件目录多出一个 foo.pyc 文件，如果是 Python 3，会多出一个 <strong>pycache</strong> 文件夹，.pyc 文件会在这个文件夹中。</p>
+</blockquote>
+<h2 id="2-运行过程"><a href="#2-运行过程" class="headerlink" title="2. 运行过程"></a>2. 运行过程</h2><p><img src="https://wangbinbin0326.github.io/images/python/python-interpreter.png" alt="此处输入图片的描述"></p>
+<h3 id="2-1-模块"><a href="#2-1-模块" class="headerlink" title="2.1 模块"></a>2.1 模块</h3><blockquote>
+<p>Python 将 .py 文件视为一个 module，这些 module 中，有一个主 module，也就是程序运行的入口。在这个例子中，主 module 是 demo.py。</p>
+</blockquote>
+<h3 id="2-2-编译"><a href="#2-2-编译" class="headerlink" title="2.2 编译"></a>2.2 编译</h3><blockquote>
+<p>执行 python demo.py 后，将会启动 Python 的解释器，然后将 demo.py 编译成一个字节码对象 PyCodeObject。</p>
+<p>有的人可能会很好奇，编译的结果不应是 pyc 文件吗，就像 Java 的 class 文件，那为什么是一个对象呢，这里稍微解释一下。</p>
+<blockquote>
+<p>在 Python 的世界中，<font color="red" size="3">一切都是对象，函数也是对象，类型也是对象，类也是对象</font>（类属于自定义的类型，在 Python 2.2 之前，int, dict 这些内置类型与类是存在不同的，在之后才统一起来，全部继承自 object），甚至连编译出来的字节码也是对象，.pyc 文件是字节码对象（PyCodeObject）在硬盘上的表现形式。</p>
+</blockquote>
+<p>在运行期间，编译结果也就是 PyCodeObject 对象，只会存在于内存中，而当这个模块的 Python 代码执行完后，就会<font color="red" size="3">将编译结果保存到了 pyc 文件中，这样下次就不用编译，直接加载到内存中。pyc 文件只是 PyCodeObject 对象在硬盘上的表现形式。</font></p>
+<p>这个 <font color="red" size="3">PyCodeObject 对象包含了 Python 源代码中的字符串，常量值，以及通过语法解析后编译生成的字节码指令</font>。PyCodeObject 对象还会存储这些字节码指令与原始代码行号的对应关系，这样当出现异常时，就能指明位于哪一行的代码。</p>
+</blockquote>
+<h3 id="2-3-pyc-文件"><a href="#2-3-pyc-文件" class="headerlink" title="2.3 pyc 文件"></a>2.3 pyc 文件</h3><blockquote>
+<p>一个 pyc 文件包含了三部分信息：Python 的 magic number、pyc 文件创建的时间信息，以及 PyCodeObject 对象。</p>
+<p>magic number 是 Python 定义的一个整数值。一般来说，不同版本的 Python 实现都会定义不同的 magic number，这个值是用来保证 Python 兼容性的。比如要限制由低版本编译的 pyc 文件不能让高版本的 Python 程序来执行，只需要检查 magic number 不同就可以了。由于不同版本的 Python 定义的字节码指令可能会不同，如果不做检查，执行的时候就可能出错。</p>
+</blockquote>
+<h3 id="2-4-字节码指令"><a href="#2-4-字节码指令" class="headerlink" title="2.4 字节码指令"></a>2.4 字节码指令</h3><blockquote>
+<blockquote>
+<p>为什么 pyc 文件也称作字节码文件？因为这些文件存储的都是一些二进制的字节数据，而不是能让人直观查看的文本数据。</p>
+</blockquote>
+<p>Python 标准库提供了用来生成代码对应字节码的工具 dis。dis 提供一个名为 dis 的方法，这个方法接收一个 code 对象，然后会输出 code 对象里的字节码指令信息。</p>
+</blockquote>
+<h3 id="2-5-Python-虚拟机"><a href="#2-5-Python-虚拟机" class="headerlink" title="2.5 Python 虚拟机"></a>2.5 Python 虚拟机</h3><blockquote>
+<p>demo.py 被编译后，接下来的工作就交由 Python 虚拟机来执行字节码指令了。<font color="red" size="3">Python 虚拟机会从编译得到的 PyCodeObject 对象中依次读入每一条字节码指令，并在当前的上下文环境中执行这条字节码指令。</font>我们的程序就是通过这样循环往复的过程才得以执行。</p>
+</blockquote>
+<h3 id="2-6-import-指令"><a href="#2-6-import-指令" class="headerlink" title="2.6 import 指令"></a>2.6 import 指令</h3><blockquote>
+<p>demo.py 的第一行代码是 import foo。import 指令用来载入一个模块，另外一个载入模块的方法是 from xx import yy。用 from 语句的好处是，可以只复制需要的符号变量到当前的命名空间中。</p>
+<p>前文提到，当已经存在 pyc 文件时，就可以直接载入而省去编译过程。但是代码文件的内容会更新，如何保证更新后能重新编译而不入旧的 pyc 文件呢。答案就在 pyc 文件中存储的创建时间信息。当执行 import 指令的时候，如果已存在 pyc 文件，Python 会检查创建时间是否晚于代码文件的修改时间，这样就能判断是否需要重新编译，还是直接载入了。如果不存在 pyc 文件，就会先将 py 文件编译。</p>
+</blockquote>
+<h3 id="2-7-绝对引入和相对引入"><a href="#2-7-绝对引入和相对引入" class="headerlink" title="2.7 绝对引入和相对引入"></a>2.7 绝对引入和相对引入</h3><blockquote>
+<p>前文已经介绍了 import foo 这行代码。这里隐含了一个问题，就是 foo 是什么，如何找到 foo。</p>
+</blockquote>
+<h3 id="2-8-赋值语句"><a href="#2-8-赋值语句" class="headerlink" title="2.8 赋值语句"></a>2.8 赋值语句</h3><blockquote>
+<p>接下来，执行到 a = [1, ‘python’]，这是一条赋值语句，定义了一个变量 a，它对应的值是 [1, ‘python’]。这里要解释一下，变量是什么呢？</p>
+<p><font color="red" size="3">变量实际上是一个字符串的符号，用来关联一个存储在内存中的对象。</font>在 Python 中，会使用 dict（就是 Python 的 dict 对象）来存储变量符号（字符串）与一个对象的映射。</p>
+<p>那么赋值语句实际上就是用来建立这种关联，在这个例子中是将符号 a 与一个列表对象 [1, ‘python’] 建立映射。</p>
+<p>紧接着的代码执行了 a = ‘a string’，这条指令则将符号 a 与另外一个字符串对象 a string 建立了映射。今后对变量 a 的操作，将反应到字符串对象 a string 上。</p>
+</blockquote>
+<h3 id="2-9-def-指令"><a href="#2-9-def-指令" class="headerlink" title="2.9 def 指令"></a>2.9 def 指令</h3><blockquote>
+<p>我们的 Python 代码继续往下运行，这里执行到一条 <code>def func()</code>，从字节码指令中也可以看出端倪 MAKE_FUNCTION。没错这条指令是用来创建函数的。Python 是动态语言，def 实际上是执行一条指令，用来创建函数（class 则是创建类的指令），而不仅仅是个语法关键字。函数并不是事先创建好的，而是执行到的时候才创建的。</p>
+<p><code>def func()</code> 将会创建一个名称为 func 的函数对象。实际上是先创建一个函数对象，然后将 func 这个名称符号绑定到这个函数上。</p>
+<blockquote>
+<p>Python 中是无法实现 C 和 Java 中的重载的，因为重载要求函数名要相同，而参数的类型或数量不同，但是 <font color="red" size="3">Python 是通过变量符号（如这里的 func）来关联一个函数，当我们用 def 语句再次创建一个同名的函数时，这个变量名就绑定到新的函数对象上了</font>。</p>
+</blockquote>
+</blockquote>
+<h3 id="2-10-动态类型"><a href="#2-10-动态类型" class="headerlink" title="2.10 动态类型"></a>2.10 动态类型</h3><blockquote>
+<p>继续看函数 func 里面的代码，这时又有一条赋值语句 a = 1。变量 a 现在已经变成了第三种类型，它现在是一个整数了。那么 Python 是怎么实现动态类型的呢？答案就藏在具体存储的对象上。变量 a 仅仅只是一个符号（实际上是一个字符串对象），类型信息是存储在对象上的。在 Python 中，对象机制的核心是类型信息和引用计数（引用计数属于垃圾回收的部分）。</p>
+<p>看到这里，我们就可以想象一下执行一句简单的 a + b，Python 虚拟机需要做多少繁琐的事情了。首先需要分别检查 a 和 b 所对应对象的类型，还要匹配类型是否一致（1 + “2” 将会出现异常），然后根据对象的类型调用正确的 + 函数（例如数值的 + 或字符串的 +）</p>
+</blockquote>
+<h4 id="2-11-命名空间-namespace"><a href="#2-11-命名空间-namespace" class="headerlink" title="2.11 命名空间 (namespace)"></a>2.11 命名空间 (namespace)</h4><blockquote>
+<p>在介绍上面的这些代码时，还漏掉了一个关键的信息就是命名空间。在 Python 中，类、函数、module 都对应着一个独立的命名空间。而一个独立的命名空间会对应一个 PyCodeObject 对象，所以上面的 demo.py 文件编译后会生成两个 PyCodeObject，只是在 demo.py 这个 module 层的 PyCodeObject 中通过一个变量符号 func 嵌套了一个函数的 PyCodeObject。</p>
+<p>命名空间的意义，就是用来确定一个变量符号到底对应什么对象。命名空间可以一个套一个地形成一条命名空间链，Python 虚拟机在执行的过程中，会有很大一部分时间消耗在从这条命名空间链中确定一个符号所对应的对象是什么。</p>
+<p>在 Python中，命名空间是由一个 dict 对象实现的，它维护了（name，obj）这样的关联关系。</p>
+<p>说到这里，再补充一下 import foo 这行代码会在 demo.py 这个模块的命名空间中，创建一个新的变量名 foo，foo 将绑定到一个 PyCodeObject 对象，也就是 foo.py 的编译结果。</p>
+</blockquote>
+<h5 id="2-11-1-dir-函数"><a href="#2-11-1-dir-函数" class="headerlink" title="2.11.1 dir 函数"></a>2.11.1 dir 函数</h5><blockquote>
+<p>Python 的内置函数 dir 可以用来查看一个命名空间下的所有名字符号。一个用处是查看一个命名空间的所有属性和方法（这里的命名空间就是指类、函数、module）。</p>
+<p>比如，查看当前的命名空间，可以使用 dir()，查看 sys 模块，可以使用 dir(sys)。</p>
+</blockquote>
+<h5 id="2-11-2-LEGB-规则"><a href="#2-11-2-LEGB-规则" class="headerlink" title="2.11.2 LEGB 规则"></a>2.11.2 LEGB 规则</h5><blockquote>
+<p><code>locals -&gt; enclosing function -&gt; globals -&gt; builtins</code></p>
+<p><strong>locals</strong>，当前所在命名空间（如函数、模块），函数的参数也属于命名空间内的变量</p>
+<p><strong>enclosing</strong>，外部嵌套函数的命名空间（闭包中常见）</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">(a)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fun2</span><span class="params">()</span>:</span></div><div class="line">        <span class="comment"># a 位于外部嵌套函数的命名空间</span></div><div class="line">        print(a)</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>globals</strong>，全局变量，函数定义所在模块的命名空间</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">1</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 需要通过 global 指令来声明全局变量</span></div><div class="line">    <span class="keyword">global</span> a</div><div class="line">    <span class="comment"># 修改全局变量，而不是创建一个新的 local 变量</span></div><div class="line">    a = <span class="number">2</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>builtins</strong>，内置模块的命名空间。Python 在启动的时候会自动为我们载入很多内置的函数、类，比如 dict，list，type，print，这些都位于 <code>__builtins__</code> 模块中，可以使用 <code>dir(__builtins__)</code> 来查看。这也是为什么我们在没有 import 任何模块的情况下，就能使用这么多丰富的函数和功能了。</p>
+</blockquote>
+<h5 id="2-12-内置属性-name"><a href="#2-12-内置属性-name" class="headerlink" title="2.12 内置属性 __name__"></a>2.12 内置属性 <code>__name__</code></h5><blockquote>
+<p>现在到了解释 <code>if __name__ == &#39;__main__&#39;</code> 这行代码的时候了。当 Python 程序启动后，Python 会自动为每个模块设置一个属性 <code>__name__</code> 通常使用的是模块的名字，也就是文件名，但唯一的例外是主模块，主模块将会被设置为 <code>__main__</code>。利用这一特性，就可以做一些特别的事。比如当该模块以主模块来运行的时候，可以运行测试用例。而当被其他模块 <code>import</code> 时，则只是乖乖的，提供函数和功能就好。</p>
+</blockquote>
+<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h4><h5 id="3-1-pyc-文件"><a href="#3-1-pyc-文件" class="headerlink" title="3.1 pyc 文件"></a>3.1 pyc 文件</h5><blockquote>
+<p>Python 只会对那些以后可能继续被使用和载入的模块才会生成 pyc 文件，Python 认为使用了 import 指令的模块，属于这种类型，因此会生成 pyc 文件。而对于只是临时用一次的模块，并不会生成 pyc 文件，Python 将主模块当成了这种类型的文件。这就解释了为什么 <code>python demo.py</code> 执行完后，只会生成一个 <code>foo.pyc</code> 文件。</p>
+</blockquote>
+<h5 id="3-2-小整数对象池"><a href="#3-2-小整数对象池" class="headerlink" title="3.2 小整数对象池"></a>3.2 小整数对象池</h5><blockquote>
+<p>在 demo.py 这里例子中，所用的整数特意用了一个 257，这是为了介绍<code>小整数对象池的</code>。整数在程序中的使用非常广泛，Python 为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。</p>
+<p>Python 对小整数的定义是 <code>[-5, 257)</code>，这些整数对象是提前建立好的，不会被垃圾回收。在一个 Python 的程序中，所有位于这个范围内的整数使用的都是同一个对象，从下面这个例子就可以看出。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(a)</div><div class="line"><span class="number">140695611397168</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(b)</div><div class="line"><span class="number">140695611397168</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = <span class="number">257</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(c)</div><div class="line"><span class="number">140695611432448</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = <span class="number">257</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(d)</div><div class="line"><span class="number">140695611432400</span></div></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<p><code>id 函数可以用来查看一个对象的唯一标志，可以认为是内存地址</code></p>
+</blockquote>
+<p>对于大整数，Python 使用的是一个大整数对象池。这句话的意思是：</p>
+<blockquote>
+<p>每当创建一个大整数的时候，都会新建一个对象，但是这个对象不再使用的时候，并不会销毁，后面再建立的对象会复用之前已经不再使用的对象的内存空间。（这里的不再使用指的是引用计数为0，可以被销毁）</p>
+</blockquote>
+</blockquote>
+<h5 id="3-3-字符串对象缓冲池"><a href="#3-3-字符串对象缓冲池" class="headerlink" title="3.3 字符串对象缓冲池"></a>3.3 字符串对象缓冲池</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">'string'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="string">'string'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(a)</div><div class="line"><span class="number">4559202176</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>id(b)</div><div class="line"><span class="number">4559202176</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a <span class="keyword">is</span> b</div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>没错，Python 的设计者为<code>一个字节的字符</code>对应的字符串对象 (PyStringObject) 也设计了这样一个对象池。同时还有一个 <code>intern 机制</code>，<code>可以将内容相同的字符串变量转换成指向同一个字符串对象。</code></p>
+<p>intern 机制的关键，就是在系统中有一个（key，value）映射关系的集合，集合的名称叫做 interned。在这个集合中，记录着被 intern 机制处理过的 PyStringObject 对象。不过 Python 始终会为<code>字符串</code>创建 PyStringObject 对象，<code>即便在interned 中已经有一个与之对应的 PyStringObject 对象了</code>，而 intern 机制是在字符串被创建后才起作用。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">'a string'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="string">'a string'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a <span class="keyword">is</span> b</div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<p>值得说明的是，数值类型和字符串类型在 Python 中都是不可变的，这意味着你无法修改这个对象的值，每次对变量的修改，实际上是创建一个新的对象。得益于这样的设计，才能使用对象缓冲池这种优化。</p>
+</blockquote>
+<p>Python 的实现上大量采用了这种内存对象池的技术，不仅仅对于这些特定的对象，还有专门的内存池用于小对象，使用这种技术可以避免频繁地申请和释放内存空间，目的就是让 Python 能稍微更快一点。更多内容可以参考这里。</p>
+</blockquote>
+<h5 id="3-4-import-指令"><a href="#3-4-import-指令" class="headerlink" title="3.4 import 指令"></a>3.4 import 指令</h5><blockquote>
+<p>前文提到 <code>import</code> 指令是用来载入 <code>module</code> 的，如果需要，也会顺道做编译的事。但 import 指令，还会做一件重要的事情就是把 import 的那个 module 的代码执行一遍，这件事情很重要。Python 是解释执行的，连函数都是执行的时候才创建的。如果不把那个 module 的代码执行一遍，那么 module 里面的函数都没法创建，更别提去调用这些函数了。</p>
+<p>执行代码的另外一个重要作用，就是在这个 <code>module 的命名空间中</code>，创建模块内定义的函数和各种对象的符号名称（也就是变量名），并将其绑定到对象上，这样其他 module 才能通过变量名来引用这些对象。</p>
+<p>Python 虚拟机还会将已经 import 过的 module 缓存起来，放到一个全局 module 集合 sys.modules 中。这样做有一个好处，即如果程序的在另一个地方再次 import 这个模块，Python 虚拟机只需要将全局 module 集合中缓存的那个 module 对象返回即可。</p>
+<p>你现在一定想到了 sys.modules 是一个 dict 对象，可以通过 <code>type(sys.modules)</code> 来验证</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>type(sys.modules)</div><div class="line">&lt;type <span class="string">'dict'</span>&gt;</div></pre></td></tr></table></figure>
+<h5 id="3-5-多线程"><a href="#3-5-多线程" class="headerlink" title="3.5 多线程"></a>3.5 多线程</h5><blockquote>
+<p>demo.py 这个例子并没有用到多线程，但还是有必要提一下。</p>
+<p>在提到多线程的时候，往往要关注线程如何同步，如何访问共享资源。Python 是通过一个全局解释器锁 <code>GIL（Global Interpreter Lock）</code>来实现线程同步的。当 Python 程序只有单线程时，并不会启用 GIL，而当用户创建了一个 thread 时，表示要使用多线程，Python 解释器就会自动激活 GIL，并创建所需要的上下文环境和数据结构。</p>
+<font color="red" size="3">Python 字节码解释器的工作原理是按照指令的顺序一条一条地顺序执行，Python 内部维护着一个数值，这个数值就是 Python 内部的时钟，如果这个数值为 N，则意味着 Python 在执行了 N 条指令以后应该立即启动线程调度机制，可以通过下面的代码获取这个数值。</font>
+
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sys.getcheckinterval()</div><div class="line"><span class="number">100</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>线程调度机制将会为线程分配 GIL，获取到 GIL 的线程就能开始执行，而其他线程则必须等待。<font color="red" size="3">由于 GIL 的存在，Python 的多线程性能十分低下，无法发挥多核 CPU 的优势，性能甚至不如单线程。因此如果你想用到多核 CPU，一个建议是使用多进程。</font></p>
+</blockquote>
+<h5 id="3-6-垃圾回收"><a href="#3-6-垃圾回收" class="headerlink" title="3.6 垃圾回收"></a>3.6 垃圾回收</h5><blockquote>
+<p>在讲到垃圾回收的时候，通常会使用引用计数的模型，这是一种最直观，最简单的垃圾收集技术。Python 同样也使用了引用计数，但是引用计数存在这些缺点：</p>
+<ul>
+<li>频繁更新引用计数会降低运行效率</li>
+<li>引用计数无法解决循环引用问题</li>
+<li>Python 在引用计数机制的基础上，使用了主流垃圾收集技术中的标记——清除和分代收集两种技术。</li>
+</ul>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[zabbix时区设置]]></title>
       <url>http://wangbinbin0326.github.io/2018/06/28/zabbix%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h3 id="1-4-zabbix-时区设置"><a href="#1-4-zabbix-时区设置" class="headerlink" title="1.4 zabbix 时区设置"></a>1.4 zabbix 时区设置</h3><blockquote>
