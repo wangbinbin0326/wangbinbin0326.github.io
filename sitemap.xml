@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
+    
+    <lastmod>2018-10-19T12:58:35.503Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wangbinbin0326.github.io/2018/10/19/Python-%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2018-10-19T12:12:51.025Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://wangbinbin0326.github.io/2018/06/22/python-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8Bmysql/</loc>
     
     <lastmod>2018-06-22T09:08:43.981Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wangbinbin0326.github.io/about/index.html</loc>
-    
-    <lastmod>2018-06-22T08:57:43.451Z</lastmod>
     
   </url>
   
