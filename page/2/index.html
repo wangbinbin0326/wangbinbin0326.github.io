@@ -465,6 +465,127 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/11/Linux双网卡双网关的配置/" itemprop="url">
+                  Linux双网卡双网关的配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-11T09:40:10-07:00" content="2017-04-11">
+              2017-04-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Linux网络配置"><a href="#Linux网络配置" class="headerlink" title="Linux网络配置"></a>Linux网络配置</h2><h3 id="rhel6-5双网卡双网关的配置"><a href="#rhel6-5双网卡双网关的配置" class="headerlink" title="rhel6.5双网卡双网关的配置"></a>rhel6.5双网卡双网关的配置</h3><blockquote>
+<p>采用一个网卡配置电信地址，另一个网卡配置联通地址，安装好rhel6.5系统后配置完IP，发现联通地址和电信地址只能有一个可以ping通，若电信地址配置网关，联通地址不配网关，则只能ping通电信地址，反之只能ping通联通地址，若同时配置联通和电信地址则两个都不通。</p>
+<p>rhel6.5中实现双网卡双网关</p>
+<p>服务器环境如下：<br>系统：RHEL6.5<br>电信IP（TEL）：114.80.10.79 netmask 255.255.255.128 gateway 114.80.10.1<br>联通IP（CNC）：112.65.20.23 netmask 255.255.255.128 gateway 112.65.20.1</p>
+<p>1、配置网卡信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth12</div><div class="line">DEVICE=eth12</div><div class="line">TYPE=Ethernet</div><div class="line">ONBOOT=yes</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=114.80.10.79</div><div class="line">NETMASK=255.255.255.128</div><div class="line"></div><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth14</div><div class="line">DEVICE=eth14</div><div class="line">TYPE=Ethernet</div><div class="line">ONBOOT=yes</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=112.65.20.23</div><div class="line">NETMASK=255.255.255.128</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/11/Linux双网卡双网关的配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/10/Shell检查安装rpm包/" itemprop="url">
                   Shell检查安装rpm包
                 </a>
@@ -1562,128 +1683,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/13/Oracle简单易懂之事务流程分析/" itemprop="url">
-                  Oracle简单易懂之事务流程分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-13T10:32:18-08:00" content="2017-01-13">
-              2017-01-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">Oracle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="事务的完整流程分析"><a href="#事务的完整流程分析" class="headerlink" title="事务的完整流程分析"></a>事务的完整流程分析</h2><h3 id="一个事务的简单流程分析"><a href="#一个事务的简单流程分析" class="headerlink" title="一个事务的简单流程分析"></a>一个事务的简单流程分析</h3><blockquote>
-<p>1、事务开始；</p>
-<p>2、在buffer cache中找到需要的数据块，如果没有找到，则从数据文件中载入buffer cache中；</p>
-<p>3、事务修改buffer cache的数据块，该数据被标识为“脏数据”，并被写入log buffer中；</p>
-<p>4、事务提交，LGWR进程将log buffer中的“脏数据”写入redo log file中；</p>
-<p>5、当发生checkpoint，CKPT进程更新所有数据文件的文件头中的信息，DBWn进程则负责将Buffer Cache中的脏数据写入到数据文件中。</p>
-<p>附:checkpoint由ckpt进程触发oracle进行checkpoint动作,将data buffer中的脏块(已经写在redo里记录但是没有写到datafile里的)的内容写入到data file里并释放站用的空间,由dbw后台进程完成,并修改controlfile和datafile的scn.<br>一般手工执行(alter system checkpoint)是由于要删除某个日志但是该日志里还有没有同步到data file里的内容,就需要手工check point来同步数据,然后就可以drop logfile group n.</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/13/Oracle简单易懂之事务流程分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1729,7 +1728,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1737,7 +1736,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
