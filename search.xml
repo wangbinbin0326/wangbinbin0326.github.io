@@ -4,15 +4,15 @@
   
     
     <entry>
-      <title><![CDATA[xadmin-project-install]]></title>
+      <title><![CDATA[Django xadmin 后台管理平台]]></title>
       <url>http://wangbinbin0326.github.io/2018/10/26/xadmin-project-install/</url>
       <content type="html"><![CDATA[<h1 id="Django-xadmin-后台管理平台"><a href="#Django-xadmin-后台管理平台" class="headerlink" title="Django xadmin 后台管理平台"></a>Django xadmin 后台管理平台</h1><hr>
-<h2 id="toc"><a href="#toc" class="headerlink" title="[toc]"></a>[toc]</h2><hr>
 <h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><blockquote>
 <p>xadmin是django的一个第三方的管理后台实现，它的功能比自带的admin功能更加强大。<br><a href="https://github.com/sshwsfc/xadmin" target="_blank" rel="external">https://github.com/sshwsfc/xadmin</a></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install git+git://github.com/sshwsfc/xadmin.git</div></pre></td></tr></table></figure>
 <h2 id="创建blogadmin-project-和-blog-app"><a href="#创建blogadmin-project-和-blog-app" class="headerlink" title="创建blogadmin project 和 blog app"></a>创建blogadmin project 和 blog app</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(venv) Tony2018deMacBook-Pro:Django binbiwan$ pwd</div><div class="line">/Users/binbiwan/Desktop/tony/study/python/project/devops/data/Django</div><div class="line">(venv) Tony2018deMacBook-Pro:Django binbiwan$ django-admin startproject blogxadmin</div><div class="line">(venv) Tony2018deMacBook-Pro:Django binbiwan$ python manage.py startapp blog</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><blockquote>
 <p><code>blogxadmin/settings.py</code></p>
 </blockquote>
