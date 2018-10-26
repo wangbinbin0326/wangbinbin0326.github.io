@@ -465,6 +465,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/11/Oracle无法正常关闭/" itemprop="url">
+                  Oracle无法正常关闭
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T16:33:24-08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Oracle-Issue/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle Issue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Oracle-无法正常关闭"><a href="#Oracle-无法正常关闭" class="headerlink" title="Oracle 无法正常关闭"></a>Oracle 无法正常关闭</h2><blockquote>
+<ol>
+<li><p><strong>Stop the listener</strong> - you can at least prevent others from connecting to the instance that you’re trying to shut down:  <code>bash-3.00$ lsnrctl stop</code></p>
+</li>
+<li><p><strong>Get a list of processes hitting the database</strong>.  You’ll need that before you start killing them off one by one:  bash-3.00$ ps -eaf|grep LOCAL</p>
+</li>
+<li><p><strong>Kill the processes.</strong>  Take the second column’s output from step #2 and execute the following:  <code>bash-3.00$ kill -9 396</code> - where “396” is the processid you wish to kill.</p>
+</li>
+</ol>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/11/Oracle无法正常关闭/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/04/SQL-转换函数/" itemprop="url">
                   SQL-转换函数
                 </a>
@@ -1633,138 +1757,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/21/Oracle简单易懂之SCN/" itemprop="url">
-                  Oracle简单易懂之SCN
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T16:55:30-07:00" content="2016-10-21">
-              2016-10-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">Oracle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#第三章 SCN(system change numbe)</p>
-<h2 id="3-1-Oracle-SCN-概念"><a href="#3-1-Oracle-SCN-概念" class="headerlink" title="3.1 Oracle SCN 概念"></a>3.1 Oracle SCN 概念</h2><blockquote>
-<p>SCN（system change number）： 系统改变号，用以标识数据库在某个确切的时刻提交的版本。</p>
-<ul>
-<li>在事务提交时，它被赋予一个唯一的标示事务的SCN。</li>
-<li>是Oracle内部的时钟机制；</li>
-<li>通过SCN来维护数据库的一致性；</li>
-<li>通过SCN来实施恢复机制；</li>
-<li>SCN在数据库中是唯一的，并随时间而增加，但是可能并不连贯。</li>
-</ul>
-</blockquote>
-<hr>
-<blockquote>
-<ol>
-<li><strong>系统检查点SCN: 查询目前系统最新的SCN（redo log SCN）</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">col GET_SYSTEM_CHANGE_NUMBER for 99999999999999;</div><div class="line"><span class="keyword">select</span> dbms_flashback.get_system_change_number <span class="keyword">from</span> dual;</div><div class="line"></div><div class="line">GET_SYSTEM_CHANGE_NUMBER</div><div class="line"><span class="comment">------------------------</span></div><div class="line">          11795798036771</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/21/Oracle简单易懂之SCN/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1810,7 +1802,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1818,7 +1810,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1827,7 +1819,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
