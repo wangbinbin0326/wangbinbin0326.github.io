@@ -465,6 +465,128 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/12/mysql重置root密码/" itemprop="url">
+                  mysql重置root密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-12T16:31:52-07:00" content="2017-07-12">
+              2017-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1，Mysql-密码重置"><a href="#1，Mysql-密码重置" class="headerlink" title="1，Mysql 密码重置"></a>1，Mysql 密码重置</h2><blockquote>
+<p>系统，数据库版本</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# more /etc/redhat-release</div><div class="line">CentOS Linux release 7.3.1611 (Core)</div><div class="line"></div><div class="line">Server version: 5.7.18 MySQL Community Server (GPL)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>修改my.cnf配置文件，添加’skip-grant-tables’</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# vi /etc/my.cnf</div><div class="line"># read_rnd_buffer_size = 2M</div><div class="line">datadir=/var/lib/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line">skip-grant-tables</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/07/12/mysql重置root密码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/24/Python学习路径与资源/" itemprop="url">
                   Python学习路径与资源
                 </a>
@@ -1537,159 +1659,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/23/Oracle-Data-Guard之创建物理备库/" itemprop="url">
-                  Oracle-Data-Guard之创建物理备库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-23T10:14:38-07:00" content="2017-03-23">
-              2017-03-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Oracle-Data-Guard/" itemprop="url" rel="index">
-                    <span itemprop="name">Oracle Data Guard</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="第一-Creating-a-Physical-Standby-Database"><a href="#第一-Creating-a-Physical-Standby-Database" class="headerlink" title="第一. Creating a Physical Standby Database"></a>第一. Creating a Physical Standby Database</h2><hr>
-<h3 id="1-1-实验背景"><a href="#1-1-实验背景" class="headerlink" title="1.1 实验背景"></a>1.1 实验背景</h3><p><img src="http://docs.oracle.com/cd/E11882_01/server.112/e41134/img/sbydb042.gif" alt="此处输入图片的描述"></p>
-<blockquote>
-<ul>
-<li>You have two servers (physical or VMs) with an operating system and Oracle installed on them. In this case I’ve used Oracle Linux 5.6 and Oracle Database 11.2.0.2.</li>
-<li>The primary server has a running instance.</li>
-<li>The standby server has a software only installation.</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>数据库</th>
-<th>IP</th>
-<th style="text-align:center">DB_SID</th>
-<th style="text-align:center">DB_NAME</th>
-<th style="text-align:center">DB_UNIQUE_NAME</th>
-<th style="text-align:center">Oracle Net Service Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Primary</td>
-<td>0.0.0.188</td>
-<td style="text-align:center">mmpdb3</td>
-<td style="text-align:center">mmpdb3</td>
-<td style="text-align:center">mmpdb3</td>
-<td style="text-align:center">mmpdb3</td>
-</tr>
-<tr>
-<td>Physical standby</td>
-<td>0.0.0.189</td>
-<td style="text-align:center">mmpdb3</td>
-<td style="text-align:center">mmpdb3</td>
-<td style="text-align:center">mmpdb3sby</td>
-<td style="text-align:center">mmpdb3sby</td>
-</tr>
-</tbody>
-</table>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/23/Oracle-Data-Guard之创建物理备库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1735,7 +1704,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

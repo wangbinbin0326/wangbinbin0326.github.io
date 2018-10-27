@@ -465,6 +465,131 @@
             
               
                 
+                <a class="post-title-link" href="/2018/10/27/xadmin-project-configure/" itemprop="url">
+                  Django xadmin 定制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-27T03:10:19-07:00" content="2018-10-27">
+              2018-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python-Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Python Django</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Django-xadmin-定制"><a href="#Django-xadmin-定制" class="headerlink" title="Django xadmin 定制"></a>Django xadmin 定制</h1><hr>
+<h2 id="页面显示中文"><a href="#页面显示中文" class="headerlink" title="页面显示中文"></a>页面显示中文</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># LANGUAGE_CODE = 'en-us'</span></div><div class="line">LANGUAGE_CODE = <span class="string">'zh-hans'</span></div><div class="line"> </div><div class="line"><span class="comment"># TIME_ZONE = 'UTC'</span></div><div class="line">TIME_ZONE = <span class="string">'Asia/Shanghai'</span></div></pre></td></tr></table></figure>
+<h2 id="标题设置"><a href="#标题设置" class="headerlink" title="标题设置"></a>标题设置</h2><blockquote>
+<p>site-title和site-footer都是设置在base_site.html模板页面中的，可以从xadmin的安装目录下的xadmin\templates\xadmin目录中找到：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;% extends 'xadmin/base.html' %&#125;</div><div class="line">&#123;% load i18n xadmin_tags %&#125;</div><div class="line">&#123;% block title %&#125;&#123;&#123; title &#125;&#125; | &#123;&#123; site_title &#125;&#125;&#123;% endblock %&#125;</div><div class="line"></div><div class="line">  &#123;% block footer %&#125;</div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"footer"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">hr</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&amp;copy; &#123;% block site_footer %&#125;&#123;&#123; site_footer &#125;&#125;&#123;% endblock %&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  &#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>从图片中可以看出来，site_title和site_footer都是可以通过程序设置的变量，那么想要设置这两个变量要怎么做呢？只要在adminx.py文件中添加GlobalSetting类，具体代码如下：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># configure site_title, site_footer</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GlobalSetting</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="comment"># 设置base_site.html的Title</span></div><div class="line">    site_title = <span class="string">'CM Server Admin'</span></div><div class="line">    <span class="comment"># 设置base_site.html的Footer</span></div><div class="line">    site_footer = <span class="string">'Tony Wang'</span></div><div class="line">    menu_style = <span class="string">"default"</span>  <span class="comment"># "accordion" 设置菜单折叠</span></div><div class="line"></div><div class="line">xadmin.site.register(views.CommAdminView, GlobalSetting)</div></pre></td></tr></table></figure>
+<p><img src="https://wangbinbin0326.github.io/images/python/xadmin03.png" alt="此处输入图片的描述"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/10/27/xadmin-project-configure/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/10/26/xadmin-project-install/" itemprop="url">
                   Django xadmin 后台管理平台
                 </a>
@@ -1565,128 +1690,6 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/12/mysql重置root密码/" itemprop="url">
-                  mysql重置root密码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-12T16:31:52-07:00" content="2017-07-12">
-              2017-07-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1，Mysql-密码重置"><a href="#1，Mysql-密码重置" class="headerlink" title="1，Mysql 密码重置"></a>1，Mysql 密码重置</h2><blockquote>
-<p>系统，数据库版本</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# more /etc/redhat-release</div><div class="line">CentOS Linux release 7.3.1611 (Core)</div><div class="line"></div><div class="line">Server version: 5.7.18 MySQL Community Server (GPL)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>修改my.cnf配置文件，添加’skip-grant-tables’</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@ct7 ~]# vi /etc/my.cnf</div><div class="line"># read_rnd_buffer_size = 2M</div><div class="line">datadir=/var/lib/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line">skip-grant-tables</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/07/12/mysql重置root密码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1732,7 +1735,7 @@ yum install clamav-server clamav-data clamav-update clamav-filesystem clamav cla
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
