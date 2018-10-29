@@ -624,7 +624,42 @@ rhel6.5中实现双网卡双网关
           
   <div class="comments" id="comments">
     
+        <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+        <div id="container" style="display:none"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+        const myTheme = {
+          render(state, instance) {
+            const container = document.createElement('div');
+            container.lang = "en-US";
+            container.className = 'gitment-container gitment-root-container';
+            container.appendChild(instance.renderHeader(state, instance));
+            container.appendChild(instance.renderEditor(state, instance));
+            container.appendChild(instance.renderComments(state, instance));
+            container.appendChild(instance.renderFooter(state, instance));
+            return container;
+          }
+        }
+        function showGitment() {
+          $("#gitment_title").attr("style", "display:none");
+          $("#container").attr("style", "").addClass("gitment_container");
+          var gitment = new Gitment({
+            id: window.location.pathname,
+            theme: myTheme,
+            owner: 'wangbinbin0326',
+            repo: 'wangbinbin0326.github.io',
+            oauth: {
+              client_id: '9017913ddd63dc653ebe',
+              client_secret: 'b44d87634c671cb0a7e38f892598bcefe861d42b'
+            }
+          });
+          gitment.render('container');
+        }
+        </script>
+    
   </div>
+
 
 
         </div>
